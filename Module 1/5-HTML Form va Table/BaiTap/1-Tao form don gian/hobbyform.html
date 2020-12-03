@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Hobby Form</title>
+
+</head>
+<body>
+<form action="/url" method="post">
+    <div id="main">
+        <div id="header">
+            <h1>SỞ THÍCH CỦA BẠN</h1>
+        </div>
+        <div id="left">
+            <div class="label">Họ và tên</div>
+            <div class="label">Email</div>
+            <div class="label">Sở thích</div>
+        </div>
+        <div id="right">
+            <input type="text" name="fullName" size="65"><br>
+            <input type="text" name="email" size="50"><br>
+            <table>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="thethao" id="thethao" value="thethao">
+                        <label for="thethao">Thể thao</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="amnhac" id="amnhac">
+                        <label for="amnhac">Âm nhạc</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="docsach" id="docsach">
+                        <label for="docsach">Đọc sách</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="luotweb" id="luotweb">
+                        <label for="luotweb">Lướt web</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="choigame" id="choigame">
+                        <label for="choigame">Chơi game</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="dienanh" id="dienanh">
+                        <label for="dienanh">Điện ảnh</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="dulich" id="dulich">
+                        <label for="dulich">Du lịch</label>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Gửi thông tin">
+            <input type="reset" value="Nhập lại">
+        </div>
+
+    </div>
+</form>
+
+<style>
+    table td {
+        color: #FF4C00;
+    }
+
+    #main {
+        width: 60%;
+        margin: 0 auto;
+        border: 1px solid #FF4C00;
+        overflow: auto;
+    }
+
+    #header {
+        text-align: center;
+        background-color: #FF4C00;
+        color: #fff;
+        margin: 0 20px 0 20px;
+    }
+
+    #left {
+        width: 20%;
+        float: left;
+        text-align: right;
+    }
+
+    #left .label {
+        margin: 0 20px 20px 0;
+        color: #0A26AD;
+        font-weight: bold;
+    }
+
+    #right {
+        float: left;
+        width: 80%;
+    }
+
+    #right input {
+        margin-bottom: 15px;
+    }
+</style>
+
+</body>
+</html>

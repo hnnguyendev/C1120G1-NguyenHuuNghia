@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Student Form</title>
+
+</head>
+<body>
+<form action="/url" method="post">
+    <div id="main">
+        <div id="header">
+            <h1>ĐĂNG KÍ HỌC VIÊN</h1>
+        </div>
+        <table>
+            <tr>
+                <td><div class="label">Họ và tên</div></td>
+                <td><input type="text" name="fullName" size="60"></td>
+            </tr>
+            <tr>
+                <td><div class="label">Ngày sinh</div></td>
+                <td><input type="date" name="dateOfBirth"></td>
+            </tr>
+            <tr>
+                <td><div class="label">Giới tính</div></td>
+                <td>
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">Nam</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">Nữ</label>
+                </td>
+            </tr>
+            <tr>
+                <td><div class="label">Địa chỉ</div></td>
+                <td><textarea name="address" id="address" cols="55" rows="5"></textarea></td>
+            </tr>
+            <tr>
+                <td><div class="label">Lớp</div></td>
+                <td>
+                    <select name="class" id="class">
+                        <option selected disabled>-- Chọn lớp --</option>
+                        <option value="C1120G1">C1120G1</option>
+                        <option value="C1220G1">C1120G1</option>
+                        <option value="C0121G1">C0121G1</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><div class="label">Email</div></td>
+                <td><input type="email" name="email" size="60"></td>
+            </tr>
+            <tr>
+                <td><div class="label">Điện thoại</div></td>
+                <td><input type="tel" name="tel" size="60"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Đăng kí">
+                    <input type="reset" value="Nhập lại">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</form>
+
+<style>
+    table {
+        margin-left: 20px;
+    }
+
+    table .label {
+        color: #1933AA;
+        font-weight: bold;
+    }
+
+    input, select, textarea {
+        margin: 10px 0 10px 50px;
+    }
+    #main {
+        width: 60%;
+        margin: 0 auto;
+        border: 1px solid #0433FF;
+        overflow: auto;
+        background-color: #FFFDA9;
+    }
+
+    #header {
+        background-color: #D4FDD6;
+        color: #0433FF;
+        margin: 0 20px 0 20px;
+    }
+
+</style>
+
+</body>
+</html>
