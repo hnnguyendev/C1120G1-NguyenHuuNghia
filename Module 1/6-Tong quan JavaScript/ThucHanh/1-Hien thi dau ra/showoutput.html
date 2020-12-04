@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Output</title>
+</head>
+<body>
+<button onclick="showMessage1()">Click me!</button>
+<br><br>
+<div id="msgDiv"></div>
+<button onclick="showMessage2()">Click me!</button>
+<br><br>
+<button onclick="showMessage3()">Click me!</button>
+<br><br>
+<button onclick="showMessage4()">Click me!</button>
+
+<script>
+    function showMessage1() {
+        alert("Hello!");
+    }
+
+    function showMessage2() {
+        document.getElementById("msgDiv").innerHTML = "Output by HTML tag";
+    }
+
+    function showMessage3() {
+        document.write("Show message by document.write");
+    }
+
+    function showMessage4() {
+        console.log("Show message by console.log");
+    }
+
+</script>
+
+</body>
+</html>
