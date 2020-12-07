@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Conversion</title>
+</head>
+<body>
+<h1>Currency Conversion</h1>
+<table border="1">
+    <tr>
+        <td>Amount</td>
+        <td>From Currency</td>
+        <td>To Currency</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="number" id="amount">
+        </td>
+        <td>
+            <select id="from">
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="yen">YEN</option>
+                <option value="krw">KRW</option>
+                <option value="vnd">VND</option>
+            </select>
+        </td>
+        <td>
+            <select id="to">
+                <option value="vnd">VND</option>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="yen">YEN</option>
+                <option value="krw">KRW</option>
+            </select>
+        </td>
+        <td>
+            <button onclick="convert()">Convert</button>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" id="result">0</td>
+    </tr>
+</table>
+
+<script>
+    function convert() {
+        const vnd = 1;
+        const usd = 23000;
+        const eur = 27000;
+        const yen = 217;
+        const krw = 20;
+        let amount = document.getElementById("amount").value;
+        let from = document.getElementById("from").value;
+        let to = document.getElementById("to").value;
+        let f;
+        let t;
+        let result;
+
+
+        switch (from) {
+            case "usd":
+                f = usd;
+                break;
+            case "eur":
+                f = eur;
+                break;
+            case "yen":
+                f = yen;
+                break;
+            case "krw":
+                f = krw;
+                break;
+            case "vnd":
+                f = vnd;
+                break;
+        }
+
+        switch (to) {
+            case "vnd":
+                t = vnd;
+                break;
+            case "usd":
+                t = usd;
+                break;
+            case "eur":
+                t = eur;
+                break;
+            case "yen":
+                t = yen;
+                break;
+            case "krw":
+                t = krw;
+                break;
+        }
+
+        result = (amount * f / t).toFixed(2);
+        document.getElementById("result").innerHTML = "Result = " + result;
+
+    }
+</script>
+</body>
+</html>
