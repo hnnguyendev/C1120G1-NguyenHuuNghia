@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Score</title>
+</head>
+<body>
+<h1>Student Score</h1>
+<p>Enter Physics Score</p>
+<input type="number" id="physics">
+<p>Enter Chemistry Score</p>
+<input type="number" id="chemistry">
+<p>Enter Biology Score</p>
+<input type="number" id="biology"><br/><br/>
+<button onclick="calScore()">Score Calculation</button>
+<p id="average"></p>
+<p id="sumOfScore"></p>
+
+<script>
+    let inputPhysics = document.getElementById("physics");
+    let inputChemistry = document.getElementById("chemistry");
+    let inputBiology = document.getElementById("biology");
+    let average;
+    let sumOfScore;
+
+    function calScore() {
+        let physics = parseFloat(inputPhysics.value);
+        let chemistry = parseFloat(inputChemistry.value);
+        let biology = parseFloat(inputBiology.value);
+        sumOfScore = physics + chemistry + biology;
+        average = sumOfScore / 3;
+        document.getElementById("average").innerHTML = "Score Average = " + average;
+        document.getElementById("sumOfScore").innerHTML = "Sum of Score = " + sumOfScore;
+
+    }
+
+</script>
+</body>
+</html>

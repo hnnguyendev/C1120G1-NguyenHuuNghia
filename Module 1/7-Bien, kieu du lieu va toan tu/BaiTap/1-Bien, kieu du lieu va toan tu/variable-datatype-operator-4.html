@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Circle Circumference</title>
+</head>
+<body>
+<h1>Circle Circumference</h1>
+<p>Enter Radius</p>
+<input type="number" id="radius">
+<button onclick="calCircleCircumference()">Calculation</button>
+<p id="circumference"></p>
+
+<script>
+    const PI = 3.14;
+    let inputRadius = document.getElementById("radius");
+    let circumference;
+
+    function calCircleCircumference() {
+        let radius = parseInt(inputRadius.value);
+        circumference = 2 * PI * radius;
+        document.getElementById("circumference").innerHTML = "Circle Circumference = " + circumference;
+    }
+
+</script>
+
+</body>
+</html>

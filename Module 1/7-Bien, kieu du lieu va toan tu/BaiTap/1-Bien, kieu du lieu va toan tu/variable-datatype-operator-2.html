@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Convert 0C to 0F</title>
+</head>
+<body>
+<h1>Convert 0C to 0F</h1>
+<p>Enter 0C</p>
+<input type="number" id="celsius">
+<button onclick="convert()">Convert</button>
+<p id="fahrenheit"></p>
+
+<script>
+    let inputCelsius = document.getElementById("celsius");
+
+    function convert() {
+        let celsius = parseInt(inputCelsius.value);
+        let fahrenheit = (celsius * 9) / 5 + 32;
+        document.getElementById("fahrenheit").innerHTML = fahrenheit + " 0F";
+
+    }
+</script>
+
+</body>
+</html>
