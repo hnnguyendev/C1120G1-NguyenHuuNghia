@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+<h1>Calculator</h1>
+<input type="number" id="number1" name="number1">
+<input type="number" id="number2" name="number1"><br/><br/>
+<input type="button" value="Addition(+)" onclick="cal('+')">
+<input type="button" value="Subtraction(-)" onclick="cal('-')">
+<input type="button" value="Multiplication(*)" onclick="cal('*')">
+<input type="button" value="Division(/)" onclick="cal('/')">
+
+<p id="result"></p>
+
+<script>
+    let inputNumber1 = document.getElementById("number1");
+    let inputNumber2 = document.getElementById("number2");
+    let result;
+
+    function add() {
+        let number1 = parseFloat(inputNumber1.value);
+        let number2 = parseFloat(inputNumber2.value);
+        result = number1 + number2;
+        document.getElementById("result").innerHTML = "Result = " + result;
+    }
+
+    function sub() {
+        let number1 = parseFloat(inputNumber1.value);
+        let number2 = parseFloat(inputNumber2.value);
+        result = number1 - number2;
+        document.getElementById("result").innerHTML = "Result = " + result;
+    }
+
+    function mul() {
+        let number1 = parseFloat(inputNumber1.value);
+        let number2 = parseFloat(inputNumber2.value);
+        result = number1 * number2;
+        document.getElementById("result").innerHTML = "Result = " + result;
+    }
+
+    function div() {
+        let number1 = parseFloat(inputNumber1.value);
+        let number2 = parseFloat(inputNumber2.value);
+        result = number1 / number2;
+        document.getElementById("result").innerHTML = "Result = " + result;
+    }
+
+    function cal(operator) {
+        let number1 = parseFloat(inputNumber1.value);
+        let number2 = parseFloat(inputNumber2.value);
+        switch (operator) {
+            case '+':
+                result = number1 + number2;
+                document.getElementById("result").innerHTML = "Result = " + result;
+                break;
+            case '-':
+                result = number1 - number2;
+                document.getElementById("result").innerHTML = "Result = " + result;
+                break;
+            case '*':
+                result = number1 * number2;
+                document.getElementById("result").innerHTML = "Result = " + result;
+                break;
+            case '/':
+                result = number1 / number2;
+                document.getElementById("result").innerHTML = "Result = " + result;
+                break;
+        }
+    }
+</script>
+
+</body>
+</html>
