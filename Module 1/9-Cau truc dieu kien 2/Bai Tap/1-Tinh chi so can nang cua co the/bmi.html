@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI</title>
+</head>
+<body>
+<form>
+    <label for="weight">Enter your weight (kg)</label>
+    <input type="number" id="weight" value="65"><br/><br/>
+    <label for="height">Enter your height (cm)</label>
+    <input type="number" id="height" value="168"><br/><br/>
+    <input type="button" value="My BMI" onclick="calBMI()">
+    <p id="bmi"></p>
+</form>
+<script>
+    let inputWeight = document.getElementById("weight");
+    let inputHeight = document.getElementById("height");
+
+    function calBMI() {
+        let weight = parseFloat(inputWeight.value);
+        let height = parseFloat(inputHeight.value);
+        let bmi = (weight / ((height/100) ** 2)).toFixed(1);
+        if (bmi < 18.5) {
+            document.getElementById("bmi").innerHTML = bmi + ": Underweight";
+        } else if (bmi < 25) {
+            document.getElementById("bmi").innerHTML = bmi + ": Normal";
+        } else if (bmi < 30) {
+            document.getElementById("bmi").innerHTML = bmi + ": Overweight";
+        } else {
+            document.getElementById("bmi").innerHTML = bmi + ": Obese";
+        }
+
+    }
+</script>
+</body>
+</html>
