@@ -82,7 +82,7 @@
                 <button onclick="" class="grey">%</button>
             </td>
             <td>
-                <button onclick="" class="grey">AC</button>
+                <button onclick="clr()" class="grey">AC</button>
             </td>
         </tr>
         <tr>
@@ -190,6 +190,11 @@
         let x = document.getElementById("input").value;
         let y = eval(x);
         document.getElementById("input").value = y;
+    }
+
+    function clr() {
+        document.getElementById("input").value = "";
+
     }
 
 </script>
