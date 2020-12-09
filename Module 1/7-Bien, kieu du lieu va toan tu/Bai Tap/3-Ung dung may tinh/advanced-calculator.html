@@ -3,37 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Advanced Calculator</title>
-
     <style>
         button {
             width: 70px;
             height: 40px;
         }
 
-        #container {
-            width: 550px;
-            margin: 0 auto;
-            border: 1px solid #E7E7E7;
-        }
-
         table {
             margin: 20px auto;
         }
 
-        input {
-            margin: 20px 20px 0 20px;
-            height: 40px;
-            border: 1px solid #E1E1E1;
-            text-align: right;
-        }
-
-        input:focus {
-            outline: 0;
-        }
-
         button {
             border: none;
-
         }
 
         button:hover {
@@ -42,6 +23,20 @@
 
         button:focus {
             outline: 0;
+        }
+
+        #container {
+            width: 550px;
+            margin: 0 auto;
+            border: 1px solid #E7E7E7;
+        }
+
+        #result {
+            border: 1px solid #E1E1E1;
+            margin-top: 0;
+            text-align: right;
+            height: 40px;
+            line-height: 40px;
         }
 
         .white {
@@ -60,8 +55,12 @@
 </head>
 <body>
 <div id="container">
-    <input type="text" id="input" size="74" readonly="true">
     <table>
+        <tr>
+            <td colspan="7">
+                <p id="result"></p>
+            </td>
+        </tr>
         <tr>
             <td>
                 <button onclick="" class="grey">Rad</button>
@@ -82,7 +81,7 @@
                 <button onclick="" class="grey">%</button>
             </td>
             <td>
-                <button onclick="clr()" class="grey">AC</button>
+                <button onclick="cal('AC')" class="grey">AC</button>
             </td>
         </tr>
         <tr>
@@ -96,16 +95,16 @@
                 <button onclick="" class="grey">ln</button>
             </td>
             <td>
-                <button onclick="display('7')" value="7" class="white">7</button>
+                <button onclick="cal('7')" class="white">7</button>
             </td>
             <td>
-                <button onclick="display('8')" value="8" class="white">8</button>
+                <button onclick="cal('8')" class="white">8</button>
             </td>
             <td>
-                <button onclick="display('9')" value="9" class="white">9</button>
+                <button onclick="cal('9')" class="white">9</button>
             </td>
             <td>
-                <button onclick="display('/')" value="/" class="grey">/</button>
+                <button onclick="cal('/')" class="grey">/</button>
             </td>
         </tr>
         <tr>
@@ -119,16 +118,16 @@
                 <button onclick="" class="grey">log</button>
             </td>
             <td>
-                <button onclick="display('4')" value="4" class="white">4</button>
+                <button onclick="cal('4')" class="white">4</button>
             </td>
             <td>
-                <button onclick="display('5')" value="5" class="white">5</button>
+                <button onclick="cal('5')" class="white">5</button>
             </td>
             <td>
-                <button onclick="display('6')" value="6" class="white">6</button>
+                <button onclick="cal('6')" class="white">6</button>
             </td>
             <td>
-                <button onclick="display('*')" value="*" class="grey">*</button>
+                <button onclick="cal('*')" class="grey">*</button>
             </td>
         </tr>
         <tr>
@@ -142,16 +141,16 @@
                 <button onclick="" class="grey"><span>&#8730;</span></button>
             </td>
             <td>
-                <button onclick="display('1')" value="1" class="white">1</button>
+                <button onclick="cal('1')" class="white">1</button>
             </td>
             <td>
-                <button onclick="display('2')" value="2" class="white">2</button>
+                <button onclick="cal('2')" class="white">2</button>
             </td>
             <td>
-                <button onclick="display('3')" value="3" class="white">3</button>
+                <button onclick="cal('3')" class="white">3</button>
             </td>
             <td>
-                <button onclick="display('-')" value="-" class="grey">-</button>
+                <button onclick="cal('-')" class="grey">-</button>
             </td>
         </tr>
         <tr>
@@ -165,36 +164,50 @@
                 <button onclick="" class="grey">x<sup>y</sup></button>
             </td>
             <td>
-                <button onclick="display('0')" value="0" class="white">0</button>
+                <button onclick="cal('0')" class="white">0</button>
             </td>
             <td>
-                <button onclick="display('.')" value="." class="white">.</button>
+                <button onclick="cal('.')" class="white">.</button>
             </td>
             <td>
-                <button onclick="solve()" class="blue">=</button>
+                <button onclick="cal('=')" class="blue">=</button>
             </td>
             <td>
-                <button onclick="display('+')" value="+" class="grey">+</button>
+                <button onclick="cal('+')" class="grey">+</button>
             </td>
         </tr>
     </table>
 </div>
+
 <script>
-    function display(val) {
-        a = document.getElementById("input").value += val;
-        console.log(a);
-        console.log(typeof a);
-    }
-
-    function solve() {
-        let x = document.getElementById("input").value;
-        let y = eval(x);
-        document.getElementById("input").value = y;
-    }
-
-    function clr() {
-        document.getElementById("input").value = "";
-
+    function cal(val) {
+        let result = document.getElementById("result").innerText;
+        switch (val) {
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case '.':
+                result = result + val;
+                break;
+            case '=':
+                result = eval(result);
+                break;
+            case 'AC':
+                result = '';
+                break;
+        }
+        document.getElementById("result").innerText = result;
     }
 
 </script>
