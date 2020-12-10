@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Furama Resort Management</title>
+</head>
+<body>
+<form>
+    <label for="fullName">Enter fullname:</label>
+    <input type="text" id="fullName"><br/>
+    <label for="identityCard">Enter identity card:</label>
+    <input type="text" id="identityCard"><br/>
+    <label for="dateOfBirth">Birthday:</label>
+    <input type="date" id="dateOfBirth"><br/>
+    <label for="email">Enter email:</label>
+    <input type="email" id="email"><br>
+    <label for="address">Enter address:</label>
+    <input type="text" id="address"><br/>
+    <label for="customerType">Customer type:</label>
+    <select name="" id="customerType">
+        <option value="Diamond">Diamond</option>
+        <option value="Platinum">Platinum</option>
+        <option value="Gold">Gold</option>
+        <option value="Silver">Silver</option>
+        <option value="Member">Member</option>
+    </select><br/>
+    <label for="discount">Enter discount:</label>
+    <input type="number" id="discount"><br/>
+    <label for="persons">Enter persons:</label>
+    <input type="number" id="persons"><br/>
+    <label for="rentDays">Enter rent days:</label>
+    <input type="number" id="rentDays"><br/>
+    <label for="serviceType">Service type:</label>
+    <select name="" id="serviceType">
+        <option value="500">Villa 500$/day</option>
+        <option value="300">House 300$/day</option>
+        <option value="100">Room 100$/day</option>
+    </select><br/>
+    <label for="roomType">Room type:</label>
+    <select name="" id="roomType">
+        <option value="Vip">Vip</option>
+        <option value="Business">Business</option>
+        <option value="Normal">Normal</option>
+    </select><br/>
+    <input type="button" onclick="displayInfo()" value="Save"><br/>
+    <p id="displayFullName"></p>
+    <p id="displayIdentityCard"></p>
+    <p id="displayBirthday"></p>
+    <p id="displayEmail"></p>
+    <p id="displayAddress"></p>
+    <p id="displayCustomerType"></p>
+    <p id="displayDiscount"></p>
+    <p id="displayPersons"></p>
+    <p id="displayRentDays"></p>
+    <p id="displayServiceType"></p>
+    <p id="displayRoomType"></p>
+    <p id="totalCost"></p>
+
+</form>
+<script>
+    let elementFullName = document.getElementById("fullName");
+    let elementIdentityCard = document.getElementById("identityCard");
+    let elementBirthday = document.getElementById("dateOfBirth");
+    let elementEmail = document.getElementById("email");
+    let elementAddress = document.getElementById("address");
+    let elementCustomerType = document.getElementById("customerType");
+    let elementDiscount = document.getElementById("discount");
+    let elementPersons = document.getElementById("persons");
+    let elementRentDays = document.getElementById("rentDays");
+    let elementServiceType = document.getElementById("serviceType");
+    let elementRoomType = document.getElementById("roomType");
+
+    function displayInfo() {
+        document.getElementById("displayFullName").innerHTML = "Fullname: " + elementFullName.value;
+        document.getElementById("displayIdentityCard").innerHTML = "Identity card: " + elementIdentityCard.value;
+        document.getElementById("displayBirthday").innerHTML = "Birthday: " + elementBirthday.value;
+        document.getElementById("displayEmail").innerHTML = "Email: " + elementEmail.value;
+        document.getElementById("displayAddress").innerHTML = "Address: " + elementAddress.value;
+        document.getElementById("displayCustomerType").innerHTML = "Customer : " + elementCustomerType.value;
+        let discount = parseInt(elementDiscount.value);
+        document.getElementById("displayDiscount").innerHTML = "Discount: " + discount + "%";
+        let persons = parseInt(elementPersons.value);
+        document.getElementById("displayPersons").innerHTML = "Person: " + persons;
+        let rentDays = parseInt(elementRentDays.value);
+        document.getElementById("displayRentDays").innerHTML = "Rent days: " + rentDays;
+        let serviceType = parseInt(elementServiceType.value);
+        if (serviceType === 500) {
+            document.getElementById("displayServiceType").innerText = "Villa " + serviceType + "$/day";
+        } else if (serviceType === 300) {
+            document.getElementById("displayServiceType").innerText = "House " + serviceType + "$/day";
+        } else {
+            document.getElementById("displayServiceType").innerText = "Room " + serviceType + "$/day";
+        }
+        document.getElementById("displayRoomType").innerHTML = "Room: " + elementRoomType.value;
+        let totalCost = serviceType * rentDays * (1 - discount / 100);
+        document.getElementById("totalCost").innerHTML = "Total cost: " + totalCost;
+
+    }
+
+</script>
+</body>
+</html>
