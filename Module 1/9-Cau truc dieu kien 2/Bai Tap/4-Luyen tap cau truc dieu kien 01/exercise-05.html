@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let quiz;
+    let midterm;
+    let final;
+    do {
+        quiz = parseFloat(prompt("Enter quiz score"));
+    } while (quiz < 0 || quiz > 10);
+    do {
+        midterm = parseFloat(prompt("Enter midterm score"));
+    } while (quiz < 0 || quiz > 10);
+    do {
+        final = parseFloat(prompt("Enter final score"));
+    } while (quiz < 0 || quiz > 10);
+
+    let average = (quiz + midterm + final) / 3;
+    if (average >= 9) {
+        alert("Grade A");
+    } else if (average >= 7) {
+        alert("Grade B");
+    } else if (average >= 5) {
+        alert("Grade C");
+    } else
+        alert("Grade D");
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let numberA = parseInt(prompt("Nhap so a"));
+    let numberB = parseInt(prompt("Nhap so b"));
+    let numberC = parseInt(prompt("Nhap so c"));
+    let max;
+    if (numberA > numberB) {
+        if (numberA > numberC) {
+            max = numberA;
+        } else {
+            max = numberC
+        }
+    } else if (numberB > numberC) {
+        max = numberB;
+    } else {
+        max = numberC;
+    }
+    alert("Max = " + max);
+</script>
+</body>
+</html>

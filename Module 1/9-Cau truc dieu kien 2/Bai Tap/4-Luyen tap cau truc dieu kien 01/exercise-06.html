@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let total;
+    let commission;
+    do {
+        total = parseFloat(prompt("Nhap tong doanh so (Trieu dong)"));
+    } while (total < 0);
+    if (total <= 100) {
+        commission = total * 5 / 100;
+    } else if (total <= 300) {
+        commission = total * 10 / 100;
+    } else {
+        commission = total * 20 / 100;
+    }
+    alert("Commistion = " + commission + " and " + "Total = " + total);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let minutesCall;
+    let totalFee;
+    const INIT_COST = 25000;
+    const PRICE_L1 = 600;
+    const PRICE_L2 = 400;
+    const PRICE_L3 = 200;
+    do {
+        minutesCall = parseInt(prompt("Nhap so phut goi"));
+    } while (minutesCall < 0);
+    if (minutesCall <= 50) {
+        totalFee = INIT_COST + minutesCall * PRICE_L1;
+    } else if (minutesCall <= 200) {
+        totalFee = INIT_COST + (50 * PRICE_L1) + (minutesCall - 50) * PRICE_L2;
+    } else {
+        totalFee = INIT_COST + (50 * PRICE_L1) + (150 * PRICE_L2) + (minutesCall - 200) * PRICE_L3;
+    }
+
+    alert("Tong so tien phai tra = " + totalFee);
+</script>
+</body>
+</html>
