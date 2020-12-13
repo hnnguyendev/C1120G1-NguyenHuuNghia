@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number;
+    let factorial = 1;
+    do {
+        number = parseInt(prompt("Nhap so can tinh giai thua"));
+    } while (number < 0);
+    if (number === 0) {
+        factorial = 1;
+    } else {
+        for (let index = 1; index <= number; index++) {
+            factorial *= index;
+        }
+    }
+    alert("Giai thua cua " + number + " = " + factorial);
+</script>
+</body>
+</html>

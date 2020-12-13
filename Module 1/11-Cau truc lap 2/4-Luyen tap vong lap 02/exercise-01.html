@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let f0 = 0;
+    let f1 = 1;
+    let number;
+    do {
+        number = prompt("Nhap so luong so Finonaci can in");
+    } while (number < 0);
+    document.write(f0 + " " + f1 + " ");
+    let fn;
+    for (let index = 0; index < number - 2; index++) {
+        fn = f0 + f1;
+        f0 = f1;
+        f1 = fn;
+        document.write(fn + " ");
+    }
+
+</script>
+</body>
+</html>
