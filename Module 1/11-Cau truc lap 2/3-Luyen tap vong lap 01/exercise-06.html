@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let sum = 0;
+    let index = 0;
+    let count = 0;
+    while (count < 30) {
+        if (index % 7 === 0) {
+            count++;
+            document.write(index + " ");
+            sum += index;
+        }
+        index++;
+    }
+    document.write("Sum = " + sum);
+</script>
+</body>
+</html>

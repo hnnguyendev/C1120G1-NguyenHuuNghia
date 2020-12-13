@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let flag = true;
+    let temperature;
+    do {
+        temperature = parseInt(prompt("Nhap nhiet do"));
+        if (temperature < 20) {
+            alert("Hay tang nhiet do");
+        } else if (temperature > 100) {
+            alert("Hay giam nhiet do");
+        } else {
+            alert("Nhiet do OK");
+            flag = false;
+        }
+    } while (flag)
+
+
+</script>
+</body>
+</html>

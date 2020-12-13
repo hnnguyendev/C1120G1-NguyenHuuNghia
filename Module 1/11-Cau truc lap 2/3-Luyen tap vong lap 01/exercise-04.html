@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let f0 = 0;
+    let f1 = 1;
+    let fn;
+    let index = 0;
+    while (true) {
+        fn = f0 + f1;
+        f0 = f1;
+        f1 = fn;
+        if (fn % 5 === 0) {
+            alert(fn);
+            break;
+        }
+    }
+    // for (let index = 0; index < 18; index++) {
+    //
+    //     sum += fn;
+    // }
+    // document.write("Sum = " + sum);
+
+
+</script>
+</body>
+</html>
