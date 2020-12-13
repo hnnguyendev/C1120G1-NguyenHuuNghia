@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let meters;
+    let feet;
+    const TO_FEET = 3.2808;
+    do {
+        meters = parseInt(prompt("Nhap met"));
+    } while (meters < 0);
+    feet = (meters * TO_FEET).toFixed(4);
+    alert(meters + "m = " + feet + "ft");
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+<script>
+    let number;
+    let totalCost;
+    do {
+        number = parseInt(prompt("Nhap so dien"));
+    } while (number < 0);
+    const PRICE_L1 = 2000;
+    const PRICE_L2 = 2500;
+    const PRICE_L3 = 3000;
+    const PRICE_L4 = 4000;
+    if (number <= 50) {
+        totalCost = number * PRICE_L1;
+    } else if (number <= 100) {
+        totalCost = 50 * PRICE_L1 + (number - 50) * PRICE_L2;
+    } else if (number <= 200) {
+        totalCost = 50 * PRICE_L1 + 50 * PRICE_L2 + (number - 100) * PRICE_L3;
+    } else {
+        totalCost = 50 * PRICE_L1 + 50 * PRICE_L2 + 100 * PRICE_L3 + (number - 200) * PRICE_L4;
+    }
+    alert("So tien dien phai tra = " + totalCost);
+</script>
+</html>

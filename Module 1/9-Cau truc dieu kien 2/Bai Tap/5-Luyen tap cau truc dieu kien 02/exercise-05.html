@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let length;
+    let width;
+    let area;
+    do {
+        length = parseInt(prompt("Enter the length"));
+    } while (length < 0);
+    do {
+        width = parseInt(prompt("Enter the width"));
+    } while (width < 0);
+    area = (length * width) / 2;
+    alert("Area of Right Triangle = " + area);
+</script>
+</body>
+</html>

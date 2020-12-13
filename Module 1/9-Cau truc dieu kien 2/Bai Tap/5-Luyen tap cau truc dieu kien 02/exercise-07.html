@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let numberA = parseInt(prompt("Nhap he so a"));
+    let numberB = parseInt(prompt("Nhap he so b"));
+    let numberC = parseInt(prompt("Nhap he so c"));
+    let delta = numberB ** 2 - 4 * numberA * numberC;
+    if (numberA === 0) {
+        if (numberB === 0) {
+            if (numberC === 0) {
+                alert("Phuong trinh co vo so nghiem");
+            } else {
+                alert("Phuong trinh vo nghiem");
+            }
+        } else {
+            let x = -numberC / numberB;
+            alert("Phuong trinh co mot nghiem x = " + x.toFixed(2));
+        }
+    } else {
+        if (delta > 0) {
+            let x1 = (-numberB - Math.sqrt(delta)) / 2 / numberA;
+            let x2 = (-numberB + Math.sqrt(delta)) / 2 / numberA;
+            alert("Phuong trinh co hai nghiem: x1 = " + x1.toFixed(2) + " va x2 = " + x2.toFixed(2));
+        } else if (delta === 0) {
+            let x3 = (-numberB) / 2 / numberA;
+            alert("Phuong trinh co nghiem kep x1 = x2 = " + x3.toFixed(2));
+        } else {
+            alert("Phuong trinh vo nghiem");
+        }
+    }
+
+
+</script>
+</body>
+</html>

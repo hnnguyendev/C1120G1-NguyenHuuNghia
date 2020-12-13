@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let numberA = parseInt(prompt("Nhap he so a"));
+    let numberB = parseInt(prompt("Nhap he so b"));
+    if (numberA === 0) {
+        if (numberB === 0) {
+            alert("Phuong trinh co vo so nghiem");
+        } else {
+            alert("Phuong trinh vo nghiem");
+        }
+    } else {
+        let x = -numberB / numberA;
+        alert("Phuong trinh co mot nghiem x = " + x);
+    }
+
+</script>
+</body>
+</html>
