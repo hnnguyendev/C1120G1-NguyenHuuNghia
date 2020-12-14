@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = [-3, 5, 1, 3, 2, 10];
+    let position = prompt("Enter position");
+    let value = parseInt(prompt("Enter value"));
+    index = array.length;
+    while (index > position) {
+        array[index] = array[index - 1];
+        index--;
+    }
+    array[position] = value;
+    console.log(array);
+</script>
+</body>
+</html>
