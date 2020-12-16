@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Dictionary</h1>
+<form>
+    <input type="text" id="keyword">
+    <input type="button" value="Search" onclick="search()">
+    <div id="result"></div>
+</form>
+<script>
+    let vieArray = ["do", "xanh", "vang", "den", "hong"];
+    let engArray = ["red", "blue", "yellow", "black", "pink"]
+    let keyword;
+    let result;
+    let index;
+    let flag;
+
+    function search() {
+        keyword = document.getElementById("keyword").value;
+        for (index = 0; index <= vieArray.length; index++) {
+            flag = false;
+            if (keyword === vieArray[index]) {
+                result = engArray[index];
+                flag = true;
+                break;
+            }
+        }
+        if (flag) {
+            document.getElementById("result").innerHTML = result;
+        } else {
+            alert("Not found!!!")
+        }
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let numArray = [-3, 55, 1, 3, 2, 10, 20, 17, 11, 50];
+    let checkNum = 5;
+    let index;
+    let flag;
+    for (index = 0; index < numArray.length; index++) {
+        flag = false;
+        if (checkNum === numArray[index]) {
+            flag = true;
+            break;
+        }
+    }
+    if (flag) {
+        alert("V is in the array");
+    } else {
+        alert("V is not in the array");
+    }
+</script>
+</body>
+</html>
