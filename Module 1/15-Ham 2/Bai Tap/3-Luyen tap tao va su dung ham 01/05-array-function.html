@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let starArray = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+    let constellationArray = ["Ursa Minor", "Tarurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+
+    function matching(star) {
+        let i;
+        let flag = false;
+        for (i = 0; i < starArray.length; i++) {
+            if (star === starArray[i]) {
+                flag = true;
+                break;
+            }
+        }
+
+        if (flag) {
+            return constellationArray[i];
+        } else {
+            return "No matching!!!";
+        }
+    }
+
+    console.log(matching("Polaris"));
+</script>
+
+</body>
+</html>
