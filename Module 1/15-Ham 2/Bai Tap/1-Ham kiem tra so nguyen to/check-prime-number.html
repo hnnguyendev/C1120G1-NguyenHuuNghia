@@ -7,16 +7,30 @@
 <body>
 <script>
     function isPrime(number) {
-        let count = 0;
-        for (let index = 1; index <= Math.sqrt(number); index++) {
+        // let count = 0;
+        // for (let index = 1; index <= Math.sqrt(number); index++) {
+        //     if (number % index === 0) {
+        //         count++;
+        //     }
+        // }
+        // if (count === 1) {
+        //     return true;
+        // }
+        // return false;
+
+        // cach lam nay toi uu hon cach tren
+        let flag = true;
+        for (let index = 2; index <= Math.sqrt(number); index++) {
             if (number % index === 0) {
-                count++;
+                flag = false;
+                break;
             }
         }
-        if (count === 1) {
+
+        if (flag) {
             return true;
         }
-        return false;
+        return false
     }
 
     for (let index2 = 2; index2 < 10000; index2++) {
