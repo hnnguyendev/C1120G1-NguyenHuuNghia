@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript</title>
+</head>
+<body>
+<!--<h2>What Can JavaScript Do?</h2>-->
+<!--<p id="demo">JavaScript can change HTML content.</p>-->
+<!--<button onclick="change()">Click me!</button>-->
+
+<!--<h2>What Can JavaScript Do?</h2>-->
+<!--<p>JavaScript can change HTML attributes.</p>-->
+<!--<p>In this case JavaScript changes the src (source) attribute of an image.</p>-->
+<!--<button onclick="document.getElementById('myImage').src='https://www.w3schools.com/js/pic_bulbon.gif'">Turn on the light</button>-->
+<!--<img id="myImage" src="https://www.w3schools.com/js/pic_bulboff.gif" style="width:100px">-->
+<!--<button onclick="document.getElementById('myImage').src='https://www.w3schools.com/js/pic_bulboff.gif'">Turn off the light</button>-->
+
+<!--<p>Select a new car from the list</p>-->
+<!--<select name="" id="mySelect" onchange="doSomething()">-->
+<!--    <option value="BMW">BMW</option>-->
+<!--    <option value="Lamborghini">Lamborghini</option>-->
+<!--    <option value="Mercedes">Mercedes</option>-->
+<!--    <option value="Chevrolet">Chevrolet</option>-->
+<!--</select>-->
+
+<!--<select name="" id="mySelect2">-->
+<!--    <option value="BMW">BMW</option>-->
+<!--    <option value="Lamborghini">Lamborghini</option>-->
+<!--    <option value="Mercedes">Mercedes</option>-->
+<!--    <option value="Chevrolet">Chevrolet</option>-->
+<!--</select>-->
+<!--<button onclick="this.innerHTML=Date()">The time is?</button>-->
+
+<canvas id="myCanvas" width="200" height="100"></canvas>
+
+<script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.moveTo(0,0);
+    ctx.lineTo(200,100);
+    ctx.stroke();
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(95,50,40,0,2*Math.PI);
+    ctx.stroke();
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.font = "30px Arial";
+    ctx.fillText("Hello World",10,50);
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+
+    // function change() {
+    //     document.getElementById("demo").innerHTML = "Hello JavaScipt!";
+    // }
+    // function doSomething() {
+    //     let selectedValue = document.getElementById("mySelect").value;
+    //     alert(selectedValue);
+    // }
+    //
+    // let selectedElement = document.getElementById("mySelect2");
+    // selectedElement.addEventListener("change", changeFunction);
+    // function changeFunction() {
+    //     let selectedValue = document.getElementById("mySelect2").value;
+    //     alert(selectedValue);
+    // }
+
+    // let count = 0;
+    // let i = count++ + 1;
+    // while (count++ < 10) {
+    //     // console.log(count);
+    //     count++;
+    //     // console.log(count);
+    // }
+    // console.log(count);
+
+    // let count  = 0;
+    // do {
+    //     count++;
+    //     console.log(count);
+    // } while (count++ < 10);
+    // console.log(count)
+
+    // let iMax = 20;
+    // let jMax = 10;
+    // let f = new Array();
+    //
+    // for (i = 0; i < iMax; i++) {
+    //     f[i] = new Array();
+    //     console.log(f[i]);
+    //     console.log(f.length);
+    //     for (j = 0; j < jMax; j++) {
+    //         f[i][j] = 0;
+    //         console.log(f[i][j]);
+    //     }
+    // }
+    // console.log(f.length);
+    // var a = parseInt(""ab213bc"");
+    // console.log(a);
+
+</script>
+</body>
+</html>
