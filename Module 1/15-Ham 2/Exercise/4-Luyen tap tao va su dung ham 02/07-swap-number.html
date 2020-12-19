@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let numberArray;
+        function swapNumber(numberA, numberB) {
+            numberArray = [numberA, numberB];
+            let temp = numberArray[0];
+            numberArray[0] = numberArray[1];
+            numberArray[1] = temp;
+        }
+
+        swapNumber(2, 3);
+        console.log(numberArray[0]);
+        console.log(numberArray[1]);
+
+    </script>
+
+</body>
+
+</html>

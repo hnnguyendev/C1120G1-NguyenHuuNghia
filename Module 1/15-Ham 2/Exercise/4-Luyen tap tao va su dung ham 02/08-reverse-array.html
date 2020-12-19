@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let numberArray = [3, 2, 7, 1, 8];
+
+        function reverseArray(array) {
+            let first = 0;
+            let last = array.length - 1;
+            let temp;
+            while (first < last) {
+                temp = array[first];
+                array[first] = array[last];
+                array[last] = temp;
+                first++;
+                last--;
+            }
+            return array;
+        }
+
+        console.log(reverseArray(numberArray));
+    </script>
+
+</body>
+
+</html>

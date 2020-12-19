@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function findMinNumber(numberA, numberB, numberC) {
+            if (numberA < numberB && numberA < numberC) {
+                return numberA;
+            } else if (numberB < numberC) {
+                return numberB;
+            } else {
+                return numberC;
+            }
+        }
+
+        console.log(findMinNumber(5, 5, 1));
+    </script>
+
+</body>
+
+</html>

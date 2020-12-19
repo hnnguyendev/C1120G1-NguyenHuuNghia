@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let charArray = ['n', 'g', 'h', 'i', 'a', ' ', 'n', 'g', 'u', 'y', 'e', 'n'];
+
+        function isExist(array, anyChar) {
+            let count = 0;
+            let flag = false;
+            let charExist;
+            let i;
+
+            for (i = 0; i < array.length; i++) {
+                if (anyChar === array[i]) {
+                    charExist = array[i];
+                    flag = true;
+                    count++;
+                }
+            }
+
+            if (flag) {
+                return (charExist + " appear " + count + " times");
+            }
+            return -1;
+        }
+
+        console.log(isExist(charArray, 'g'));
+    </script>
+
+</body>
+
+</html>
