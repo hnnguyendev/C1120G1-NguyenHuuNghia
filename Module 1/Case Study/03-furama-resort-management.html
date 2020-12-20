@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let name;
+        let cmnd;
+        let birthday;
+        let email;
+        let address;
+        let customerType;
+        let discount;
+        let includedQuantity;
+        let rentDays;
+        let serviceType;
+        let roomType;
+        let flag = false;
+        let tempName = "";
+
+        name = prompt("Enter name");
+        name = name.trim().toLowerCase();
+        for (let i = 0; i < name.length; i++) {
+            if (name[i] === " " && name[i + 1] === " ") {
+                continue;
+            }
+            if (i === 0 || name[i - 1] === " ") {
+                tempName += name[i].toUpperCase();
+                continue;
+            }
+            tempName += name[i];
+        }
+        name = tempName;
+        alert(name);
+
+        do {
+            cmnd = prompt("Enter id");
+            if (!isNaN(cmnd)) {
+                cmnd = Number.parseFloat(cmnd)
+            }
+            if (!Number.isInteger(cmnd)) {
+                alert("Cmnd khong hop le");
+                continue;
+            }
+            if (cmnd < 10000000 || cmnd > 99999999) {
+                alert("Cmnd khong hop le");
+                continue;
+            }
+            flag = true;
+        } while (!flag);
+        flag = false;
+
+        do {
+            birthday = prompt("Enter birthday");
+            if (birthday.charAt(2) === "/" && birthday.charAt(5) === "/") {
+                day = birthday.substring(0, 2);
+                month = birthday.substring(3, 5);
+                year = birthday.substring(6, 10);
+                if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+                    day = Number.parseFloat(day);
+                    month = Number.parseFloat(month);
+                    year = Number.parseFloat(year);
+                    if (Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) {
+                        if (day < 32 && month < 13 && year > 1950) {
+                            flag = true;
+                        }
+                    }
+                }
+            }
+            if (!flag) {
+                alert("Ngay sinh khong dung dinh dang");
+            }
+        } while (!flag);
+        flag = false;
+
+        do {
+            let countAt = 0;
+            let countDot = 0;
+            email = prompt("Enter email");
+            for (let i = 0; i < email.length; i++) {
+                if (email.charAt(i) === "@") {
+                    countAt++;
+                    for (let j = i + 1; j < email.length; j++) {
+                        if (email.charAt(j) === ".") {
+                            countDot++;
+                        }
+                    }
+                }
+            }
+            console.log(countAt);
+            console.log(countDot);
+            if (countAt !== 1 || countDot < 1) {
+                alert("Email khong hop le. Moi ban nhap lai!!!")
+            } else {
+                flag = true;
+            }
+
+        } while (!flag)
+        flag = false;
+
+        // address = prompt("Enter address");
+        // customerType = prompt("Enter customer type");
+        // discount = parseInt(prompt("Enter discount"));
+        // includedQuantity = parseInt(prompt("Enter included quantity"));
+
+        do {
+            rentDays = prompt("Enter rent days");
+            if (!isNaN(rentDays)) {
+                rentDays = Number.parseFloat(rentDays);
+                if (Number.isInteger(rentDays && rentDays > 0)) {
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                alert("Rentdays khong hop le");
+            }
+        } while (!flag);
+        flag = false;
+        // serviceType = prompt("Enter service type");
+        // roomType = prompt("Enter room type");
+    </script>
+
+</body>
+
+</html>
