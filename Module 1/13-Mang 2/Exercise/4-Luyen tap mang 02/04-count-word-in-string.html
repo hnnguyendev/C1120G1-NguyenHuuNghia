@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = "Nguyen Huu Nghia";
+        let count = 1;
+        let newStr = str.trim();
+
+        for (let i = 0; i < newStr.length; i++) {
+            if (newStr[i] === ' ' && newStr[i + 1] !== ' ') {
+                count++;
+            }
+        }
+
+        console.log("Trong chuoi co " + count + " tu");
+    </script>
+
+</body>
+
+</html>

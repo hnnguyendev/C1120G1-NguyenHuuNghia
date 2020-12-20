@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let charArray = ['c', 's', 'c', '2', '6', '1'];
+        let first = 0;
+        let last = charArray.length - 1;
+        let temp;
+
+        while (first < last) {
+            temp = charArray[first];
+            charArray[first] = charArray[last];
+            charArray[last] = temp;
+            first++;
+            last--;
+        }
+
+        console.log(charArray.join(''));
+    </script>
+
+</body>
+
+</html>

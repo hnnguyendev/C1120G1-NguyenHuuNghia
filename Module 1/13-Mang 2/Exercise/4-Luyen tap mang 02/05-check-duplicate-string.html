@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let strA = prompt("Nhap chuoi A");
+        let strB = prompt("Nhap chuoi B");
+        let breakPoint;
+        let flag = true;
+
+        if (strA.length > strB.length) {
+            breakPoint = strA.length;
+        } else {
+            breakPoint = strB.length;
+        }
+
+        for (let i = 0; i < breakPoint; i++) {
+            if (strA[i] !== strB[i]) {
+                flag = false;
+            }
+        }
+
+        if (flag) {
+            alert("Hai chuoi giong nhau");
+        } else {
+            alert("Hai chuoi KHONG giong nhau");
+        }
+    </script>
+</body>
+
+</html>
