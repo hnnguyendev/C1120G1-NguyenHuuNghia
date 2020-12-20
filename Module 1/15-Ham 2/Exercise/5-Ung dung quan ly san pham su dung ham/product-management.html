@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Add New Product</h2>
+    <form>
+        <input type="text" id="productName" placeholder="New Product">
+        <input type="button" value="Add" onclick="addNewProduct()">
+    </form>
+    <h2>Display All Product</h2>
+    <div id="quantity"></div>
+    <div id="productList"></div>
+
+    <script>
+        let productArray = ["Samsung", "Iphone", "Sony"];
+
+        showAllProduct();
+
+        function showAllProduct() {
+            let str = '<table border="1">\n' +
+                '<tr>\n' +
+                '<th>No.</th>\n' +
+                '<th>Name</th>\n' +
+                '<th>Edit</th>\n' +
+                '<th>Delete</th>\n' +
+                '</tr>';
+
+            for (let i = 0; i < productArray.length; i++) {
+                str += '<tr>\n' +
+                    '<td>' + (i + 1) + '</td>\n' +
+                    '<td>' + productArray[i] + '</td>\n' +
+                    '<td><input type="button" value="Edit" onclick="editProduct(' + i + ')"></td>\n' +
+                    '<td><input type="button" value="Delete" onclick="deleteProduct(' + i + ')"></td>\n' +
+                    '</tr>'
+            }
+
+            str += '</table>';
+            document.getElementById("productList").innerHTML = str;
+            document.getElementById("quantity").innerText = "Quantity " + (productArray.length);
+        }
+
+        function deleteProduct(id) {
+            let deleteConfirm = confirm("Do you want to delete " + (productArray[id]).toUpperCase());
+            if (deleteConfirm) {
+                productArray.splice(id, 1);
+            }
+            showAllProduct();
+        }
+
+        function editProduct(id) {
+            let newProduct = prompt("Please enter new product name");
+            if (newProduct !== "" && newProduct !== null) {
+                productArray[id] = newProduct;
+            } else {
+                alert("Please enter new product name")
+            }
+            showAllProduct();
+        }
+
+        function addNewProduct() {
+            let productName = document.getElementById("productName").value;
+            if (productName !== "") {
+                productArray.push(productName);
+            } else {
+                alert("Please enter product name")
+            }
+            document.getElementById("productName").value = "";
+            showAllProduct();
+        }
+    </script>
+
+</body>
+
+</html>
