@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <script>
+        let number = prompt("Enter a number");
+        let array = [];
+
+        for (let i = 0; i < number.length; i++) {
+            let parsedNumber = parseInt(number[i]);
+            array.push(parsedNumber);
+        }
+
+        for (let j = 0; j < array.length; j++) {
+            if (array[j] % 2 === 0 && array[j + 1] % 2 === 0) {
+                array.splice(j + 1, 0, '-');
+            }
+        }
+        console.log(array.join(''));
+    </script>
+</body>
+
+</html>
