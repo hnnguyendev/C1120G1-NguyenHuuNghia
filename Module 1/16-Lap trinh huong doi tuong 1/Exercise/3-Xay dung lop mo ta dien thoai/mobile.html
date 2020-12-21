@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Mobile {
+        constructor(battery, status) {
+            this.battery = battery;
+            this.status = status;
+            this.draftMessage = [];
+            this.inbox = [];
+            this.sentMessage = [];
+            // bien nay luu tin nhan dang soan thao
+            this.tempMessage = "";
+        }
+
+        checkStatus() {
+            this.battery--;
+            if (this.status === 1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        turnOnOff() {
+            this.battery--;
+            if (this.status === 1) {
+                this.status = 0;
+            } else {
+                this.status = 1;
+            }
+        }
+
+        chargeMobile() {
+            if (this.status === 1) {
+                this.battery = 100;
+            }
+        }
+
+        createMessage(message) {
+            if (this.status === 1) {
+                this.battery--;
+                this.draftMessage.push(message);
+                this.tempMessage = message;
+            }
+        }
+
+        receiveMessage() {
+            if (this.status === 1) {
+                this.battery--;
+                return this.inbox.toString();
+            }
+        }
+
+        sendMessage(mobileObj) {
+            if (this.status === 1) {
+                this.battery--;
+                this.sentMessage.push(this.draftMessage.pop());
+                mobileObj.inbox.push(this.tempMessage);
+            }
+        }
+
+        readInbox() {
+            if (this.status === 1) {
+                this.battery--;
+                console.log("IB: " + this.inbox.toString());
+            }
+        }
+
+        readSentMessage() {
+            if (this.status === 1) {
+                this.battery--;
+                console.log("Send: " + this.sentMessage.toString());
+            }
+        }
+    }
+
+    // let iphoneBattery;
+    // let samsungBattery;
+    // do {
+    //     iphoneBattery = parseInt(prompt("Enter Iphone battery"));
+    // } while (iphoneBattery < 1 || iphoneBattery > 100);
+    //
+    // do {
+    //     samsungBattery = parseInt(prompt("Enter Samsung battery"));
+    // } while (iphoneBattery < 1 || iphoneBattery > 100);
+
+    let iphone = new Mobile(60, 1);
+    let samsung = new Mobile(70, 1);
+
+    iphone.createMessage("Message send from iphone");
+    console.log("draft: " + iphone.draftMessage);
+    iphone.sendMessage(samsung);
+    console.log("ip send: " + iphone.sentMessage);
+    console.log("draft: " + iphone.draftMessage);
+    console.log("sam: " + samsung.receiveMessage());
+    samsung.readInbox();
+    iphone.readSentMessage();
+
+</script>
+</body>
+</html>
