@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000px" height="500px" style="border:1px solid #d3d3d3;"></canvas>
+<script>
+    class Rectangle {
+        constructor(width, height) {
+            this.width = width;
+            this.height = height;
+        }
+
+        calArea() {
+            return this.width * this.height;
+        }
+
+        calPerimeter() {
+            return (this.width + this.height) * 2;
+        }
+
+        drawRect() {
+            let canvasObj = document.getElementById("myCanvas");
+            let ctx = canvasObj.getContext("2d");
+            ctx.fillStyle = "#7719AA";
+            ctx.fillRect(200, 200, this.width, this.height);
+        }
+    }
+
+    let rectangle = new Rectangle(300, 200);
+    rectangle.drawRect();
+    document.write("Area = " + rectangle.calArea());
+    document.write("Perimeter = " + rectangle.calPerimeter());
+</script>
+</body>
+</html>
