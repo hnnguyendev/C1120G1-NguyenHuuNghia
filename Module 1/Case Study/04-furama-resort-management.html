@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arrNameCustomers = [];
+
+        while (true) {
+            let menuOptions = prompt("1. Add Name Customer \n" +
+                "2. Delete Customer \n" +
+                "3. Customer List");
+
+            switch (menuOptions) {
+                case '1':
+                    let quantity;
+                    do {
+                        quantity = parseInt(prompt("Enter quantity customer"));
+                    } while (quantity <= 0);
+                    for (let i = 0; i < quantity; i++) {
+                        let customer = prompt("Enter customer");
+                        arrNameCustomers.push(customer);
+                    }
+                    let result = "";
+                    arrNameCustomers.sort();
+                    for (let i = 0; i < arrNameCustomers.length; i++) {
+                        result += (i + 1) + ". " + arrNameCustomers[i] + "\n";
+                    }
+                    alert(result);
+                    break;
+
+                case '2':
+                    let customerDelete = prompt("Enter customer you want to delete");
+                    let flag = false;
+                    for (let i = 0; i < arrNameCustomers.length; i++) {
+                        if (arrNameCustomers[i] === customerDelete) {
+                            flag = true;
+                            arrNameCustomers.splice(i, 1);
+                        }
+                    }
+                    if (!flag) {
+                        alert("Customer is not exist");
+                    }
+                    let resultDeleted = "";
+                    arrNameCustomers.sort();
+                    for (let i = 0; i < arrNameCustomers.length; i++) {
+                        resultDeleted += (i + 1) + ". " + arrNameCustomers[i] + "\n";
+                    }
+                    alert(resultDeleted);
+
+                    break;
+                case '3':
+                    let resultDisplay = "";
+                    arrNameCustomers.sort();
+                    for (let i = 0; i < arrNameCustomers.length; i++) {
+                        resultDisplay += (i + 1) + ". " + arrNameCustomers[i] + "\n";
+                    }
+                    alert(resultDisplay);
+                    break;
+                default:
+                    alert("Failed");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
