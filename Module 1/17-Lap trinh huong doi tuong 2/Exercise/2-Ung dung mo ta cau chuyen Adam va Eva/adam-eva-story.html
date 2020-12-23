@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Apple {
+            constructor() {
+                this.weight = 10;
+            }
+
+            decrease() {
+                this.weight--;
+            }
+
+            isEmpty() {
+                return false;
+            }
+
+            getWeight() {
+                return this.weight;
+            }
+        }
+
+        class Human {
+            constructor(name, gender, weight) {
+                this.name = name;
+                this.gender = gender;
+                this.weight = weight;
+            }
+
+            isMale() {
+                return true;
+            }
+
+            setGender(gender) {
+                this.gender = gender;
+            }
+
+            checkApple(appleObj) {
+                return appleObj.isEmpty();
+            }
+
+            eat(appleObj) {
+                if (appleObj.weight > 0) {
+                    appleObj.decrease();
+                    this.weight++;
+                } else {
+                    alert("Out of apple!!!");
+                }
+            }
+
+            say(str) {
+                return str;
+            }
+
+            getName() {
+                return this.name;
+            }
+
+            setName(name) {
+                this.name = name;
+            }
+
+            getWeight() {
+                return this.weight;
+            }
+
+            setWeight(weight) {
+                this.weight = weight;
+            }
+        }
+
+        let apple = new Apple();
+        let adam = new Human("adam", true, 70);
+        let eva = new Human("eva", false, 55);
+
+        console.log(apple.getWeight());
+        adam.eat(apple);
+        console.log(adam.say("Let's eat apple honey"))
+        eva.eat(apple);
+        console.log(apple.getWeight());
+        adam.eat(apple);
+        eva.eat(apple);
+        console.log(apple.getWeight());
+        adam.eat(apple);
+        eva.eat(apple);
+        console.log(apple.getWeight());
+        adam.eat(apple);
+        eva.eat(apple);
+        console.log(apple.getWeight());
+        adam.eat(apple);
+        eva.eat(apple);
+        console.log(apple.getWeight());
+        adam.eat(apple);
+    </script>
+
+</body>
+
+</html>
