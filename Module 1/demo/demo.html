@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body onload="number(a)">
-<script>
-    function number(a) {
-        // a++;
-        return a;
-    }
 
-    let a = parseInt(prompt('nhap vao so'));
-    document.write(number(a))
-</script>
+<body onload="number(a)">
+    <script>
+        // function number(a) {
+        //     // a++;
+        //     return a;
+        // }
+
+        // let a = parseInt(prompt('nhap vao so'));
+        // document.write(number(a));
+
+        var string2Num = parseInt("123xyz");
+        console.log(string2Num);
+
+        function employee(name, jobtitle, born) {
+            this.name = name;
+            this.jobtitle = jobtitle;
+            this.born = born;
+        }
+
+        var fred = new employee("Fred Flintstone", "Caveman", 1970);
+        document.write(fred.toSource());
+    </script>
 </body>
+
 </html>

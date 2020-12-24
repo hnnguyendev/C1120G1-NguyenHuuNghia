@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Customer {
+            constructor(name, id, birthday, email, address, customerType, discount, includedQuantity, rentDays,
+                serviceType, roomType) {
+                this._name = name;
+                this._id = id;
+                this._birthday = birthday;
+                this._email = email;
+                this._address = address;
+                this._customerType = customerType;
+                this._discount = discount;
+                this._includedQuantity = includedQuantity;
+                this._rentDays = rentDays;
+                this._serviceType = serviceType;
+                this._roomType = roomType;
+            }
+
+            getName() {
+                return this._name;
+            }
+
+            setName(name) {
+                this._name = name;
+            }
+
+            getId() {
+                return this._id;
+            }
+
+            setId(id) {
+                this._id = id;
+            }
+
+            getBirthday() {
+                return this._birthday;
+            }
+
+            setBirthday(birthday) {
+                this._birthday = birthday;
+            }
+
+            getEmail() {
+                return this._email;
+            }
+
+            setEmail(email) {
+                this._email = email;
+            }
+
+            getAddress() {
+                return this._address;
+            }
+
+            setAddress(address) {
+                this._address = address;
+            }
+
+            getCustomerType() {
+                return this._customerType;
+            }
+
+            setCustomerType(customerType) {
+                this._customerType = customerType;
+            }
+
+            getDiscount() {
+                return this._discount;
+            }
+
+            setDiscount(discount) {
+                this._discount = discount;
+            }
+
+            getIncludedQuantity() {
+                return this._includedQuantity;
+            }
+
+            setIncludedQuantity(includedQuantity) {
+                this._includedQuantity = includedQuantity;
+            }
+
+            getRentDays() {
+                return this._rentDays;
+            }
+
+            setRentDays(rentDays) {
+                this._rentDays = rentDays;
+            }
+
+            getServiceType() {
+                return this._serviceType;
+            }
+
+            setServiceType(serviceType) {
+                this._serviceType = serviceType;
+            }
+
+            getRoomType() {
+                return this._roomType;
+            }
+
+            setRoomType(roomType) {
+                this._roomType = roomType;
+            }
+
+            totalCost() {
+                let servicePrice;
+                if (this._serviceType === "Villa") {
+                    servicePrice = 500;
+                } else if (this._serviceType === "House") {
+                    servicePrice = 300;
+                } else if (this._serviceType === "Room") {
+                    servicePrice = 100;
+                }
+
+                return servicePrice * this._rentDays * (1 - this._discount / 100);
+            }
+        }
+
+        let loop = true;
+        let arrListCustomers = [];
+
+        do {
+            let menuOptions = prompt("1. Add New Customer \n" +
+                "2. Display Information Customer \n" +
+                "3. Display Total Pay of Customer \n" +
+                "4. Edit Information Customer \n" +
+                "5. Delete Customer \n" +
+                "6. Exit");
+            switch (menuOptions) {
+                case '1':
+                    addNewCustomer();
+                    break;
+                case '2':
+                    displayCustomers();
+                    break;
+                case '3':
+                    displayTotalPay();
+                    break;
+                case '4':
+                    editCustomer();
+                    break;
+                case '5':
+                    deleteCustomer();
+                    break;
+                case '6':
+                    exit();
+                    break;
+                default:
+                    alert("Failed");
+
+            }
+        } while (loop);
+
+        function addNewCustomer() {
+            let name = prompt("Enter customer name");
+            let id = prompt("Enter id");
+            let birthday = prompt("Enter birthday (dd/mm/yyyy)");
+            let email = prompt("Enter email");
+            let address = prompt("Enter address");
+            let customerType = prompt("Enter customer type");
+            let discount = parseInt(prompt("Enter discount"));
+            let includedQuantity = parseInt(prompt("Enter included quantity"));
+            let rentDays = prompt("Enter rent days");
+            let serviceType = prompt("Enter service type");
+            let roomType = prompt("Enter room type");
+
+            let customerObj = new Customer(name, id, birthday, email, address, customerType, discount,
+                includedQuantity, rentDays, serviceType, roomType);
+
+            arrListCustomers.push(customerObj);
+        }
+
+        function displayCustomers() {
+            let result = "Customer list: \n------------------------------------------------------------------\n";
+            for (let i = 0; i < arrListCustomers.length; i++) {
+                result += (i + 1) + ". Name: " + arrListCustomers[i].getName() +
+                    " | Id: " + arrListCustomers[i].getId() +
+                    " | Birthday: " + arrListCustomers[i].getBirthday() + "\n";
+            }
+
+            let detail = parseInt(prompt(result));
+
+            alert((arrListCustomers[detail - 1].getName()).toUpperCase() +
+                " info: \n------------------------------------------------------------------\n" +
+                "-Name: " + arrListCustomers[detail - 1].getName() + "\n" +
+                "-Id: " + arrListCustomers[detail - 1].getId() + "\n" +
+                "-Birthday: " + arrListCustomers[detail - 1].getBirthday() + "\n" +
+                "-Email: " + arrListCustomers[detail - 1].getEmail() + "\n" +
+                "-Address: " + arrListCustomers[detail - 1].getAddress() + "\n" +
+                "-Customer Type: " + arrListCustomers[detail - 1].getCustomerType() + "\n" +
+                "-Discount: " + arrListCustomers[detail - 1].getDiscount() + "\n" +
+                "-IncludedQuantity: " + arrListCustomers[detail - 1].getIncludedQuantity() + "\n" +
+                "-Rent Days: " + arrListCustomers[detail - 1].getRentDays() + "\n" +
+                "-Service Type: " + arrListCustomers[detail - 1].getServiceType() + "\n" +
+                "-Room Type: " + arrListCustomers[detail - 1].getRoomType() + "\n");
+        }
+
+        function displayTotalPay() {
+            let result = "Customer list: \n------------------------------------------------------------------\n";
+            for (let i = 0; i < arrListCustomers.length; i++) {
+                result += (i + 1) + ". Name: " + arrListCustomers[i].getName() +
+                    " | Id: " + arrListCustomers[i].getId() +
+                    " | Birthday: " + arrListCustomers[i].getBirthday() + "\n";
+            }
+
+            let detail = parseInt(prompt(result));
+
+            alert("Total pay of " + arrListCustomers[detail - 1].getName() + ": " +
+                arrListCustomers[detail - 1].totalCost());
+        }
+
+        function editCustomer() {
+            let result =
+                "Choose customer you want to edit: \n------------------------------------------------------------------\n";
+            for (let i = 0; i < arrListCustomers.length; i++) {
+                result += (i + 1) + ". Name: " + arrListCustomers[i].getName() +
+                    " | Id: " + arrListCustomers[i].getId() +
+                    " | Birthday: " + arrListCustomers[i].getBirthday() + "\n";
+            }
+
+            let detail = parseInt(prompt(result));
+
+            let fieldEdit = prompt(
+                "Choose field you want to edit: \n------------------------------------------------------------------\n" +
+                "1. Name: " + arrListCustomers[detail - 1].getName() + "\n" +
+                "2. Id: " + arrListCustomers[detail - 1].getId() + "\n" +
+                "3. Birthday: " + arrListCustomers[detail - 1].getBirthday() + "\n" +
+                "4. Email: " + arrListCustomers[detail - 1].getEmail() + "\n" +
+                "5. Address: " + arrListCustomers[detail - 1].getAddress() + "\n" +
+                "6. Customer Type: " + arrListCustomers[detail - 1].getCustomerType() + "\n" +
+                "7. Discount: " + arrListCustomers[detail - 1].getDiscount() + "\n" +
+                "8. IncludedQuantity: " + arrListCustomers[detail - 1].getIncludedQuantity() + "\n" +
+                "9. Rent Days: " + arrListCustomers[detail - 1].getRentDays() + "\n" +
+                "10. Service Type: " + arrListCustomers[detail - 1].getServiceType() + "\n" +
+                "11. Room Type: " + arrListCustomers[detail - 1].getRoomType() + "\n");
+
+            switch (fieldEdit) {
+                case '1':
+                    let newName = prompt("Edit name");
+                    arrListCustomers[detail - 1].setName(newName);
+                    displayCustomers();
+                    break;
+                case '2':
+                    let newId = prompt("Edit id");
+                    arrListCustomers[detail - 1].setId(newId);
+                    displayCustomers();
+                    break;
+                case '3':
+                    let newBirthday = prompt("Edit birthday");
+                    arrListCustomers[detail - 1].setBirthday(newBirthday);
+                    displayCustomers();
+                    break;
+                case '4':
+                    let newEmail = prompt("Edit email");
+                    arrListCustomers[detail - 1].setEmail(newEmail);
+                    displayCustomers();
+                    break;
+                case '5':
+                    let newAddress = prompt("Edit address");
+                    arrListCustomers[detail - 1].setAddress(newAddress);
+                    displayCustomers();
+                    break;
+                case '6':
+                    let newCustomerType = prompt("Edit customer type");
+                    arrListCustomers[detail - 1].setCustomerType(newCustomerType);
+                    displayCustomers();
+                    break;
+                case '7':
+                    let newDiscount = parseInt(prompt("Edit discount"));
+                    arrListCustomers[detail - 1].setDiscount(newDiscount);
+                    displayCustomers();
+                    break;
+                case '8':
+                    let newIncludedQuantity = parseInt(prompt("Edit included quantity"));
+                    arrListCustomers[detail - 1].setIncludedQuantity(newIncludedQuantity);
+                    displayCustomers();
+                    break;
+                case '9':
+                    let newRentDays = parseInt(prompt("Edit rent days"));
+                    arrListCustomers[detail - 1].setRentDays(newRentDays);
+                    displayCustomers();
+                    break;
+                case '10':
+                    let newServiceType = prompt("Edit service type");
+                    arrListCustomers[detail - 1].setServiceType(newServiceType);
+                    displayCustomers();
+                    break;
+                case '11':
+                    let newRoomType = prompt("Edit room type");
+                    arrListCustomers[detail - 1].setRoomType(newRoomType);
+                    displayCustomers();
+                    break;
+            }
+        }
+
+        function deleteCustomer() {
+            
+        }
+    </script>
+
+</body>
+
+</html>
