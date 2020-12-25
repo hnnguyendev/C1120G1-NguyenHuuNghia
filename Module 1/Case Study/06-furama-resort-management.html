@@ -290,6 +290,7 @@
             let roomType;
 
             name = prompt("Enter customer name");
+
             do {
                 id = (prompt("Enter id"));
             } while (!checkId(id));
@@ -524,19 +525,20 @@
             let salary;
 
             fullName = prompt("Enter employee name");
-            // do {
-            birthday = prompt("Enter birthday (dd/mm/yyyy)");
-            // } while (!checkBirthday(birthday));
 
-            // do {
-            idNumber = (prompt("Enter id number"));
-            // } while (!checkId(idNumber));
+            do {
+                birthday = prompt("Enter birthday (dd/mm/yyyy)");
+            } while (!checkBirthday(birthday));
+
+            do {
+                idNumber = (prompt("Enter id number"));
+            } while (!checkId(idNumber));
 
             phoneNumber = prompt("Enter phone number");
 
-            // do {
-            email = prompt("Enter email");
-            // } while (!checkEmail(email));
+            do {
+                email = prompt("Enter email");
+            } while (!checkEmail(email));
 
             academicLevel = prompt("Enter academic level");
             position = prompt("Enter position");
