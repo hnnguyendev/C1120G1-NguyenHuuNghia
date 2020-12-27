@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function isPalindrome(str) {
+            let first = 0;
+            let last = str.length - 1;
+            let check = true;
+            for (let i = 0; i < str.length / 2; i++) {
+                if (str[first] !== str[last]) {
+                    check = false;
+                    break;
+                }
+                first++;
+                last--;
+            }
+            if (check) {
+                return true;
+            }
+            return false;
+        }
+
+        console.log(isPalindrome("redder"));
+    </script>
+
+</body>
+
+</html>
