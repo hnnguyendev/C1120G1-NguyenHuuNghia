@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class HienThiLoiChao {
 
 	public static void main(String[] args) {
-		Scanner keyboard = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your name:");
-		String name = keyboard.nextLine();
+		String name = scanner.nextLine();
 		System.out.println("Hello: " + name);
 	}
 
