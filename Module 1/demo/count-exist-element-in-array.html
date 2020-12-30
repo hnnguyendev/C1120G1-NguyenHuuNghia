@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [];
+        let countArr = [];
+        let count = 0;
+
+        do {
+            let inputChar = prompt("Enter any char");
+            arr.push(inputChar);
+            count++;
+        } while (count < 5);
+
+        console.log(arr);
+
+        // cach 1:
+        // for (let i = 0; i < arr.length; i++) {
+        //     let countExist = 1;
+        //     for (let j = i + 1; j < arr.length; j++) {
+        //         if (arr[i] === arr[j]) {
+        //             countExist++;
+        //             countArr[j] = 0;
+        //         }
+        //     }
+        //     if (countArr[i] != 0) {
+        //         countArr[i] = countExist;
+        //     }
+
+        // }
+        // for (let i = 0; i < countArr.length; i++) {
+        //     if (countArr[i] != 0) {
+        //         console.log(arr[i] + " " + countArr[i]);
+        //     }
+        // }
+
+        // cach 2:
+        for (let i = 0; i < arr.length; i++) {
+            let countExist = 1;
+            for (let j = i + 1; j < arr.length; j++) {
+                if (arr[i] === arr[j]) {
+                    countExist++;
+                    arr.splice(j, 1);
+                }
+            }
+            console.log(arr[i] + " : " + countExist);
+        }
+    </script>
+
+</body>
+
+</html>
