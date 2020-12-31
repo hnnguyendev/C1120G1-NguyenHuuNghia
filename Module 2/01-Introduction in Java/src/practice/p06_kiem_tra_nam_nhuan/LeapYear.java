@@ -7,6 +7,7 @@ public class LeapYear {
 	static int year;
 
 	static void input() {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the year you want to check:");
 		year = scanner.nextInt();

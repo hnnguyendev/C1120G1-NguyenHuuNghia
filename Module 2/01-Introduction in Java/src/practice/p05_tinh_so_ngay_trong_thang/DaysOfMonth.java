@@ -7,6 +7,7 @@ public class DaysOfMonth {
 	static int month;
 
 	static void input() {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Which month that you want to count days?");
 		month = scanner.nextInt();

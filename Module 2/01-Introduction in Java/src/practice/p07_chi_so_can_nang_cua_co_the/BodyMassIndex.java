@@ -9,6 +9,7 @@ public class BodyMassIndex {
 	static double bmi;
 
 	static void input() {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your weight (kg):");
 		weight = scanner.nextDouble();

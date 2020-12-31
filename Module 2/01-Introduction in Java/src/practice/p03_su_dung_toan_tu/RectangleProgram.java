@@ -8,6 +8,7 @@ public class RectangleProgram {
 	static float height;
 
 	static void input() {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the width:");
 		width = scanner.nextFloat();

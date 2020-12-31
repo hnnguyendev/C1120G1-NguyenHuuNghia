@@ -8,6 +8,7 @@ public class LinearEquationResolver {
 	static double b;
 
 	static void input() {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("a: ");
 		a = scanner.nextDouble();

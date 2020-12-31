@@ -7,6 +7,7 @@ public class Greeting {
 	static String name;
 
 	static void input() {
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your name:");
 		name = scanner.nextLine();
