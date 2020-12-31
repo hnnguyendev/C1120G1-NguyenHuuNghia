@@ -1,14 +1,24 @@
-package ex01_hien_thi_loi_chao;
+package exercise.ex01_hien_thi_loi_chao;
 
 import java.util.Scanner;
 
-public class HienThiLoiChao {
+public class Greeting {
 
-	public static void main(String[] args) {
+	static String name;
+
+	static void input() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your name:");
-		String name = scanner.nextLine();
+		name = scanner.nextLine();
+	}
+
+	static void showGreeting() {
+		input();
 		System.out.println("Hello: " + name);
+	}
+
+	public static void main(String[] args) {
+		showGreeting();
 	}
 
 }
