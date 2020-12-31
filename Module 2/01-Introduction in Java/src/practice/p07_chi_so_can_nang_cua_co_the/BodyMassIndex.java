@@ -18,8 +18,8 @@ public class BodyMassIndex {
 	}
 
 	/**
-	 * (-20): neu so chu so cua bmi < 20 thi them space vao ben phai
-	 * (%.2f): gia tri bmi chi lay hai chu so thap phan
+	 * (-20): neu so chu so cua bmi < 20 thi them space vao ben phai (%.2f): gia tri
+	 * bmi chi lay hai chu so thap phan
 	 */
 	static void calBMI() {
 		bmi = weight / Math.pow(height, 2);
