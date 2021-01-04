@@ -16,24 +16,25 @@ public class GreatestCommonFactor {
 		numberB = scanner.nextInt();
 	}
 
-	static void findGreatestCommonFactor() {
+	static int findGreatestCommonFactor(int numberA, int numberB) {
 		numberA = Math.abs(numberA);
 		numberB = Math.abs(numberB);
-		if (numberA == 0 || numberA == 0)
-			System.out.println("No greatest common factor");
+		if (numberA == 0 || numberB == 0) {
+			return numberA + numberB;
+		}
 		while (numberA != numberB) {
 			if (numberA > numberB)
-				numberA = numberA - numberB;
+				numberA -= numberB;
 			else
-				numberB = numberB - numberA;
+				numberB -= numberA;
 		}
-		System.out.println("Greatest common factor: " + numberA);
+		return numberA;
 
 	}
 
 	public static void main(String[] args) {
 		input();
-		findGreatestCommonFactor();
+		System.out.println(findGreatestCommonFactor(numberA, numberB));
 
 	}
 
