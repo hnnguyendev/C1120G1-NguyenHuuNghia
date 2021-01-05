@@ -1,10 +1,11 @@
-package exercise.ex04_tim_phan_tu_lon_nhat_trong_mang_hai_chieu;
+package exercise.ex06_tinh_tong_cac_so_o_mot_cot_xac_dinh;
 
 import java.util.Scanner;
 
-public class MaxInArray {
+public class SumOfColumn {
 
 //	public static int[][] array = { { 1, 5, 4, 8, 9 }, { 7, 12, 24, 78, 0 }, { 22, 33, 44, 55, 66 } };
+	public static int choiceColumn;
 	public static int row;
 	public static int column;
 	public static int[][] array;
@@ -35,27 +36,24 @@ public class MaxInArray {
 				array[i][j] = scanner.nextInt();
 			}
 		}
+		do {
+			System.out.println("Enter the column you want to calSum:");
+			choiceColumn = scanner.nextInt();
+		} while (choiceColumn < 0 || choiceColumn > array[1].length - 1);
 	}
 
-	public static void findMaxInArray() {
-		int indexX = 0;
-		int indexY = 0;
-		int max = array[indexX][indexY];
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array[i].length; j++) {
-				if (max < array[i][j]) {
-					max = array[i][j];
-					indexX = i;
-					indexY = j;
-				}
-			}
+	public static int calSumOfColumn(int[][] arr, int column) {
+		int sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i][column];
 		}
-		System.out.println("Max at [" + indexX + "][" + indexY + "]: " + max);
+		return sum;
 	}
 
 	public static void main(String[] args) {
 		input();
-		findMaxInArray();
+		System.out.println(calSumOfColumn(array, choiceColumn));
+
 	}
 
 }
