@@ -48,7 +48,7 @@ public class StopWatch {
 		StopWatch stopWatch = new StopWatch();
 		System.out.println(stopWatch.startTime);
 
-		int[] array = new int[300000];
+		int[] array = new int[100000];
 		Random random = new Random();
 		for (int i = 0; i < array.length; i++) {
 			array[i] = random.nextInt();
