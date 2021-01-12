@@ -30,6 +30,7 @@ public class TestResizeable {
                 System.out.println("Area = " + resizeableRectangle.getArea());
                 System.out.println("Increase percent: " + percent + "%");
                 iResizeable.resize(percent);
+                System.out.println("After-resize:\nArea = " + resizeableRectangle.getArea());
             } else {
                 ResizeableSquare resizeableSquare = (ResizeableSquare) shape;
                 IResizeable iResizeable = (ResizeableSquare) shape;

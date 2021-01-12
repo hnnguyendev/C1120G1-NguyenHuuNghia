@@ -17,6 +17,7 @@ public class ResizeableRectangle extends Rectangle implements IResizeable {
 
     @Override
     public void resize(double percent) {
-        System.out.println("After-resize:\nArea = " + (this.getArea() + this.getArea() * percent / 100));
+        this.setWidth(this.getWidth() + this.getWidth() * percent / 2 / 100);
+        this.setHeight(this.getHeight() + this.getHeight() * percent / 2 / 100);
     }
 }
