@@ -15,7 +15,7 @@ public class TestResizeable {
 
         for (Shape shape : shapes) {
             System.out.println("Pre-resize:");
-            int percent = random.nextInt(100 - 1 + 1) + 1;
+            int percent = random.nextInt(99) + 1;
 
             if (shape instanceof ResizeableCircle) {
                 ResizeableCircle resizeableCircle = (ResizeableCircle) shape;

@@ -12,6 +12,7 @@ public class TestColorable {
         shapes[2] = new ColorableSquare(10);
 
         for (Shape shape : shapes) {
+            System.out.println(shape);
             if (shape instanceof ColorableSquare) {
                 IColorable iColorable = (ColorableSquare) shape;
                 iColorable.howToColor();
