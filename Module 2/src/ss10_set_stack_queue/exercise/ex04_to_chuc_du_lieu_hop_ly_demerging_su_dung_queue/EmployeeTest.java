@@ -5,8 +5,11 @@ import java.util.*;
 public class EmployeeTest {
     public static void main(String[] args) {
         List<Employee> employeeList = new ArrayList<>();
-        Queue<Employee> maleQueue = new LinkedList<>();
-        Queue<Employee> femaleQueue = new LinkedList<>();
+//        Queue<Employee> maleQueue = new LinkedList<>();
+//        Queue<Employee> femaleQueue = new LinkedList<>();
+        // sap xep su dung Comparable
+        Queue<Employee> maleQueue = new PriorityQueue<>();
+        Queue<Employee> femaleQueue = new PriorityQueue<>();
 
         employeeList.add(new Employee("Peter", true, "11/11/2000"));
         employeeList.add(new Employee("Mary", false, "11/01/2000"));
@@ -19,7 +22,7 @@ public class EmployeeTest {
             System.out.println(employee);
         }
 
-        Collections.sort(employeeList, new CompaByBirthday());
+//        Collections.sort(employeeList, new CompaByBirthday());
 
         for (Employee employee : employeeList) {
             if (!employee.isGender()) {

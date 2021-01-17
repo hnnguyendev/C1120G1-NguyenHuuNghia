@@ -1,4 +1,4 @@
-package ss09_list.practice.p01_trien_lop_linkedlist;
+package ss09_list.practice.p02_trien_khai_lop_linkedlist;
 
 public class MyLinkedList {
     private Node head;

@@ -1,4 +1,4 @@
-package ss09_list.practice.p01_trien_lop_list;
+package ss09_list.practice.p01_trien_khai_lop_list;
 
 public class MyListTest {
     public static void main(String[] args) {
