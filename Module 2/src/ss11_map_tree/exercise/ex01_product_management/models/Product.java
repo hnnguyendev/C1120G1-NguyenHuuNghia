@@ -1,8 +1,8 @@
-package ss11_map_tree.exercise.ex01_product_management;
+package ss11_map_tree.exercise.ex01_product_management.models;
 
 public class Product {
 
-    private final int id;
+    private int id;
     private String name;
     private double price;
 

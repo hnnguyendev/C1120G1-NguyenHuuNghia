@@ -1,4 +1,6 @@
-package ss11_map_tree.exercise.ex01_product_management;
+package ss11_map_tree.exercise.ex01_product_management.utils.sort;
+
+import ss11_map_tree.exercise.ex01_product_management.models.Product;
 
 import java.util.Comparator;
 

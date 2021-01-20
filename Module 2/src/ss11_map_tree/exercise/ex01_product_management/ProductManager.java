@@ -1,5 +1,9 @@
 package ss11_map_tree.exercise.ex01_product_management;
 
+import ss11_map_tree.exercise.ex01_product_management.models.Product;
+import ss11_map_tree.exercise.ex01_product_management.utils.sort.AscPriceComparator;
+import ss11_map_tree.exercise.ex01_product_management.utils.sort.DescPriceComparator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
