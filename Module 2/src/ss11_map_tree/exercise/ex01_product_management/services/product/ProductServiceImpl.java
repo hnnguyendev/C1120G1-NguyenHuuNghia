@@ -1,6 +1,8 @@
 package ss11_map_tree.exercise.ex01_product_management.services.product;
 
 import ss11_map_tree.exercise.ex01_product_management.models.Product;
+import ss11_map_tree.exercise.ex01_product_management.utils.sort.AscPriceComparator;
+import ss11_map_tree.exercise.ex01_product_management.utils.sort.DescPriceComparator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -62,5 +64,27 @@ public class ProductServiceImpl implements IProductService {
 
         // cach 2
 //        productList.removeIf(product -> product.getId() == id);
+    }
+
+    @Override
+    public List<Product> searchByName(String name) {
+        List<Product> productList = new ArrayList<>();
+        for (Product product : this.productList) {
+            if (product.getName().contains(name)) {
+                productList.add(product);
+            }
+
+        }
+        return productList;
+    }
+
+    @Override
+    public void sortByPrice(int sort) {
+        if (sort == 1) {
+            this.productList.sort(new AscPriceComparator());
+
+        } else if (sort == 2) {
+            this.productList.sort(new DescPriceComparator());
+        }
     }
 }

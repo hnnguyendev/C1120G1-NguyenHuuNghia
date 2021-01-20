@@ -56,13 +56,73 @@ public class Main {
         productService.remove(id);
     }
 
+    public static void searchProduct() {
+        System.out.print("Search name: ");
+        String name = scanner.nextLine();
+
+        List<Product> productList = productService.searchByName(name);
+
+        if (!productList.isEmpty()) {
+            for (Product product : productList) {
+                System.out.println(product);
+            }
+
+        } else {
+            System.out.println("No result");
+        }
+    }
+
+    public static void sortByPrice() {
+        System.out.print("Sort by price:\n" +
+                "1. Ascending\n" +
+                "2. Descending\n" +
+                "Your choice: ");
+        int sort = Integer.parseInt(scanner.nextLine());
+        productService.sortByPrice(sort);
+    }
+
     public static void main(String[] args) {
-
-
-        showProduct();
-//        updateProduct();
-        productService.remove(3);
-        System.out.println("after remove");
-        showProduct();
+        int menuOptions;
+        do {
+            System.out.print("---------------------PRODUCT MANAGER---------------------\n" +
+                    "1. Add Product\t\t" +
+                    "2. Update Product\t" +
+                    "3. Remove Product\n" +
+                    "4. Show Product\t\t" +
+                    "5. Search Product\t" +
+                    "6. Sort Product\n" +
+                    "0. EXIT\n" +
+                    "---------------------------------------------------------\n");
+            do {
+                System.out.print("Your choice: ");
+                menuOptions = Integer.parseInt(scanner.nextLine());
+            } while (menuOptions > 6 || menuOptions < 0);
+            switch (menuOptions) {
+                case 1:
+                    createProduct();
+                    showProduct();
+                    break;
+                case 2:
+                    updateProduct();
+                    showProduct();
+                    break;
+                case 3:
+                    removeProduct();
+                    showProduct();
+                    break;
+                case 4:
+                    showProduct();
+                    break;
+                case 5:
+                    searchProduct();
+                    break;
+                case 6:
+                    sortByPrice();
+                    showProduct();
+                    break;
+                case 0:
+                    System.exit(0);
+            }
+        } while (true);
     }
 }
