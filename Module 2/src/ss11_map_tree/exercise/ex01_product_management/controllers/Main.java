@@ -1,13 +1,14 @@
 package ss11_map_tree.exercise.ex01_product_management.controllers;
 
 import ss11_map_tree.exercise.ex01_product_management.models.Product;
+import ss11_map_tree.exercise.ex01_product_management.services.product.IProductService;
 import ss11_map_tree.exercise.ex01_product_management.services.product.ProductServiceImpl;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static ProductServiceImpl productService = new ProductServiceImpl();
+    private static IProductService productService = new ProductServiceImpl();
     private static Scanner scanner = new Scanner(System.in);
     public static int id = 5;
 
