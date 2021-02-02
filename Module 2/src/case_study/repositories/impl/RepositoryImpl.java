@@ -14,7 +14,7 @@ public class RepositoryImpl<T> implements IRepository<T> {
     public void writeFile(String fileName, List<T> list, boolean append) {
         File file = new File(PATH + fileName);
         FileWriter fileWriter;
-        BufferedWriter bufferedWriter;
+        BufferedWriter bufferedWriter = null;
 
         try {
             fileWriter = new FileWriter(file, append);
@@ -23,10 +23,15 @@ public class RepositoryImpl<T> implements IRepository<T> {
                 bufferedWriter.write(t.toString());
                 bufferedWriter.newLine();
             }
-            bufferedWriter.close();
 
         } catch (Exception e) {
             System.out.println("File error!!!");
+        } finally {
+            try {
+                bufferedWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
@@ -36,7 +41,7 @@ public class RepositoryImpl<T> implements IRepository<T> {
         List<String[]> list = new ArrayList<>();
         File file = new File(PATH + fileName);
         FileReader fileReader;
-        BufferedReader bufferedReader;
+        BufferedReader bufferedReader = null;
 
         try {
             fileReader = new FileReader(file);
@@ -48,10 +53,15 @@ public class RepositoryImpl<T> implements IRepository<T> {
                 list.add(stringArr);
 
             }
-            bufferedReader.close();
 
         } catch (Exception e) {
             System.out.println("File error!!!");
+        } finally {
+            try {
+                bufferedReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return list;

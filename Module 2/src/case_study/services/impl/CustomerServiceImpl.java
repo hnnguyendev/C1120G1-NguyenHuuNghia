@@ -4,6 +4,7 @@ import case_study.models.Customer;
 import case_study.repositories.IRepository;
 import case_study.repositories.impl.RepositoryImpl;
 import case_study.services.ICustomerService;
+import case_study.utils.comparison.CompareCustomerById;
 import case_study.utils.comparison.CompareCustomerByNameAndBirthday;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class CustomerServiceImpl implements ICustomerService {
             }
         }
 
+        System.out.println("Customer is not exist!");
         return null;
     }
 
@@ -35,6 +37,7 @@ public class CustomerServiceImpl implements ICustomerService {
             Customer customer = new Customer(strings);
             customerList.add(customer);
         }
+        customerList.sort(new CompareCustomerById());
 
         return customerList;
     }

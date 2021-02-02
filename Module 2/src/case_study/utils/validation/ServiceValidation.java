@@ -15,10 +15,10 @@ import java.util.List;
 public class ServiceValidation {
 
     private static final String SERVICE_NAME = "^[A-Z](([a-z0-9])*)+(\\s[a-z0-9]+)*$";
-    private static final String SERVICE_VILLA = "^(SVVL)-\\d{4}$";
-    private static final String SERVICE_HOUSE = "^(SVHO)-\\d{4}$";
-    private static final String SERVICE_ROOM = "^(SVRO)-\\d{4}$";
-    private static final String SERVICE_ADDON = "^(massage)|(karaoke)|(food)|(drink)|(car)$";
+    private static final String SERVICE_VILLA = "^SVVL-\\d{4}$";
+    private static final String SERVICE_HOUSE = "^SVHO-\\d{4}$";
+    private static final String SERVICE_ROOM = "^SVRO-\\d{4}$";
+    private static final String SERVICE_ADDON = "^massage|karaoke|food|drink|car$";
 
     static IVillaService villaService = new VillaServiceImpl();
     static IHouseService houseService = new HouseServiceImpl();
@@ -103,7 +103,7 @@ public class ServiceValidation {
 
     public static boolean validateServiceAddon(String str) {
         if (!str.matches(SERVICE_ADDON)) {
-            System.out.println("(massage, karaoke, food, drink, car), please re-enter!");
+            System.out.println("Service (massage, karaoke, food, drink, car), please re-enter!");
             return false;
         }
         return true;

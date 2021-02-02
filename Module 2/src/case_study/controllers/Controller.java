@@ -3,13 +3,12 @@ package case_study.controllers;
 import case_study.models.*;
 import case_study.services.*;
 import case_study.services.impl.*;
-import case_study.utils.exception.NameException;
+import case_study.utils.exception.*;
+import case_study.utils.standardization.Standardization;
 import case_study.utils.validation.CustomerValidation;
 import case_study.utils.validation.ServiceValidation;
 
-import java.util.List;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * methods controller
@@ -30,145 +29,136 @@ public class Controller {
     static IBookingService bookingService = new BookingServiceImpl();
     static IEmployeeService employeeService = new EmployeeServiceImpl();
     static ICinemaService cinemaService = new CinemaServiceImpl();
+    static IFilingCabinetService filingCabinetService = new FilingCabinetServiceImpl();
 
     public static void displayMainMenu() {
-        int choice = 1;
-        boolean checkMainMenu;
-        System.out.println("-----Welcome to Furama Resort-----\n" +
-                "1. Add New Services\n" +
-                "2. Show Services\n" +
-                "3. Add New Customer\n" +
-                "4. Show Information of Customer\n" +
-                "5. Add New Booking\n" +
-                "6. Show Information of Employee\n" +
-                "7. Show Customer Buy Cinema Ticket\n" +
-                "9. Exit");
-        do {
-            System.out.print("Your choice: ");
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
-                checkMainMenu = true;
-            } catch (Exception e) {
-                System.out.println("Invalid value, please re-enter!");
-                checkMainMenu = false;
-            }
-        } while (choice < 1 || choice > 9 || !checkMainMenu);
 
-        switch (choice) {
-            case 1:
-                addNewServices();
-                break;
-            case 2:
-                showServices();
-                break;
-            case 3:
-                addNewCustomer();
-                break;
-            case 4:
-                showAllCustomer();
-                break;
-            case 5:
-                addNewBooking();
-                break;
-            case 6:
-                showAllEmployee();
-                break;
-            case 7:
-                showAllCustomerBuyTicket();
-                break;
-            case 9:
-                System.exit(0);
-        }
+        do {
+            System.out.println("-----Welcome to Furama Resort-----\n" +
+                    "1. Add New Services\n" +
+                    "2. Show Services\n" +
+                    "3. Add New Customer\n" +
+                    "4. Show Information of Customer\n" +
+                    "5. Add New Booking\n" +
+                    "6. Show Information of Employee\n" +
+                    "7. Show Customer Buy Cinema Ticket\n" +
+                    "8. Search Filling Cabinet\n" +
+                    "9. Exit\n" +
+                    "Your choice: ");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    addNewServices();
+                    break;
+                case "2":
+                    showServices();
+                    break;
+                case "3":
+                    addNewCustomer();
+                    break;
+                case "4":
+                    showAllCustomer();
+                    break;
+                case "5":
+                    addNewBooking();
+                    break;
+                case "6":
+                    showAllEmployee();
+                    break;
+                case "7":
+                    showAllCustomerBuyTicket();
+                    break;
+                case "8":
+                    searchFilingCabinet();
+                    break;
+                case "9":
+                    System.exit(0);
+                default:
+                    System.out.println("Your choice is invalid!");
+            }
+        } while (true);
     }
 
     public static void addNewServices() {
-        int choice = 1;
-        boolean checkSubMenu;
-        System.out.println("-----Add New Service-----\n" +
-                "1. Add New Villa\n" +
-                "2. Add New House\n" +
-                "3. Add New Room\n" +
-                "4. Back to Menu\n" +
-                "5. Exit");
 
         do {
-            System.out.print("Your choice: ");
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
-                checkSubMenu = true;
-            } catch (Exception e) {
-                System.out.println("Invalid value, please re-enter!");
-                checkSubMenu = false;
-            }
-        } while (choice < 1 || choice > 5 || !checkSubMenu);
+            System.out.println("-----Add New Service-----\n" +
+                    "1. Add New Villa\n" +
+                    "2. Add New House\n" +
+                    "3. Add New Room\n" +
+                    "4. Back to Menu\n" +
+                    "5. Exit\n" +
+                    "Your choice: ");
 
-        switch (choice) {
-            case 1:
-                addNewService(SERVICE_VILLA);
-                break;
-            case 2:
-                addNewService(SERVICE_HOUSE);
-                break;
-            case 3:
-                addNewService(SERVICE_ROOM);
-                break;
-            case 4:
-                displayMainMenu();
-                break;
-            case 5:
-                System.exit(0);
-        }
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    addNewService(SERVICE_VILLA);
+                    break;
+                case "2":
+                    addNewService(SERVICE_HOUSE);
+                    break;
+                case "3":
+                    addNewService(SERVICE_ROOM);
+                    break;
+                case "4":
+                    displayMainMenu();
+                    break;
+                case "5":
+                    System.exit(0);
+                default:
+                    System.out.println("Your choice is invalid!");
+            }
+        } while (true);
     }
 
     public static void showServices() {
-        int choice = 1;
-        boolean checkSubMenu;
-        System.out.println("-----Show Services-----\n" +
-                "1. Show all Villa\n" +
-                "2. Show all House\n" +
-                "3. Show all Room\n" +
-                "4. Show all Name Villa Not Duplicate\n" +
-                "5. Show all Name House Not Duplicate\n" +
-                "6. Show all Name Room Not Duplicate\n" +
-                "7. Back to Menu\n" +
-                "8. Exit");
 
         do {
-            System.out.print("Your choice: ");
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
-                checkSubMenu = true;
-            } catch (Exception e) {
-                System.out.println("Invalid value, please re-enter!");
-                checkSubMenu = false;
-            }
-        } while (choice < 1 || choice > 8 || !checkSubMenu);
+            System.out.println("-----Show Services-----\n" +
+                    "1. Show all Villa\n" +
+                    "2. Show all House\n" +
+                    "3. Show all Room\n" +
+                    "4. Show all Name Villa Not Duplicate\n" +
+                    "5. Show all Name House Not Duplicate\n" +
+                    "6. Show all Name Room Not Duplicate\n" +
+                    "7. Back to Menu\n" +
+                    "8. Exit\n" +
+                    "Your choice: ");
 
-        switch (choice) {
-            case 1:
-                showAllService(SERVICE_VILLA);
-                break;
-            case 2:
-                showAllService(SERVICE_HOUSE);
-                break;
-            case 3:
-                showAllService(SERVICE_ROOM);
-                break;
-            case 4:
-                showAllServiceNotDuplicateName(SERVICE_VILLA);
-                break;
-            case 5:
-                showAllServiceNotDuplicateName(SERVICE_HOUSE);
-                break;
-            case 6:
-                showAllServiceNotDuplicateName(SERVICE_ROOM);
-                break;
-            case 7:
-                displayMainMenu();
-                break;
-            case 8:
-                System.exit(0);
-        }
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    showAllService(SERVICE_VILLA);
+                    break;
+                case "2":
+                    showAllService(SERVICE_HOUSE);
+                    break;
+                case "3":
+                    showAllService(SERVICE_ROOM);
+                    break;
+                case "4":
+                    showAllServiceNotDuplicateName(SERVICE_VILLA);
+                    break;
+                case "5":
+                    showAllServiceNotDuplicateName(SERVICE_HOUSE);
+                    break;
+                case "6":
+                    showAllServiceNotDuplicateName(SERVICE_ROOM);
+                    break;
+                case "7":
+                    displayMainMenu();
+                    break;
+                case "8":
+                    System.exit(0);
+                default:
+                    System.out.println("Your choice is invalid!");
+            }
+        } while (true);
     }
 
     public static void addNewService(int serviceType) {
@@ -185,13 +175,7 @@ public class Controller {
         int floor = 0;
         int floorHouse = 0;
         String freeService;
-
-        boolean checkUsableArea;
-        boolean checkCost;
-        boolean checkMaxPeople;
-        boolean checkPoolArea;
-        boolean checkVillaFloor;
-        boolean checkHouseFloor;
+        boolean check;
 
         do {
             System.out.print("Enter service id: ");
@@ -207,35 +191,35 @@ public class Controller {
             System.out.print("Enter usable area: ");
             try {
                 usableArea = Double.parseDouble(scanner.nextLine());
-                checkUsableArea = true;
+                check = true;
 
             } catch (Exception e) {
                 System.out.println("Invalid value, please re-enter!");
-                checkUsableArea = false;
+                check = false;
             }
-        } while (!ServiceValidation.validateArea(usableArea) || !checkUsableArea);
+        } while (!ServiceValidation.validateArea(usableArea) || !check);
 
         do {
             System.out.print("Enter cost: ");
             try {
                 cost = Double.parseDouble(scanner.nextLine());
-                checkCost = true;
+                check = true;
             } catch (Exception e) {
                 System.out.println("Invalid value, please re-enter!");
-                checkCost = false;
+                check = false;
             }
-        } while (!ServiceValidation.validateRentalCost(cost) || !checkCost);
+        } while (!ServiceValidation.validateRentalCost(cost) || !check);
 
         do {
             System.out.print("Enter max people: ");
             try {
                 maxPeople = Integer.parseInt(scanner.nextLine());
-                checkMaxPeople = true;
+                check = true;
             } catch (Exception e) {
                 System.out.println("Invalid value, please re-enter!");
-                checkMaxPeople = false;
+                check = false;
             }
-        } while (!ServiceValidation.validateMaxPeople(maxPeople) || !checkMaxPeople);
+        } while (!ServiceValidation.validateMaxPeople(maxPeople) || !check);
 
         do {
             System.out.print("Enter rental type: ");
@@ -261,23 +245,23 @@ public class Controller {
                     System.out.print("Enter pool area: ");
                     try {
                         poolArea = Double.parseDouble(scanner.nextLine());
-                        checkPoolArea = true;
+                        check = true;
                     } catch (Exception e) {
                         System.out.println("Invalid value, please re-enter!");
-                        checkPoolArea = false;
+                        check = false;
                     }
-                } while (!ServiceValidation.validateArea(poolArea) || !checkPoolArea);
+                } while (!ServiceValidation.validateArea(poolArea) || !check);
 
                 do {
-                    System.out.print("Enter floor: ");
+                    System.out.print("Enter villa floor: ");
                     try {
                         floor = Integer.parseInt(scanner.nextLine());
-                        checkVillaFloor = true;
+                        check = true;
                     } catch (Exception e) {
                         System.out.println("Invalid value, please re-enter!");
-                        checkVillaFloor = false;
+                        check = false;
                     }
-                } while (!ServiceValidation.validateFloor(floor) || !checkVillaFloor);
+                } while (!ServiceValidation.validateFloor(floor) || !check);
 
                 Villa villa = new Villa(id, serviceName, usableArea, cost, maxPeople, rentalType, serviceStandard, facility,
                         poolArea, floor);
@@ -285,15 +269,15 @@ public class Controller {
                 break;
             case 2:
                 do {
-                    System.out.print("Enter floor: ");
+                    System.out.print("Enter house floor: ");
                     try {
                         floorHouse = Integer.parseInt(scanner.nextLine());
-                        checkHouseFloor = true;
+                        check = true;
                     } catch (Exception e) {
                         System.out.println("Invalid value, please re-enter!");
-                        checkHouseFloor = false;
+                        check = false;
                     }
-                } while (!ServiceValidation.validateFloor(floorHouse) || !checkHouseFloor);
+                } while (!ServiceValidation.validateFloor(floorHouse) || !check);
 
                 House house = new House(id, serviceName, usableArea, cost, maxPeople, rentalType, serviceStandard,
                         facility, floorHouse);
@@ -449,42 +433,99 @@ public class Controller {
 
         String id;
         String name;
+        String birthday;
+        String gender;
+        String idNumber;
+        String phoneNumber;
+        String email;
+        String customerType;
+        String address;
+        boolean check;
 
-        System.out.print("Enter customer id: ");
-        id = scanner.nextLine();
-        boolean check = true;
+        List<Customer> customerList = customerService.findAll();
+        // auto increment
+        if (customerList.size() == 0) {
+            id = "1";
+        } else {
+            int tempId = Integer.parseInt(customerList.get(customerList.size() - 1).getId()) + 1;
+            id = String.valueOf(tempId);
+        }
+
         do {
             System.out.print("Enter customer name: ");
             name = scanner.nextLine();
             try {
                 CustomerValidation.validateCustomerName(name);
+                check = true;
             } catch (NameException e) {
-                check=false;
+                check = false;
                 System.out.println(e.getMessage());
-                e.printStackTrace();
             }
         } while (!check);
 
-        System.out.print("Enter customer birthday: ");
-        String birthday = scanner.nextLine();
+        do {
+            System.out.print("Enter customer birthday: ");
+            birthday = scanner.nextLine();
+            try {
+                CustomerValidation.validateBirthday(birthday);
+                check = true;
+            } catch (BirthdayException e) {
+                check = false;
+                System.out.println(e.getMessage());
+            }
+        } while (!check);
 
-        System.out.print("Enter customer gender: ");
-        String gender = scanner.nextLine();
+        do {
+            System.out.print("Enter customer gender: ");
+            gender = scanner.nextLine();
+            try {
+                CustomerValidation.validateGender(gender);
+                gender = Standardization.standardizedName(gender);
+                check = true;
+            } catch (GenderException e) {
+                check = false;
+                System.out.println(e.getMessage());
+            }
+        } while (!check);
 
-        System.out.print("Enter customer id number: ");
-        String idNumber = scanner.nextLine();
+        do {
+            System.out.print("Enter customer id number: ");
+            idNumber = scanner.nextLine();
+            try {
+                CustomerValidation.validateIdNumber(idNumber);
+                check = true;
+            } catch (IdNumberException e) {
+                check = false;
+                System.out.println(e.getMessage());
+            }
+        } while (!check);
 
-        System.out.print("Enter customer phone number: ");
-        String phoneNumber = scanner.nextLine();
+        do {
+            System.out.print("Enter customer phone number: ");
+            phoneNumber = scanner.nextLine();
+        } while (!CustomerValidation.validatePhoneNumber(phoneNumber));
 
-        System.out.print("Enter customer email: ");
-        String email = scanner.nextLine();
+        do {
+            System.out.print("Enter customer email: ");
+            email = scanner.nextLine();
+            try {
+                CustomerValidation.validateCustomerEmail(email);
+                check = true;
+            } catch (EmailException e) {
+                System.out.println(e.getMessage());
+                check = false;
+            }
+        } while (!check);
 
-        System.out.print("Enter customer type: ");
-        String customerType = scanner.nextLine();
+        do {
+            System.out.print("Enter customer type: ");
+            customerType = scanner.nextLine();
+        } while (!CustomerValidation.validateCustomerType(customerType));
 
-        System.out.print("Enter customer address: ");
-        String address = scanner.nextLine();
+        do {
+            System.out.print("Enter customer address: ");
+            address = scanner.nextLine();
+        } while (!CustomerValidation.validateAddress(address));
 
         Customer customer = new Customer(id, name, birthday, gender, idNumber, phoneNumber, email, customerType,
                 address, null);
@@ -506,62 +547,119 @@ public class Controller {
             System.out.println(customer.showInfo());
         }
 
-        System.out.print("Customer booking by id: ");
-        String customerId = scanner.nextLine();
-        Customer customer = customerService.findById(customerId);
+        Customer customer;
+        do {
+            System.out.print("Customer booking by id: ");
+            String customerId = scanner.nextLine();
+            customer = customerService.findById(customerId);
+        } while (customer == null);
 
-        System.out.print("1. Booking Villa\n" +
-                "2. Booking House\n" +
-                "3. Booking Room\n" +
-                "Your choice: ");
-        int serviceType = Integer.parseInt(scanner.nextLine());
-        switch (serviceType) {
-            case 1:
-                List<Villa> villaList = villaService.findAll();
-                for (int i = 0; i < villaList.size(); i++) {
-                    System.out.println((i + 1) + ". " + villaList.get(i).showInfo());
-                }
-                System.out.print("Booking service: ");
-                int villaNo = Integer.parseInt(scanner.nextLine());
-                String villaId = villaList.get(villaNo - 1).getId();
-                bookingService.save(customer, villaId);
-                break;
-            case 2:
-                List<House> houseList = houseService.findAll();
-                for (int i = 0; i < houseList.size(); i++) {
-                    System.out.println((i + 1) + ". " + houseList.get(i).showInfo());
-                }
-                System.out.print("Booking service: ");
-                int houseNo = Integer.parseInt(scanner.nextLine());
-                String houseId = houseList.get(houseNo - 1).getId();
-                bookingService.save(customer, houseId);
-                break;
-            case 3:
-                List<Room> roomList = roomService.findAll();
-                for (int i = 0; i < roomList.size(); i++) {
-                    System.out.println((i + 1) + ". " + roomList.get(i).showInfo());
-                }
-                System.out.print("Booking service: ");
-                int roomNo = Integer.parseInt(scanner.nextLine());
-                String roomId = roomList.get(roomNo - 1).getId();
-                bookingService.save(customer, roomId);
-                break;
-        }
+        String serviceType;
+        do {
+            System.out.print("1. Booking Villa\n" +
+                    "2. Booking House\n" +
+                    "3. Booking Room\n" +
+                    "4. Back to Menu\n" +
+                    "Your choice: ");
+            serviceType = scanner.nextLine();
+            switch (serviceType) {
+                case "1":
+                    List<Villa> villaList = villaService.findAll();
+                    for (int i = 0; i < villaList.size(); i++) {
+                        System.out.println((i + 1) + ". " + villaList.get(i).showInfo());
+                    }
+                    int villaNo;
+                    String villaId;
+
+                    do {
+                        System.out.print("Booking villa: ");
+                        villaNo = Integer.parseInt(scanner.nextLine());
+                        villaId = villaList.get(villaNo - 1).getId();
+                        if (bookingService.isBookingService(villaId)) {
+                            bookingService.save(customer, villaId);
+                        } else {
+                            System.out.println("Villa is not available!");
+                        }
+                    } while (villaNo < 1 || villaNo > villaList.size() || !bookingService.isBookingService(villaId));
+
+                    break;
+                case "2":
+                    List<House> houseList = houseService.findAll();
+                    for (int i = 0; i < houseList.size(); i++) {
+                        System.out.println((i + 1) + ". " + houseList.get(i).showInfo());
+                    }
+                    int houseNo;
+                    String houseId;
+
+                    do {
+                        System.out.print("Booking house: ");
+                        houseNo = Integer.parseInt(scanner.nextLine());
+                        houseId = houseList.get(houseNo - 1).getId();
+                        if (bookingService.isBookingService(houseId)) {
+                            bookingService.save(customer, houseId);
+                        } else {
+                            System.out.println("House is not available!");
+                        }
+                    } while (houseNo < 1 || houseNo > houseList.size() || !bookingService.isBookingService(houseId));
+
+                    break;
+                case "3":
+                    List<Room> roomList = roomService.findAll();
+                    for (int i = 0; i < roomList.size(); i++) {
+                        System.out.println((i + 1) + ". " + roomList.get(i).showInfo());
+                    }
+                    int roomNo;
+                    String roomId;
+
+                    do {
+                        System.out.print("Booking room: ");
+                        roomNo = Integer.parseInt(scanner.nextLine());
+                        roomId = roomList.get(roomNo - 1).getId();
+                        if (bookingService.isBookingService((roomId))) {
+                            bookingService.save(customer, roomId);
+                        } else {
+                            System.out.println("Room is not available!");
+                        }
+                    } while (roomNo < 1 || roomNo > roomList.size() || bookingService.isBookingService(roomId));
+
+                    break;
+                case "4":
+                    displayMainMenu();
+                    break;
+                default:
+                    System.out.println("Your choice is invalid!");
+            }
+        } while (true);
 
     }
 
     public static void showAllEmployee() {
-        List<Employee> employeeList = employeeService.findAll();
-        for (Employee employee : employeeList) {
-            System.out.println(employee.showInfo());
+        Map<String, Employee> employeeList = employeeService.findAll();
+
+        Set<String> keySet = employeeList.keySet();
+
+        for (String key : keySet) {
+            System.out.println(key + " = " + employeeList.get(key).showInfo());
         }
     }
 
     public static void showAllCustomerBuyTicket() {
-        List<Customer> customerList = cinemaService.findAll();
-        for (Customer customer : customerList) {
-            System.out.println(customer.showInfo());
+        Queue<Customer> customerQueue = cinemaService.findAll();
+        while (true) {
+            Customer customer = customerQueue.poll();
+            if (customer == null) {
+                break;
+            }
+            System.out.println(customer);
         }
+    }
+
+    public static void searchFilingCabinet() {
+        System.out.print("Search by employee id: ");
+        String id = scanner.nextLine();
+        Employee employee = filingCabinetService.findEmployeeById(id);
+        System.out.println(employee.showInfo());
+
     }
 
 }

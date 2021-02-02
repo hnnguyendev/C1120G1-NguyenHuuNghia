@@ -2,9 +2,9 @@ package case_study.services;
 
 import case_study.models.Customer;
 
-import java.util.List;
+import java.util.Queue;
 
 public interface ICinemaService {
 
-    List<Customer> findAll();
+    Queue<Customer> findAll();
 }

@@ -2,10 +2,10 @@ package case_study.services;
 
 import case_study.models.Employee;
 
-import java.util.List;
+import java.util.Map;
 
 public interface IEmployeeService {
 
-    List<Employee> findAll();
+    Map<String, Employee> findAll();
 
 }

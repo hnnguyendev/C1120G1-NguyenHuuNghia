@@ -3,9 +3,7 @@ package case_study.services.impl;
 import case_study.models.Customer;
 import case_study.services.ICinemaService;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class CinemaServiceImpl implements ICinemaService {
@@ -21,7 +19,7 @@ public class CinemaServiceImpl implements ICinemaService {
     }
 
     @Override
-    public List<Customer> findAll() {
-        return new ArrayList<>(customerQueue);
+    public Queue<Customer> findAll() {
+        return customerQueue;
     }
 }

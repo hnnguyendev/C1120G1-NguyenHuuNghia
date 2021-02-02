@@ -17,6 +17,13 @@ public class Employee {
         this.address = address;
     }
 
+    public Employee(String[] strings) {
+        this.id = strings[0];
+        this.name = strings[1];
+        this.age = Integer.parseInt(strings[2]);
+        this.address = strings[3];
+    }
+
     public String getId() {
         return id;
     }
