@@ -18,7 +18,7 @@ public class BookingServiceImpl implements IBookingService {
     @Override
     public void save(Customer customer, String serviceId) {
         List<Customer> customerList = new ArrayList<>();
-        customer.setCustomerService(serviceId);
+        customer.setServiceId(serviceId);
         customerList.add(customer);
         repository.writeFile(FILE_NAME, customerList, true);
     }
@@ -40,7 +40,7 @@ public class BookingServiceImpl implements IBookingService {
     public boolean isBookingService(String id) {
         List<Customer> customerList = findALl();
         for (Customer customer : customerList) {
-            if (customer.getCustomerService().equals(id)) {
+            if (customer.getServiceId().equals(id)) {
                 return false;
             }
         }

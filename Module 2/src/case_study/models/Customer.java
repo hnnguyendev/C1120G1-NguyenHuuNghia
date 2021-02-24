@@ -11,13 +11,13 @@ public class Customer {
     private String email;
     private String customerType;
     private String address;
-    private String customerService;
+    private String serviceId;
 
     public Customer() {
     }
 
     public Customer(String id, String name, String birthday, String gender, String idNumber, String phoneNumber,
-                    String email, String customerType, String address, String customerService) {
+                    String email, String customerType, String address, String serviceId) {
         this.id = id;
         this.name = name;
         this.birthday = birthday;
@@ -27,7 +27,7 @@ public class Customer {
         this.email = email;
         this.customerType = customerType;
         this.address = address;
-        this.customerService = customerService;
+        this.serviceId = serviceId;
     }
 
     public Customer(String[] strings) {
@@ -40,7 +40,7 @@ public class Customer {
         this.email = strings[6];
         this.customerType = strings[7];
         this.address = strings[8];
-        this.customerService = strings[9];
+        this.serviceId = strings[9];
     }
 
     public String getId() {
@@ -115,12 +115,12 @@ public class Customer {
         this.address = address;
     }
 
-    public String getCustomerService() {
-        return customerService;
+    public String getServiceId() {
+        return serviceId;
     }
 
-    public void setCustomerService(String customerService) {
-        this.customerService = customerService;
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class Customer {
                 email + "," +
                 customerType + "," +
                 address + "," +
-                customerService;
+                serviceId;
     }
 
     public String showInfo() {
@@ -148,7 +148,7 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", customerType='" + customerType + '\'' +
                 ", address='" + address + '\'' +
-                ", customerService='" + customerService + '\'' +
+                ", serviceId='" + serviceId + '\'' +
                 '}';
     }
 }

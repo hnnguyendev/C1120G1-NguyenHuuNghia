@@ -7,6 +7,12 @@ import java.util.Comparator;
 public class CompareCustomerById implements Comparator<Customer> {
     @Override
     public int compare(Customer o1, Customer o2) {
-        return o1.getId().compareTo(o2.getId());
+        if (Integer.parseInt(o1.getId()) > Integer.parseInt(o2.getId())) {
+            return 1;
+        } else if (Integer.parseInt(o1.getId()) < Integer.parseInt(o2.getId())) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

@@ -313,6 +313,7 @@ public class Controller {
                 for (Room room : roomList) {
                     System.out.println(room.showInfo());
                 }
+                break;
         }
     }
 
@@ -577,8 +578,9 @@ public class Controller {
                         villaId = villaList.get(villaNo - 1).getId();
                         if (bookingService.isBookingService(villaId)) {
                             bookingService.save(customer, villaId);
+                            break;
                         } else {
-                            System.out.println("Villa is not available!");
+                            System.out.println("Villa " + villaId + " is not available!");
                         }
                     } while (villaNo < 1 || villaNo > villaList.size() || !bookingService.isBookingService(villaId));
 
@@ -597,8 +599,9 @@ public class Controller {
                         houseId = houseList.get(houseNo - 1).getId();
                         if (bookingService.isBookingService(houseId)) {
                             bookingService.save(customer, houseId);
+                            break;
                         } else {
-                            System.out.println("House is not available!");
+                            System.out.println("House " + houseId + " is not available!");
                         }
                     } while (houseNo < 1 || houseNo > houseList.size() || !bookingService.isBookingService(houseId));
 
@@ -617,8 +620,9 @@ public class Controller {
                         roomId = roomList.get(roomNo - 1).getId();
                         if (bookingService.isBookingService((roomId))) {
                             bookingService.save(customer, roomId);
+                            break;
                         } else {
-                            System.out.println("Room is not available!");
+                            System.out.println("Room " + roomId + " is not available!");
                         }
                     } while (roomNo < 1 || roomNo > roomList.size() || bookingService.isBookingService(roomId));
 
