@@ -29,7 +29,7 @@ CREATE TABLE transactions (
 );
 
 ALTER TABLE accounts
-ADD customer_number INT UNIQUE,
+ADD customer_number INT UNIQUE AUTO_INCREMENT,
 ADD CONSTRAINT accounts_fk FOREIGN KEY (customer_number) REFERENCES customers(customer_number);
 
 ALTER TABLE transactions 
