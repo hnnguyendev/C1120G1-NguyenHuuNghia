@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .item1 {
+            grid-area: header;
+        }
+
+        .item2 {
+            grid-area: nav;
+        }
+
+        .item3 {
+            grid-area: section;
+            height: 200px;
+        }
+
+        .item4 {
+            grid-area: article;
+            height: 200px;
+        }
+
+        .item5 {
+            grid-area: aside;
+        }
+
+        .item6 {
+            grid-area: footer;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                    'header header header header header header header header header header header header'
+                    'nav nav nav nav nav nav nav nav nav nav nav nav'
+                    'section section section section section section section section aside aside aside aside'
+                    'article article article article article article article article aside aside aside aside'
+                    'footer footer footer footer footer footer footer footer footer footer footer footer';
+            grid-gap: 3px;
+            background-color: #2196F3;
+            padding: 3px;
+        }
+
+        .grid-container > div {
+            background-color: #D3EAFD;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="grid-container">
+    <div class="item1">Header</div>
+    <div class="item2">Nav</div>
+    <div class="item3">Section</div>
+    <div class="item4">Article</div>
+    <div class="item5">Aside</div>
+    <div class="item6">Footer</div>
+</div>
+</body>
+</html>

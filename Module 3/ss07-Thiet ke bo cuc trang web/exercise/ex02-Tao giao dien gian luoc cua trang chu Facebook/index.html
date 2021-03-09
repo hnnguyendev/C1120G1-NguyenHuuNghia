@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .item1 {
+            grid-area: header;
+        }
+
+        .item2 {
+            grid-area: sidebar;
+        }
+
+        .item3 {
+            grid-area: main;
+            height: 1500px;
+        }
+
+        .item4 {
+            grid-area: story;
+            background-color: #4CAF50;
+            height: 200px;
+        }
+
+        .item5 {
+            grid-area: post;
+            background-color: #9daf4c;
+            height: 120px;
+        }
+
+        .item6 {
+            grid-area: room;
+            background-color: #125315;
+            height: 70px;
+        }
+
+        .item7 {
+            grid-area: content;
+            background-color: #af774c;
+            height: 1000px;
+        }
+
+        .item8 {
+            grid-area: contact;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                    'header header header header header header header header header header header header'
+                    'sidebar sidebar sidebar main main main main main main contact contact contact';
+            grid-gap: 3px;
+            background-color: #2196F3;
+            padding: 3px;
+        }
+
+        .grid-container > div {
+            background-color: #D3EAFD;
+            /*padding: 20px 0;*/
+            font-size: 30px;
+        }
+
+        #top h1, #top p, #menulist {
+            margin: 0;
+            padding: 0;
+        }
+
+        .menuitem {
+            background-color: #f1f1f1;
+            border: 1px solid #d4d4d4;
+            list-style-type: none;
+            padding: 2px;
+            cursor: pointer;
+        }
+
+        .menuitem:hover {
+            background-color: #ffffff;
+        }
+
+        a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="grid-container">
+    <div class="item1">Header</div>
+    <div class="item2">
+        <div id="left">
+            <ul id="menulist">
+                <a href="#"><li class="menuitem">User's Name</li></a>
+                <a href="#"><li class="menuitem">Friends</li></a>
+                <a href="#"><li class="menuitem">Pages</li></a>
+                <a href="#"><li class="menuitem">Saved</li></a>
+                <a href="#"><li class="menuitem">Group</li></a>
+                <a href="#"><li class="menuitem">Marketplace</li></a>
+                <a href="#"><li class="menuitem">Watch</li></a>
+                <a href="#"><li class="menuitem">Ad Center</li></a>
+                <a href="#"><li class="menuitem">Ads Manager</li></a>
+                <a href="#"><li class="menuitem">Campus</li></a>
+            </ul>
+        </div>
+
+    </div>
+    <div class="item3">
+        <div class="item4">Story</div>
+        <div class="item5">Post</div>
+        <div class="item6">Room</div>
+        <div class="item7">Content</div>
+    </div>
+    <div class="item8">
+        <div id="right">
+            <h3>Contacts</h3>
+            <ul id="contacts">
+                <a href="#"><li class="menuitem">User's Name</li></a>
+                <a href="#"><li class="menuitem">Friends</li></a>
+                <a href="#"><li class="menuitem">Pages</li></a>
+                <a href="#"><li class="menuitem">Saved</li></a>
+                <a href="#"><li class="menuitem">Group</li></a>
+                <a href="#"><li class="menuitem">Marketplace</li></a>
+                <a href="#"><li class="menuitem">Watch</li></a>
+                <a href="#"><li class="menuitem">Ad Center</li></a>
+                <a href="#"><li class="menuitem">Ads Manager</li></a>
+                <a href="#"><li class="menuitem">Campus</li></a>
+            </ul>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
