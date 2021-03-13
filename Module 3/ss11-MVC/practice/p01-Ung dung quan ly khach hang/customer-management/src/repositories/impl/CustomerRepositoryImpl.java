@@ -10,39 +10,39 @@ import java.util.Map;
 
 public class CustomerRepositoryImpl implements ICustomerRepository {
 
-    private static Map<Integer, Customer> customerList;
+    static Map<Integer, Customer> customers;
 
     static {
-        customerList = new HashMap<>();
-        customerList.put(1, new Customer(1, "Juan Mata", "juanmata@gmail.com", "Spain"));
-        customerList.put(2, new Customer(2, "David Beckham", "davidbeckham@gmail.com", "England"));
-        customerList.put(3, new Customer(3, "Leo Messi", "leomessi@gmail.com", "Argentina"));
-        customerList.put(4, new Customer(4, "Kenvin de Bruyne", "kenvindebruyne@gmail.com", "Belgium"));
-        customerList.put(5, new Customer(5, "David Degea", "daviddegea@gmail.com", "Spain"));
+        customers = new HashMap<>();
+        customers.put(1, new Customer(1, "Juan Mata", "juanmata@gmail.com", "Spain"));
+        customers.put(2, new Customer(2, "David Beckham", "davidbeckham@gmail.com", "England"));
+        customers.put(3, new Customer(3, "Leo Messi", "leomessi@gmail.com", "Argentina"));
+        customers.put(4, new Customer(4, "Kenvin de Bruyne", "kenvindebruyne@gmail.com", "Belgium"));
+        customers.put(5, new Customer(5, "David Degea", "daviddegea@gmail.com", "Spain"));
     }
 
     @Override
     public List<Customer> findAll() {
-        return new ArrayList<>(customerList.values());
+        return new ArrayList<>(customers.values());
     }
 
     @Override
     public void save(Customer customer) {
-        customerList.put(customer.getId(), customer);
+        customers.put(customer.getId(), customer);
     }
 
     @Override
     public Customer findById(int id) {
-        return customerList.get(id);
+        return customers.get(id);
     }
 
     @Override
     public void update(int id, Customer customer) {
-        customerList.put(id, customer);
+        customers.put(id, customer);
     }
 
     @Override
     public void remove(int id) {
-        customerList.remove(id);
+        customers.remove(id);
     }
 }
