@@ -12,6 +12,7 @@
     <title>Customer List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/resource/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/resource/css/style.css">
 </head>
 <body>
 <div class="container">
