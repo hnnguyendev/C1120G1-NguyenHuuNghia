@@ -62,11 +62,11 @@ CREATE TABLE nhanvien (
 );
 
 INSERT INTO nhanvien (hoten, idvitri, idtrinhdo, idbophan, ngaysinh, cmnd, luong, sdt, email, diachi)
-VALUES ('Nguyễn Hữu Nghĩa', 1, 1, 1, '1997-06-09', '201731234', 200000000, '012345678', 'nghia@gmail.com', 'Đà Nẵng'),
-		('Hồ Hữu Khánh', 1, 1, 1, '1997-06-09', '201731234', 200000000, '012345678', 'nghia@gmail.com', 'Huế'),
+VALUES ('Nguyễn Hữu Nghĩa', '1', '1', '1', '1997-06-09', '201731234', '200000000', '012345678', 'nghia@gmail.com', 'Đà Nẵng'),
+		('Hồ Hữu Khánh', '1', '1', '1', '1997-06-09', '201731234', '200000000', '012345678', 'nghia@gmail.com', 'Huế'),
         ('Trần Văn Hòa', 1, 1, 1, '1997-06-09', '201731234', 200000000, '012345678', 'nghia@gmail.com', 'Hà Nội'),
         ('Khoa Tấn', 1, 1, 1, '1997-06-09', '201731234', 200000000, '012345678', 'nghia@gmail.com', 'Hải Phòng'),
-        ('Đặng Văn A', 1, 1, 1, '1997-06-09', '201731234', 200000000, '012345678', 'nghia@gmail.com', 'Quảng Trị');
+        ('Đặng Văn Lam', '1', '1', '1', '1997-06-09', '201731234', '200000000', '012345678', 'nghia@gmail.com', 'Quảng Trị');
 
 CREATE TABLE loaikhach (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -101,14 +101,11 @@ ALTER TABLE khachhang
 ADD CONSTRAINT khachhang_fk FOREIGN KEY (idloaikhach) REFERENCES loaikhach(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 INSERT INTO khachhang (idloaikhach, hoten, ngaysinh, cmnd, sdt, email, diachi)
-VALUES (1, 'Nguyễn Hữu Nghĩa', '2002-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Đà Nẵng'),
-		(2, 'Hồ Hữu Khánh', '2005-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Huế'),
-        (3, 'Trần Văn Hòa', '1997-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Hà Nội'),
-        (4, 'Khoa Tấn', '1920-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Hải Phòng'),
-        (5, 'Đặng Văn A', '1956-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Quảng Trị');
-
-INSERT INTO khachhang (idloaikhach, hoten, ngaysinh, cmnd, sdt, email, diachi)
-VALUES (1, 'Hồ Ngọc Đăng Khoa', '2002-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Đà Nẵng');
+VALUES (1, 'Nguyễn Công Phượng', '2002-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Đà Nẵng'),
+		(2, 'Nguyễn Huy Hùng', '1997-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Hà Nội'),
+        (3, 'Phan Văn Long', '1920-02-26', '201731234', '012345678', 'nghia@gmail.com', 'Hải Phòng'),
+        (4, 'Nguyễn Quang Hải', '1956-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Quảng Trị'),
+        (5, 'Nguyễn Văn Toàn', '2002-06-09', '201731234', '012345678', 'nghia@gmail.com', 'Vinh');
 
 CREATE TABLE kieuthue (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -118,10 +115,10 @@ CREATE TABLE kieuthue (
 );
 
 INSERT INTO kieuthue (tenkieuthue, gia)
-VALUES ('Năm', 120000000),
-		('Tháng', 10000000),
-        ('Ngày', 500000),
-        ('Giờ', 200000);
+VALUES ('Năm', 12000),
+		('Tháng', 1000),
+        ('Ngày', 50),
+        ('Giờ', 20);
 
 CREATE TABLE loaidichvu (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -150,14 +147,14 @@ CREATE TABLE dichvu (
 );
 
 INSERT INTO dichvu (tendichvu, dientich, sotang, songuoitoida, chiphithue, idkieuthue, idloaidichvu, trangthai)
-VALUES ('Villa 1', 100, 2, 8, 10000000, 3, 1, 'Yes'),
-		('Villa 2', 200, 3, 12, 15000000, 2, 1, 'No'),
-        ('House 1', 150, 3, 10, 12000000, 3, 2, 'No'),
-        ('House 2', 70, 1, 6, 5000000, 4, 2, 'Yes'),
-        ('Room 1', 20, 1, 2, 1000000, 1, 3, 'Yes');
-INSERT INTO dichvu (tendichvu, dientich, sotang, songuoitoida, chiphithue, idkieuthue, idloaidichvu, trangthai)
-VALUES ('Room 2', 15, 1, 2, 500000, 2, 3, 'Yes'),
-		('Villa 3', 110, 1, 6, 11000000, 3, 1, 'No');
+VALUES ('Villa 1', 100, 2, 8, 1000, 3, 1, 'Yes'),
+		('Villa 2', 200, 3, 12, 1500, 2, 1, 'No'),
+		('House 1', 150, 3, 10, 1200, 3, 2, 'No'),
+		('House 2', 70, 1, 6, 5000, 4, 2, 'Yes'),
+		('Room 1', 20, 1, 2, 1000, 1, 3, 'Yes'),
+		('Room 2', 15, 1, 2, 500, 2, 3, 'Yes'),
+		('Villa 3', 110, 1, 6, 1100, 3, 1, 'No');
+
 
 CREATE TABLE dichvudikem (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -175,11 +172,11 @@ ALTER TABLE dichvudikem
 MODIFY donvi INT NOT NULL;
 
 INSERT INTO dichvudikem (tendichvudikem, gia, donvi, trangthaikhadung)
-VALUES ('massage', 100000, 1, 'Yes'),
-		('karaoke', 200000, 3, 'Yes'),
-        ('Thức ăn', 300000, 2, 'Yes'),
-        ('Nước uống', 50000, 4, 'Yes'),
-        ('Thuê xe ', 150000, 1, 'Yes');
+VALUES ('Massage', 100, 1, 'Yes'),
+		('Karaoke', 200, 3, 'Yes'),
+        ('Thức ăn', 300, 2, 'Yes'),
+        ('Nước uống', 50, 4, 'Yes'),
+        ('Thuê xe ', 150, 1, 'Yes');
 
 CREATE TABLE hopdong (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -217,14 +214,14 @@ ADD CONSTRAINT hopdong_fk3 FOREIGN KEY (iddichvu) REFERENCES dichvu(id) ON UPDAT
 INSERT INTO hopdong (idnhanvien, idkhachhang, iddichvu, ngaylamhopdong, ngayketthuc, tiendatcoc, tongtien)
 VALUES (1, 1, 3, '2021-02-28', '2021-03-02', 1000000, 0),
 		(2, 2, 1, '2021-02-28', '2021-03-02', 1000000, 0),
-        (4, 3, 4, '2021-02-28', '2021-03-02', 1000000, 0),
-        (3, 5, 2, '2021-02-28', '2021-03-02', 1000000, 0),
-        (5, 4, 5, '2021-02-28', '2021-03-02', 1000000, 0),
-        (4, 5, 2, '2021-02-28', '2021-03-02', 1000000, 0),
-        (3, 4, 2, '2021-02-28', '2021-03-02', 1000000, 0),
-        (3, 3, 3, '2021-02-28', '2021-03-02', 1000000, 0),
-        (2, 2, 1, '2021-02-28', '2021-03-02', 1000000, 0),
-        (1, 1, 5, '2021-02-28', '2021-03-02', 1000000, 0);
+        (4, 3, 4, '2019-01-28', '2019-02-01', 1000000, 0),
+        (3, 5, 2, '2019-02-28', '2021-03-02', 1000000, 0),
+        (5, 4, 5, '2019-03-28', '2021-03-02', 1000000, 0),
+        (4, 5, 2, '2019-07-28', '2021-03-02', 1000000, 0),
+        (3, 4, 2, '2019-05-28', '2021-03-02', 1000000, 0),
+        (3, 3, 3, '2019-12-28', '2021-03-02', 1000000, 0),
+        (2, 2, 1, '2019-02-15', '2019-02-20', 1000000, 0),
+        (1, 1, 5, '2019-09-28', '2021-03-02', 1000000, 0);
 		
 CREATE TABLE hopdongchitiet (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -247,7 +244,13 @@ VALUES (1, 1, 2),
 		(2, 3, 1),
         (3, 5, 1),
         (4, 4, 3),
-        (5, 2, 2);
+        (5, 2, 2),
+        (5, 2, 1),
+        (4, 2, 1),
+        (6, 5, 1),
+        (7, 2, 1),
+        (8, 2, 1),
+        (10, 5, 1);
 
 -- 2. Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” 
 -- và có tối đa 15 ký tự.
