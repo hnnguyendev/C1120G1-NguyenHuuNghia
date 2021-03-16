@@ -19,6 +19,7 @@ public class UserRepositoryImpl implements IUserRepository {
     public static final String SELECT_USER_BY_ID = "select * from users where id = ?;";
     public static final String UPDATE_USER = "update users set name = ?, email = ?, country = ? where id = ?;";
     public static final String DELETE_USER_BY_ID = "delete from users where id = ?;";
+    public static final String SELECT_USER_BY_COUNTRY = "select * from users where country like concat ('%',?,'%');";
 
     @Override
     public List<User> findAll() {
@@ -166,8 +167,8 @@ public class UserRepositoryImpl implements IUserRepository {
         List<User> userList = new ArrayList<>();
         if (connection != null) {
             try {
-                preparedStatement = connection.prepareStatement("select * from users where country like ?;");
-                preparedStatement.setString(1, "%"+txtSearch+"%");
+                preparedStatement = connection.prepareStatement(SELECT_USER_BY_COUNTRY);
+                preparedStatement.setString(1, txtSearch);
                 resultSet = preparedStatement.executeQuery();
                 User user;
 
