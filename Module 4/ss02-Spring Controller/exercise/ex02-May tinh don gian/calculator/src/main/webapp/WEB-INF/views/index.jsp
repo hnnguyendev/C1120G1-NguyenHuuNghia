@@ -14,8 +14,8 @@
 <body>
 <h2>Calculator</h2>
 <form action="/calculator" method="post">
-    <input type="number" name="firstOperand">
-    <input type="number" name="secondOperand"><br><br>
+    <input type="number" name="firstOperand" value="${firstOperand}">
+    <input type="number" name="secondOperand" value="${secondOperand}"><br><br>
     <button type="submit" value="+" name="operator">Addition(+)</button>
     <button type="submit" value="-" name="operator">Subtraction(-)</button>
     <button type="submit" value="*" name="operator">Multiplication(*)</button>

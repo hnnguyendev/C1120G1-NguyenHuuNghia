@@ -47,6 +47,8 @@ public class CalculatorController {
                 }
                 break;
         }
+        model.addAttribute("firstOperand", firstOperand);
+        model.addAttribute("secondOperand", secondOperand);
         model.addAttribute("result", result);
         return "index";
     }
