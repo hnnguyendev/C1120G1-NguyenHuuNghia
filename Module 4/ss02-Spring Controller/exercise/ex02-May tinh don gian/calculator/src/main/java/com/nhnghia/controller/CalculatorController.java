@@ -1,6 +1,6 @@
 package com.nhnghia.controller;
 
-import com.nhnghia.service.impl.CalculateImpl;
+import com.nhnghia.service.impl.CalculateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CalculatorController {
 
     @Autowired
-    CalculateImpl calculate;
+    CalculateServiceImpl calculateService;
 
     @GetMapping("/")
     public String getForm() {
@@ -24,32 +24,14 @@ public class CalculatorController {
                            @RequestParam double secondOperand,
                            @RequestParam char operator,
                            Model model) {
-        double result = 0;
-        switch (operator) {
-            case '+':
-                result = calculate.addition(firstOperand, secondOperand);
-                model.addAttribute("txtOperator", "Addition");
-                break;
-            case '-':
-                result = calculate.subtraction(firstOperand, secondOperand);
-                model.addAttribute("txtOperator", "Subtraction");
-                break;
-            case '*':
-                result = calculate.multiplication(firstOperand, secondOperand);
-                model.addAttribute("txtOperator", "Multiplication");
-                break;
-            case '/':
-                if (secondOperand == 0) {
-                    model.addAttribute("message", "Can not divide Zero!");
-                } else {
-                    result = calculate.division(firstOperand, secondOperand);
-                    model.addAttribute("txtOperator", "Division");
-                }
-                break;
-        }
         model.addAttribute("firstOperand", firstOperand);
         model.addAttribute("secondOperand", secondOperand);
-        model.addAttribute("result", result);
+        try {
+            model.addAttribute("result", calculateService.calculate(firstOperand, secondOperand, operator));
+        } catch (Exception e) {
+            model.addAttribute("result", e.getMessage());
+        }
+
         return "index";
     }
 }

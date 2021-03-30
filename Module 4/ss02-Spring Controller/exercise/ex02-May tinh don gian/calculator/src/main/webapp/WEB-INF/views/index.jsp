@@ -21,16 +21,9 @@
     <button type="submit" value="*" name="operator">Multiplication(*)</button>
     <button type="submit" value="/" name="operator">Division(/)</button>
 </form>
-<c:choose>
-    <c:when test="${not empty message}">
-        <p style="color: red;">${message}</p>
-    </c:when>
-    <c:otherwise>
-        <c:if test="${not empty result}">
-            <p>Result ${txtOperator} : ${result}</p>
-        </c:if>
-    </c:otherwise>
-</c:choose>
+<c:if test="${not empty result}">
+    <p>Result : ${result}</p>
+</c:if>
 
 </body>
 </html>
