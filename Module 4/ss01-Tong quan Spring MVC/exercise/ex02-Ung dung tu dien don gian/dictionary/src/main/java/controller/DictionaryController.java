@@ -34,6 +34,6 @@ public class DictionaryController {
             model.addAttribute("result", "Not Found");
         }
 
-        return "result";
+        return "resultpage";
     }
 }
