@@ -1,14 +1,14 @@
 package com.nhnghia.repository.impl;
 
 import com.nhnghia.repository.ISettingRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Repository
 public class SettingRepositoryImpl implements ISettingRepository {
 
     private static Map<Integer, String> languageMap;

@@ -1,7 +1,7 @@
 package com.nhnghia.controller;
 
 import com.nhnghia.model.Email;
-import com.nhnghia.service.impl.SettingServiceImpl;
+import com.nhnghia.service.ISettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import java.util.List;
 public class EmailController {
 
     @Autowired
-    SettingServiceImpl settingService;
+    ISettingService settingService;
 
     @GetMapping("/show-form")
     public ModelAndView showForm(Model model) {

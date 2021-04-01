@@ -1,5 +1,6 @@
 package com.nhnghia.controller;
 
+import com.nhnghia.service.ICalculateService;
 import com.nhnghia.service.impl.CalculateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CalculatorController {
 
     @Autowired
-    CalculateServiceImpl calculateService;
+    ICalculateService calculateService;
 
     @GetMapping("/")
     public String getForm() {
