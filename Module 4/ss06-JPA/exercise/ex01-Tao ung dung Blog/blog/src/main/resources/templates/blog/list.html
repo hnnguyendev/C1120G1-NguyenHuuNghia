@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<div class="container">
+    <p>
+        <a th:href="@{/blog/save}">
+            <button class="btn btn-primary">Add new</button>
+        </a>
+    </p>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Create Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blog,rowStat : ${blogList}">
+            <td th:text="${blog.id}"></td>
+            <td th:text="${blog.title}"></td>
+            <td th:text="${blog.content}"></td>
+            <td th:text="${blog.createDate}"></td>
+            <td><a th:href="@{/blog/edit/{id}(id=${blog.id})}">edit</a></td>
+            <td><a th:href="@{#}"
+                   th:id="${blog.id}"
+                   th:name="${blog.title}"
+                   onclick="setBlogId(this.getAttribute('id'), this.getAttribute('name'))"
+                   data-toggle="modal" data-target="#deleteModal">delete</a>
+            </td>
+            <td><a th:href="@{/blog/view/{id}(id=${blog.id})}">view</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- modal delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="modelId" size="50" disabled style="border: none;background: white">
+            </div>
+            <div class="modal-footer">
+                <form action="/blog/delete" method="post">
+                    <input type="hidden" name="id" id="id">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end modal delete -->
+
+<script>
+    function setBlogId(id, name) {
+        // day id len form delete, day name len modal
+        document.getElementById("id").value = id;
+        document.getElementById("modelId").value = "Do you want delete article: " + name;
+    }
+</script>
+</body>
+</html>
