@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/back}" method="post">
+        <input type="text" name="code">
+        <input type="submit" value="Return back">
+    </form>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Code</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book, rowStat : ${bookList}">
+        <td th:text="${rowStat.count}"></td>
+        <td th:text="${book.name}"></td>
+        <td th:text="${book.quantity}"></td>
+        <td th:text="${book.code}"></td>
+        <td><a th:href="@{/rent/{id}(id=${book.id})}">Rent</a></td>
+    </tr>
+    </tbody>
+    
+</table>
+
+</body>
+</html>
