@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute @Valid User user, ModelMap modelMap, BindingResult bindingResult){
+    public String save(@ModelAttribute @Valid User user, BindingResult bindingResult, ModelMap modelMap){
         if (bindingResult.hasErrors()) {
             modelMap.addAttribute("user", user);
             return "index";
