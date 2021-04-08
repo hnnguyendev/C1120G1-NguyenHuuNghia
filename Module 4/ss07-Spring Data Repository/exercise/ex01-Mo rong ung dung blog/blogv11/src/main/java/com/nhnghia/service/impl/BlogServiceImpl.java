@@ -7,6 +7,7 @@ import com.nhnghia.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,5 +51,19 @@ public class BlogServiceImpl implements IBlogService {
         return blogRepository.findByCategoryId(id, pageable);
     }
 
+//    @Override
+//    public Page<Blog> findAll(Pageable pageable, Sort sort) {
+//        return blogRepository.findAll(pageable, sort);
+//    }
+
+    @Override
+    public Page<Blog> findByOrderByCreateDateAsc(Pageable pageable) {
+        return blogRepository.findByOrderByCreateDateAsc(pageable);
+    }
+
+    @Override
+    public Page<Blog> findByOrderByCreateDateDesc(Pageable pageable) {
+        return blogRepository.findByOrderByCreateDateDesc(pageable);
+    }
 
 }

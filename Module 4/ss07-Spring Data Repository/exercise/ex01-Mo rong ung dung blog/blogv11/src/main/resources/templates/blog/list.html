@@ -41,12 +41,14 @@
         </a>
     </p>
 
-
-    <form th:action="@{/blog}">
+    <form th:action="@{/blog/search}">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="txtSearch">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 
+    <a th:href="@{/blog/sort(sortKey=${'asc'})}">asc</a>
+
+    <a th:href="@{/blog/sort(sortKey=${'desc'})}">desc</a>
 
     <table class="table table-hover">
         <thead>
@@ -80,9 +82,9 @@
         </tbody>
     </table>
     <div>
-        <a th:href="@{'/blog'(page=${blogList.number - 1}, txtSearch=${txtSearch}, categoryIdKey=${categoryId})}" th:if="${blogList.hasPrevious()}">Previous</a>
+        <a th:href="@{'/blog'(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}">Previous</a>
         <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>
-        <a th:href="@{'/blog'(page=${blogList.number + 1}, txtSearch=${txtSearch}, categoryIdKey=${categoryId})}" th:if="${blogList.hasNext()}">Next</a>
+        <a th:href="@{'/blog'(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}">Next</a>
     </div>
 </div>
 
