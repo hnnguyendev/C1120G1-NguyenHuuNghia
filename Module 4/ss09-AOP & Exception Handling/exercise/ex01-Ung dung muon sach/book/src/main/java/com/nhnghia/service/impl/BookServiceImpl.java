@@ -1,6 +1,8 @@
 package com.nhnghia.service.impl;
 
 import com.nhnghia.entity.Book;
+import com.nhnghia.exception.IncorrectCodeException;
+import com.nhnghia.exception.OutOfStockException;
 import com.nhnghia.repository.IBookRepository;
 import com.nhnghia.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,28 +27,23 @@ public class BookServiceImpl implements IBookService {
     }
 
     @Override
-    public boolean isRent(Book book) {
+    public void rent(Book book) throws OutOfStockException {
         if (book.getQuantity() > 0) {
             book.setQuantity(book.getQuantity() - 1);
             bookRepository.save(book);
-
-            return true;
+        } else {
+            throw new OutOfStockException("Out of stock, please rent other book.");
         }
-        return false;
     }
 
     @Override
-    public boolean isReturnBack(String code) {
-        Book book;
-        for (Book bookItem : bookRepository.findAll()) {
-            if (bookItem.getCode().equals(code)) {
-                book = bookRepository.findByCode(code);
-                book.setQuantity(book.getQuantity() + 1);
-                bookRepository.save(book);
-
-                return true;
-            }
+    public void returnBack(String code) throws IncorrectCodeException {
+        Book book = bookRepository.findByCode(code);
+        if (book != null) {
+            book.setQuantity(book.getQuantity() + 1);
+            bookRepository.save(book);
+        } else {
+            throw new IncorrectCodeException("The code do not exist.");
         }
-        return false;
     }
 }

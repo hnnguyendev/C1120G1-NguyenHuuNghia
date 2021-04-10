@@ -1,6 +1,8 @@
 package com.nhnghia.service;
 
 import com.nhnghia.entity.Book;
+import com.nhnghia.exception.IncorrectCodeException;
+import com.nhnghia.exception.OutOfStockException;
 
 import java.util.List;
 
@@ -10,8 +12,8 @@ public interface IBookService {
 
     Book findById(Long id);
 
-    boolean isRent(Book book);
+    void rent(Book book) throws OutOfStockException;
 
-    boolean isReturnBack(String code);
+    void returnBack(String code) throws IncorrectCodeException;
 
 }
