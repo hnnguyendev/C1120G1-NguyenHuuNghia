@@ -3,13 +3,13 @@
 <head th:replace="/layout :: head">
 
 </head>
-<body id="body">
+<body>
 <div class="container">
 
-<!--    <form >-->
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="txtSearch">
-        <button class="btn btn-outline-success" type="button" id="searchForm">Search</button>
-<!--    </form>-->
+    <!--    <form >-->
+    <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="txtSearch">
+    <button class="btn btn-outline-success" type="button" id="searchForm">Search</button>
+    <!--    </form>-->
 
     <table class="table table-hover">
         <thead>
@@ -25,41 +25,88 @@
         </tr>
         </thead>
         <tbody id="tbody">
-        <tr th:each="blog,rowStat : ${blogList}">
-            <td th:text="${blog.id}"></td>
-            <td th:text="${blog.title}"></td>
-            <td th:text="${blog.content}"></td>
-            <td th:text="${blog.category.name}"></td>
-            <td th:text="${blog.createDate}"></td>
-            <td><a th:href="@{/blog/edit/{id}(id=${blog.id})}">edit</a></td>
-            <td><a th:href="@{#}"
-                   th:id="${blog.id}"
-                   th:name="${blog.title}"
-                   onclick="setBlogId(this.getAttribute('id'), this.getAttribute('name'))"
-                   data-toggle="modal" data-target="#deleteModal">delete</a>
-            </td>
-            <td><a th:href="@{/blog/view/{id}(id=${blog.id})}">view</a></td>
-        </tr>
+
         </tbody>
     </table>
-
+    <button type="button" id="loadmore">Read more</button>
 </div>
 
 <script>
+    let result = "";
+    let page = 0;
+    $.ajax({
+        url: "http://localhost:8080/blog",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            for (let blog of data) {
+                result += "<tr>";
+                result += "<td>" + blog.id + "</td>";
+                result += "<td>" + blog.title + "</td>";
+                result += "<td>" + blog.content + "</td>";
+                result += "<td>" + blog.category.name + "</td>";
+                result += "<td>" + blog.createDate + "</td>";
+                result += "<td>" + "<a th:href='#'>edit</a>" + "</td>";
+                result += "<td>" + "<a th:href='#'>delete</a>" + "</td>";
+                result += "<td>" + "<a th:href='#'>view</a>" + "</td>";
+                result += "</tr>";
+            }
+            $('#tbody').html(result);
+        }
+    });
+
+    $(document).ready(function () {
+        $('#loadmore').click(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/blog?page=" + (++page),
+                dataType: "json",
+                success: function (data) {
+                    for (let blog of data) {
+                        result += "<tr>";
+                        result += "<td>" + blog.id + "</td>";
+                        result += "<td>" + blog.title + "</td>";
+                        result += "<td>" + blog.content + "</td>";
+                        result += "<td>" + blog.category.name + "</td>";
+                        result += "<td>" + blog.createDate + "</td>";
+                        result += "<td>" + "<a th:href='#'>edit</a>" + "</td>";
+                        result += "<td>" + "<a th:href='#'>delete</a>" + "</td>";
+                        result += "<td>" + "<a th:href='#'>view</a>" + "</td>";
+                        result += "</tr>";
+                    }
+                    $('#tbody').html(result);
+                }
+            });
+        });
+    });
+
     $(document).ready(function () {
         $('#searchForm').click(function () {
             var txtSearch = $('#txtSearch').val();
             console.log(txtSearch);
             $.ajax({
-                url: "http://localhost:8080/blog?txtSearch=" + txtSearch,
+                url: "http://localhost:8080/blog/search?txtSearch=" + txtSearch,
                 type: "GET",
-                dataType: "HTML",
+                dataType: "json",
                 success: function (data) {
-                    $('#body').html(data);
+                    for (let blog of data) {
+                        result += "<tr>";
+                        result += "<td>" + blog.id + "</td>";
+                        result += "<td>" + blog.title + "</td>";
+                        result += "<td>" + blog.content + "</td>";
+                        result += "<td>" + blog.category.name + "</td>";
+                        result += "<td>" + blog.createDate + "</td>";
+                        result += "<td>" + "<a th:href='#'>edit</a>" + "</td>";
+                        result += "<td>" + "<a th:href='#'>delete</a>" + "</td>";
+                        result += "<td>" + "<a th:href='#'>view</a>" + "</td>";
+                        result += "</tr>";
+                    }
+                    $('#tbody').html(result);
                 }
             });
         });
     });
+
 </script>
 </body>
 </html>

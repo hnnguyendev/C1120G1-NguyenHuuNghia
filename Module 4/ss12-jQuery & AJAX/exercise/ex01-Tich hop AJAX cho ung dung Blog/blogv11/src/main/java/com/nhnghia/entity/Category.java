@@ -1,5 +1,7 @@
 package com.nhnghia.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,6 +17,7 @@ public class Category {
 
     // mappedBy private Category category;
     @OneToMany(mappedBy = "category")
+    @JsonBackReference
     private Set<Blog> blogs;
 
     public Category() {
