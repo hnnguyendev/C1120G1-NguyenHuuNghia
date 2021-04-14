@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+
+</head>
+<body>
+<div class="container">
+    <a class="btn btn-primary" th:href="@{/category/save}">Add New</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Category</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${categoryList}">
+            <td th:text="${category.id}"></td>
+            <td th:text="${category.name}"></td>
+            <td>
+                <a th:href="@{/category/edit/{id}(id=${category.id})}">edit</a>
+            </td>
+            <td>
+                <a th:href="@{#}"
+                   th:id="${category.id}"
+                   th:name="${category.name}"
+                   onclick="setId(this.getAttribute('id'), this.getAttribute('name'))"
+                   data-toggle="modal" data-target="#deleteModal">delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a th:href="@{'/category'(page=${categoryList.number - 1})}" th:if="${categoryList.hasPrevious()}">Previous</a>
+        <span th:text="${categoryList.number + 1}"></span>/<span th:text="${categoryList.totalPages}"></span>
+        <a th:href="@{'/category'(page=${categoryList.number + 1})}" th:if="${categoryList.hasNext()}">Next</a>
+    </div>
+</div>
+
+<!-- modal delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="modelId" size="50" disabled style="border: none;background: white">
+            </div>
+            <div class="modal-footer">
+                <form action="/category/delete" method="post">
+                    <input type="hidden" name="id" id="id">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end modal delete -->
+
+<script>
+    function setId(id, name) {
+        // day id len form delete, day name len modal
+        document.getElementById("id").value = id;
+        document.getElementById("modelId").value = "Do you want delete category: " + name;
+    }
+</script>
+
+</body>
+</html>
