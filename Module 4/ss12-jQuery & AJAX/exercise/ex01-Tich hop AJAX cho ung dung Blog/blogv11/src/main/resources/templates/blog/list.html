@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+
+</head>
+<body id="body">
+<div class="container">
+
+<!--    <form >-->
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="txtSearch">
+        <button class="btn btn-outline-success" type="button" id="searchForm">Search</button>
+<!--    </form>-->
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Category</th>
+            <th>Create Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        <tr th:each="blog,rowStat : ${blogList}">
+            <td th:text="${blog.id}"></td>
+            <td th:text="${blog.title}"></td>
+            <td th:text="${blog.content}"></td>
+            <td th:text="${blog.category.name}"></td>
+            <td th:text="${blog.createDate}"></td>
+            <td><a th:href="@{/blog/edit/{id}(id=${blog.id})}">edit</a></td>
+            <td><a th:href="@{#}"
+                   th:id="${blog.id}"
+                   th:name="${blog.title}"
+                   onclick="setBlogId(this.getAttribute('id'), this.getAttribute('name'))"
+                   data-toggle="modal" data-target="#deleteModal">delete</a>
+            </td>
+            <td><a th:href="@{/blog/view/{id}(id=${blog.id})}">view</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#searchForm').click(function () {
+            var txtSearch = $('#txtSearch').val();
+            console.log(txtSearch);
+            $.ajax({
+                url: "http://localhost:8080/blog?txtSearch=" + txtSearch,
+                type: "GET",
+                dataType: "HTML",
+                success: function (data) {
+                    $('#body').html(data);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
