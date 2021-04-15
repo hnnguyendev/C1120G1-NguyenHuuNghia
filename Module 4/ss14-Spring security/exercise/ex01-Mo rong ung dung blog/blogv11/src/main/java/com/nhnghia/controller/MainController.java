@@ -23,12 +23,12 @@ public class MainController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(Model model, Principal principal) {
 
-        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+//        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+//
+//        String userInfo = WebUtils.toString(loginedUser);
+//        model.addAttribute("userInfo", userInfo);
 
-        String userInfo = WebUtils.toString(loginedUser);
-        model.addAttribute("userInfo", userInfo);
-
-        return "adminPage";
+        return "redirect:/blog";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
