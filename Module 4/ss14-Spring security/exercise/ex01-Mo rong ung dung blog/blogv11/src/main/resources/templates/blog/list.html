@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+
+</head>
+<body>
+<div class="container">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Category
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" th:href="@{/blog(categoryIdKey=${category.id})}" th:each="category : ${categories}" th:text="${category.name}"></a>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <p>
+        <a th:href="@{/blog/save}">
+            <button class="btn btn-primary">Add new</button>
+        </a>
+    </p>
+
+    <form th:action="@{/blog/search}">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="txtSearch">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <a th:href="@{/blog/sort(sortKey=${'asc'})}">asc</a>
+
+    <a th:href="@{/blog/sort(sortKey=${'desc'})}">desc</a>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Category</th>
+            <th>Create Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blog,rowStat : ${blogList}">
+            <td th:text="${blog.id}"></td>
+            <td th:text="${blog.title}"></td>
+            <td th:text="${blog.content}"></td>
+            <td th:text="${blog.category.name}"></td>
+            <td th:text="${blog.createDate}"></td>
+            <td><a th:href="@{/blog/edit/{id}(id=${blog.id})}">edit</a></td>
+            <td><a th:href="@{#}"
+                   th:id="${blog.id}"
+                   th:name="${blog.title}"
+                   onclick="setBlogId(this.getAttribute('id'), this.getAttribute('name'))"
+                   data-toggle="modal" data-target="#deleteModal">delete</a>
+            </td>
+            <td><a th:href="@{/blog/view/{id}(id=${blog.id})}">view</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a th:href="@{'/blog'(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}">Previous</a>
+        <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>
+        <a th:href="@{'/blog'(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}">Next</a>
+    </div>
+</div>
+
+<!-- modal delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" appRole="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" appRole="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="modelId" size="50" disabled style="border: none;background: white">
+            </div>
+            <div class="modal-footer">
+                <form action="/blog/delete" method="post">
+                    <input type="hidden" name="id" id="id">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end modal delete -->
+
+<script>
+    function setBlogId(id, name) {
+        // day id len form delete, day name len modal
+        document.getElementById("id").value = id;
+        document.getElementById("modelId").value = "Do you want delete article: " + name;
+    }
+</script>
+</body>
+</html>

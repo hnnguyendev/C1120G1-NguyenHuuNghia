@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/layout :: head">
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+    <title>Blog</title>
+
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.css}">
+
+    <script th:src="@{/static/jquery/jquery.js}"></script>
+    <script th:src="@{/static/js/bootstrap.bundle.js}"></script>
 </head>
 <body>
 <div class="container">
@@ -25,7 +35,21 @@
         </tr>
         </thead>
         <tbody id="tbody">
-
+<!--        <tr th:each="blog,rowStat : ${blogList}">-->
+<!--            <td th:text="${blog.id}"></td>-->
+<!--            <td th:text="${blog.title}"></td>-->
+<!--            <td th:text="${blog.content}"></td>-->
+<!--            <td th:text="${blog.category.name}"></td>-->
+<!--            <td th:text="${blog.createDate}"></td>-->
+<!--            <td><a th:href="@{/blog/edit/{id}(id=${blog.id})}">edit</a></td>-->
+<!--            <td><a th:href="@{#}"-->
+<!--                   th:id="${blog.id}"-->
+<!--                   th:name="${blog.title}"-->
+<!--                   onclick="setBlogId(this.getAttribute('id'), this.getAttribute('name'))"-->
+<!--                   data-toggle="modal" data-target="#deleteModal">delete</a>-->
+<!--            </td>-->
+<!--            <td><a th:href="@{/blog/view/{id}(id=${blog.id})}">view</a></td>-->
+<!--        </tr>-->
         </tbody>
     </table>
     <button type="button" id="loadmore">Read more</button>
