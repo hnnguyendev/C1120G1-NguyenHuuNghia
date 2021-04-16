@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -8,10 +7,12 @@
 
     <title>Blog</title>
 
-    <link rel="stylesheet" th:href="@{/static/css/bootstrap.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <script th:src="@{/static/jquery/jquery.js}"></script>
-    <script th:src="@{/static/js/bootstrap.bundle.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -35,21 +36,21 @@
         </tr>
         </thead>
         <tbody id="tbody">
-<!--        <tr th:each="blog,rowStat : ${blogList}">-->
-<!--            <td th:text="${blog.id}"></td>-->
-<!--            <td th:text="${blog.title}"></td>-->
-<!--            <td th:text="${blog.content}"></td>-->
-<!--            <td th:text="${blog.category.name}"></td>-->
-<!--            <td th:text="${blog.createDate}"></td>-->
-<!--            <td><a th:href="@{/blog/edit/{id}(id=${blog.id})}">edit</a></td>-->
-<!--            <td><a th:href="@{#}"-->
-<!--                   th:id="${blog.id}"-->
-<!--                   th:name="${blog.title}"-->
-<!--                   onclick="setBlogId(this.getAttribute('id'), this.getAttribute('name'))"-->
-<!--                   data-toggle="modal" data-target="#deleteModal">delete</a>-->
-<!--            </td>-->
-<!--            <td><a th:href="@{/blog/view/{id}(id=${blog.id})}">view</a></td>-->
-<!--        </tr>-->
+        <!--        <tr th:each="blog,rowStat : ${blogList}">-->
+        <!--            <td th:text="${blog.id}"></td>-->
+        <!--            <td th:text="${blog.title}"></td>-->
+        <!--            <td th:text="${blog.content}"></td>-->
+        <!--            <td th:text="${blog.category.name}"></td>-->
+        <!--            <td th:text="${blog.createDate}"></td>-->
+        <!--            <td><a th:href="@{/blog/edit/{id}(id=${blog.id})}">edit</a></td>-->
+        <!--            <td><a th:href="@{#}"-->
+        <!--                   th:id="${blog.id}"-->
+        <!--                   th:name="${blog.title}"-->
+        <!--                   onclick="setBlogId(this.getAttribute('id'), this.getAttribute('name'))"-->
+        <!--                   data-toggle="modal" data-target="#deleteModal">delete</a>-->
+        <!--            </td>-->
+        <!--            <td><a th:href="@{/blog/view/{id}(id=${blog.id})}">view</a></td>-->
+        <!--        </tr>-->
         </tbody>
     </table>
     <button type="button" id="loadmore">Read more</button>
@@ -63,13 +64,15 @@
         type: "GET",
         dataType: "json",
         success: function (data) {
-            for (let blog of data) {
+            // console.log(data.content[1].name);
+            // for (let blog of data.content) {
+            for (let i = 0; i < data.content.length; i++) {
                 result += "<tr>";
-                result += "<td>" + blog.id + "</td>";
-                result += "<td>" + blog.title + "</td>";
-                result += "<td>" + blog.content + "</td>";
-                result += "<td>" + blog.category.name + "</td>";
-                result += "<td>" + blog.createDate + "</td>";
+                result += "<td>" + data.content[i].id + "</td>";
+                result += "<td>" + data.content[i].title + "</td>";
+                result += "<td>" + data.content[i].content + "</td>";
+                result += "<td>" + data.content[i].category.name + "</td>";
+                result += "<td>" + data.content[i].createDate + "</td>";
                 result += "<td>" + "<a th:href='#'>edit</a>" + "</td>";
                 result += "<td>" + "<a th:href='#'>delete</a>" + "</td>";
                 result += "<td>" + "<a th:href='#'>view</a>" + "</td>";
@@ -86,13 +89,13 @@
                 url: "http://localhost:8080/blog?page=" + (++page),
                 dataType: "json",
                 success: function (data) {
-                    for (let blog of data) {
+                    for (let i = 0; i < data.content.length; i++) {
                         result += "<tr>";
-                        result += "<td>" + blog.id + "</td>";
-                        result += "<td>" + blog.title + "</td>";
-                        result += "<td>" + blog.content + "</td>";
-                        result += "<td>" + blog.category.name + "</td>";
-                        result += "<td>" + blog.createDate + "</td>";
+                        result += "<td>" + data.content[i].id + "</td>";
+                        result += "<td>" + data.content[i].title + "</td>";
+                        result += "<td>" + data.content[i].content + "</td>";
+                        result += "<td>" + data.content[i].category.name + "</td>";
+                        result += "<td>" + data.content[i].createDate + "</td>";
                         result += "<td>" + "<a th:href='#'>edit</a>" + "</td>";
                         result += "<td>" + "<a th:href='#'>delete</a>" + "</td>";
                         result += "<td>" + "<a th:href='#'>view</a>" + "</td>";
@@ -113,13 +116,13 @@
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
-                    for (let blog of data) {
+                    for (let i = 0; i < data.content.length; i++) {
                         result += "<tr>";
-                        result += "<td>" + blog.id + "</td>";
-                        result += "<td>" + blog.title + "</td>";
-                        result += "<td>" + blog.content + "</td>";
-                        result += "<td>" + blog.category.name + "</td>";
-                        result += "<td>" + blog.createDate + "</td>";
+                        result += "<td>" + data.content[i].id + "</td>";
+                        result += "<td>" + data.content[i].title + "</td>";
+                        result += "<td>" + data.content[i].content + "</td>";
+                        result += "<td>" + data.content[i].category.name + "</td>";
+                        result += "<td>" + data.content[i].createDate + "</td>";
                         result += "<td>" + "<a th:href='#'>edit</a>" + "</td>";
                         result += "<td>" + "<a th:href='#'>delete</a>" + "</td>";
                         result += "<td>" + "<a th:href='#'>view</a>" + "</td>";
