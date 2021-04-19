@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="main-fragment (title, mainContent, modal, otherStaticResources)">
+<head>
+    <title th:replace="${title}"></title>
+
+    <th:block th:replace="~{/admin/fragments/app-fragments :: head-resources}"></th:block>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <th:block th:replace="~{/admin/fragments/app-fragments :: navbar}"></th:block>
+    <th:block th:replace="~{/admin/fragments/app-fragments :: sidebar}"></th:block>
+    <th:block th:replace="${mainContent}"></th:block>
+    <th:block th:replace="~{/admin/fragments/app-fragments :: footer}"></th:block>
+</div>
+
+<th:block th:replace="${modal}"></th:block>
+<th:block th:replace="~{/admin/fragments/app-fragments :: js-resources}"></th:block>
+<th:block th:replace="${otherStaticResources}"></th:block>
+</body>
+</html>

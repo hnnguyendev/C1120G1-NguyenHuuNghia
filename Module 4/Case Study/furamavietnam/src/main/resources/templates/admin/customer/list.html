@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/admin/layouts/main-layout :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: #main-content},
+                                                ~{:: #id-modal},
+                                                ~{:: #other-static-resources}
+                                               )}">
+<head>
+    <title>Customer List</title>
+
+</head>
+
+<body>
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <th:block id="main-content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Customer List</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Customers</a></li>
+                                <li class="breadcrumb-item active">Customer List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">List of customers at the Furama resort</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary btnCreateModal">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col">
+                                            <form class="form-inline float-right">
+                                                <input type="hidden" name="action" value="search">
+                                                <input class="form-control mr-1" type="search" placeholder="Search"
+                                                       aria-label="Search" name="txtSearch" id="txtSearch">
+                                                <button type="submit" class="btn btn-outline-success"><i
+                                                        class="fas fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <table id="customer" class="table table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Customer Code</th>
+                                            <th>Full Name</th>
+                                            <th>Birthday</th>
+                                            <th>Gender</th>
+                                            <th>ID Card</th>
+                                            <th>Phone Number</th>
+                                            <th>Email</th>
+                                            <th>Address</th>
+                                            <th>Customer Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                        <tr class="edit-replace" th:each="customerRow, rowStat : ${customerList}">
+                                            <td th:text="${customerRow.customerCode}"></td>
+                                            <td th:text="${customerRow.fullName}"></td>
+                                            <td th:text="${customerRow.birthday}"></td>
+                                            <td th:switch="${customerRow.gender}">
+                                                <span th:case="0">Female</span>
+                                                <span th:case="1">Male</span>
+                                                <span th:case="2">LGBT</span>
+                                            </td>
+                                            <td th:text="${customerRow.idNumber}"></td>
+                                            <td th:text="${customerRow.phoneNumber}"></td>
+                                            <td th:text="${customerRow.email}"></td>
+                                            <td th:text="${customerRow.address}"></td>
+                                            <td th:text="${customerRow.customerType.name}"></td>
+                                            <td>
+                                                <button class="btn btn-info btnViewModal" type="button"
+                                                        th:value="${customerRow.id}"><i class="far fa-eye"></i></button>
+                                                <button class="btn btn-secondary btnEditModal" type="button"
+                                                        th:value="${customerRow.id}"><i class="far fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-danger btnDeleteModal" type="button"
+                                                        th:value="${customerRow.id}"><i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+
+                                    <div class="clearfix text-right">
+                                        <ul class="pagination" style="float: right;">
+                                            <li class="page-item">
+                                                <a th:href="@{/customers(page=${customerList.number - 1})}"
+                                                   th:if="${customerList.hasPrevious()}" class="page-link">
+                                                    Previous
+                                                </a>
+                                            </li>
+                                            <th:block th:each="i: ${#numbers.sequence(0, customerList.totalPages - 1)}">
+                                                <li class="page-item">
+                                                    <a th:href="@{/customers(page = ${i})}" th:text="${i + 1}"
+                                                       class="page-link"></a>
+                                                </li>
+                                            </th:block>
+                                            <li class="page-item">
+                                                <a th:href="@{/customers(page=${customerList.number + 1})}"
+                                                   th:if="${customerList.hasNext()}" class="page-link">
+                                                    Next
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </th:block>
+
+</div>
+<!-- ./wrapper -->
+
+<th:bock id="id-modal">
+    <!-- modal create -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalModalLabel">Customer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-body-append">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./modal create -->
+
+    <!-- modal delete -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-delete-body-append">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./modal delete -->
+
+</th:bock>
+
+<th:bock id="other-static-resources">
+    <script>
+        // function setId(id) {
+        //     document.getElementById("id").value = id;
+        // }
+    </script>
+    <script>
+        let rowToEdit;
+        let rowToDelete;
+
+        $(document).ready(function () {
+            $(".btnCreateModal").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/customers/create",
+                    dataType: "HTML",
+                    success: function (data) {
+                        $(".modal-body-append").html(data);
+                        $("#editModal").modal('show');
+                    }
+                });
+            });
+
+            $(document).on('click', '.btnEditModal', function (event) {
+                $.ajax({
+                    type: "GET",
+                    url: "/customers/edit/" + $(this).val(),
+                    dataType: "HTML",
+                    success: function (data) {
+                        rowToEdit = $(event.target).closest("tr");
+                        $(".modal-body-append").html(data);
+                        $("#editModal").modal('show');
+                    }
+                });
+            });
+
+            $(document).on('click', '.btnDeleteModal', function (event) {
+                $.ajax({
+                    type: "GET",
+                    url: "/customers/delete/" + $(this).val(),
+                    dataType: "HTML",
+                    success: function (data) {
+                        rowToDelete = $(event.target).closest("tr");
+                        $(".modal-delete-body-append").html(data);
+                        $("#deleteModal").modal('show');
+                    }
+                });
+            });
+
+            $(document).on('click', '#btnDelete', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/customers/delete/" + $('#customer-id-delete').val(),
+                    dataType: "HTML",
+                    success: function () {
+                        $("#deleteModal").modal('hide');
+                        rowToDelete.remove();
+                        console.log("deleted");
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</th:bock>
+
+</body>
+</html>

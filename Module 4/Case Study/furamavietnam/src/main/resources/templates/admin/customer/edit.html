@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<form method="post" th:action="@{/customers/save}" th:object="${customer}">-->
+<!--    <input type="hidden" th:field="*{id}">-->
+<!--    <div class="row">-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label for="customerCode">Customer Code</label>-->
+<!--                <input type="text" class="form-control" id="customerCode"-->
+<!--                       placeholder="Enter customer code" th:field="*{customerCode}">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label for="fullName">Full Name</label>-->
+<!--                <input type="text" class="form-control" id="fullName"-->
+<!--                       placeholder="Enter full name" th:field="*{fullName}">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label for="birthday">Birthday</label><br>-->
+<!--                <input type="date" class="form-control" id="birthday" th:field="*{birthday}">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label>Gender</label><br>-->
+<!--                <div class="form-check-inline">-->
+<!--                    <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" name="optradio" th:field="*{gender}" value="0"/>Female-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--                <div class="form-check-inline">-->
+<!--                    <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" name="optradio" th:field="*{gender}" value="1"/>Male-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--                <div class="form-check-inline">-->
+<!--                    <label class="form-check-label">-->
+<!--                        <input type="radio" class="form-check-input" name="optradio" th:field="*{gender}" value="2"/>LGBT-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label for="idNumber">ID Card</label>-->
+<!--                <input type="text" class="form-control" id="idNumber"-->
+<!--                       placeholder="Enter id card" th:field="*{idNumber}">-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label for="phoneNumber">Phone Number</label>-->
+<!--                <input type="text" class="form-control" id="phoneNumber"-->
+<!--                       placeholder="Enter phone number" th:field="*{phoneNumber}">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label for="email">Email</label>-->
+<!--                <input type="text" class="form-control" id="email"-->
+<!--                       placeholder="Enter email" th:field="*{email}">-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label for="address">Address</label>-->
+<!--                <input type="text" class="form-control" id="address"-->
+<!--                       placeholder="Enter address" th:field="*{address}">-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col">-->
+<!--            <div class="form-group">-->
+<!--                <label>Category</label>-->
+<!--                <select class="form-control" id="customerTypeId" th:field="*{customerType}">-->
+<!--                    <option th:each="customerType : ${customerTypeList}" th:value="${customerType.id}"-->
+<!--                            th:text="${customerType.name}"></option>-->
+
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col"></div>-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary float-right">Save</button>-->
+<!--    <button type="button" class="btn btn-secondary float-right mr-1" data-dismiss="modal">Cancel</button>-->
+<!--</form>-->
+
+
+<input type="hidden" id="customer-id" th:field="*{customer.id}">
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="customerCode">Customer Code</label>
+            <input type="text" class="form-control" id="customerCode"
+                   placeholder="Enter customer code" th:field="*{customer.customerCode}">
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" class="form-control" id="fullName"
+                   placeholder="Enter full name" th:field="*{customer.fullName}">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="birthday">Birthday</label><br>
+            <input type="date" class="form-control" id="birthday" th:field="*{customer.birthday}">
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label>Gender</label><br>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio" th:field="*{customer.gender}"
+                           value="0"/>Female
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio" th:field="*{customer.gender}"
+                           value="1"/>Male
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio" th:field="*{customer.gender}"
+                           value="2"/>LGBT
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="idNumber">ID Card</label>
+            <input type="text" class="form-control" id="idNumber"
+                   placeholder="Enter id card" th:field="*{customer.idNumber}">
+
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber"
+                   placeholder="Enter phone number" th:field="*{customer.phoneNumber}">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email"
+                   placeholder="Enter email" th:field="*{customer.email}">
+
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address"
+                   placeholder="Enter address" th:field="*{customer.address}">
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label>Category</label>
+            <select class="form-control" id="customerTypeId" th:field="*{customer.customerType}">
+                <option th:each="customerType : ${customerTypeList}" th:value="${customerType.id}"
+                        th:text="${customerType.name}"></option>
+
+            </select>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+<button type="button" class="btn btn-primary float-right" id="btnSave">Save</button>
+<button type="button" class="btn btn-secondary float-right mr-1" data-dismiss="modal">Cancel</button>
+
+</body>
+</html>
