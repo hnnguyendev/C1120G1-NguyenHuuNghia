@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
@@ -21,8 +23,15 @@ public class CustomerController {
     ICustomerTypeService customerTypeService;
 
     @GetMapping("")
-    public String getList(ModelMap modelMap, @PageableDefault(value = 5) Pageable pageable) {
-        modelMap.addAttribute("customerList", customerService.findALl(pageable));
+    public String getList(@RequestParam Optional<String> txtSearch,
+                          ModelMap modelMap,
+                          @PageableDefault(value = 5) Pageable pageable) {
+        if (txtSearch.isPresent() && !txtSearch.get().equals("")) {
+            modelMap.addAttribute("txtSearch", txtSearch.get());
+            modelMap.addAttribute("customerList", customerService.findByContaining(txtSearch.get(), pageable));
+        } else {
+            modelMap.addAttribute("customerList", customerService.findALl(pageable));
+        }
 
         return "admin/customer/list";
     }

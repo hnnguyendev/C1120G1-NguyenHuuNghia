@@ -2,13 +2,12 @@ package com.nhnghia.controller;
 
 import com.nhnghia.entity.Blog;
 import com.nhnghia.service.IBlogService;
+import com.nhnghia.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.sql.Timestamp;
 
 @Controller
 @RequestMapping("/blog")
@@ -37,7 +36,7 @@ public class BlogController {
             System.out.println(blog.getCreateDate());
             redirectAttributes.addFlashAttribute("message", "Update blog successfully!");
         } else {
-            blog.setCreateDate(new Timestamp(System.currentTimeMillis()));
+            blog.setCreateDate(DateUtil.getCurrentDate());
             redirectAttributes.addFlashAttribute("message", "Add new blog successfully!");
         }
         blogService.save(blog);

@@ -1,6 +1,10 @@
 package com.furamavietnam.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -36,6 +40,10 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "customer_type_id", referencedColumnName = "id", nullable = false)
     private CustomerType customerType;
+
+    @OneToMany(mappedBy = "customer")
+    @JsonBackReference
+    private List<Contract> contractList;
 
     public Customer() {
     }
@@ -118,5 +126,13 @@ public class Customer {
 
     public void setCustomerType(CustomerType customerType) {
         this.customerType = customerType;
+    }
+
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 }

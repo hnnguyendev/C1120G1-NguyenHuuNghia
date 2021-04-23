@@ -7,7 +7,7 @@
                                                 ~{:: #other-static-resources}
                                                )}">
 <head>
-    <title>Customer List</title>
+    <title>Customer</title>
 
 </head>
 
@@ -55,18 +55,18 @@
                                             </button>
                                         </div>
                                         <div class="col">
-                                            <form class="form-inline float-right">
-                                                <input type="hidden" name="action" value="search">
+                                            <form class="form-inline float-right" th:action="@{/customers}">
                                                 <input class="form-control mr-1" type="search" placeholder="Search"
-                                                       aria-label="Search" name="txtSearch" id="txtSearch">
+                                                       aria-label="Search" name="txtSearch" id="txtSearch" th:value="${txtSearch}">
                                                 <button type="submit" class="btn btn-outline-success"><i
                                                         class="fas fa-search"></i></button>
                                             </form>
                                         </div>
                                     </div>
-                                    <table id="customer" class="table table-bordered table-hover">
-                                        <thead>
+                                    <table id="customer" class="table table-hover table-striped">
+                                        <thead class="thead-dark">
                                         <tr>
+                                            <th>#</th>
                                             <th>Customer Code</th>
                                             <th>Full Name</th>
                                             <th>Birthday</th>
@@ -81,6 +81,7 @@
                                         </thead>
                                         <tbody id="tbody">
                                         <tr class="edit-replace" th:each="customerRow, rowStat : ${customerList}">
+                                            <td class="no" th:text="${rowStat.count}"></td>
                                             <td th:text="${customerRow.customerCode}"></td>
                                             <td th:text="${customerRow.fullName}"></td>
                                             <td th:text="${customerRow.birthday}"></td>
@@ -112,19 +113,40 @@
                                     <div class="clearfix text-right">
                                         <ul class="pagination" style="float: right;">
                                             <li class="page-item">
-                                                <a th:href="@{/customers(page=${customerList.number - 1})}"
+                                                <a th:href="@{/customers(page=${customerList.number - 1}, txtSearch=${txtSearch})}"
                                                    th:if="${customerList.hasPrevious()}" class="page-link">
                                                     Previous
                                                 </a>
                                             </li>
-                                            <th:block th:each="i: ${#numbers.sequence(0, customerList.totalPages - 1)}">
-                                                <li class="page-item">
-                                                    <a th:href="@{/customers(page = ${i})}" th:text="${i + 1}"
-                                                       class="page-link"></a>
-                                                </li>
-                                            </th:block>
+<!--                                            <th:block th:each="i: ${#numbers.sequence(0, customerList.totalPages - 1)}">-->
+<!--                                                <li class="page-item">-->
+<!--                                                    <a th:href="@{/customers(page = ${i})}" th:text="${i + 1}"-->
+<!--                                                       class="page-link"></a>-->
+<!--                                                </li>-->
+<!--                                            </th:block>-->
                                             <li class="page-item">
-                                                <a th:href="@{/customers(page=${customerList.number + 1})}"
+                                                <a class="page-link"
+                                                   th:href="@{/customers(page=${customerList.number})}"
+                                                   th:if="${customerList.hasPrevious()}"
+                                                   th:text="${customerList.number}"></a>
+
+                                            </li>
+
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                   th:href="@{/customers(page=${customerList.number})}"
+                                                   th:text="${customerList.number + 1}"></a>
+
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   th:href="@{/customers(page=${customerList.number})}"
+                                                   th:if="${customerList.hasNext()}"
+                                                   th:text="${customerList.number + 2}"></a>
+
+                                            </li>
+                                            <li class="page-item">
+                                                <a th:href="@{/customers(page=${customerList.number + 1}, txtSearch=${txtSearch})}"
                                                    th:if="${customerList.hasNext()}" class="page-link">
                                                     Next
                                                 </a>
@@ -245,10 +267,106 @@
                     success: function () {
                         $("#deleteModal").modal('hide');
                         rowToDelete.remove();
+                        Swal.fire({
+                            title: 'Delete success!',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
                         console.log("deleted");
                     },
                     error: function () {
                         console.log("error");
+                    }
+                });
+            });
+
+            $(document).on('click', '#btnSave', function () {
+                let id = $("#customer-id").val();
+                let customerCode = $("#customerCode").val();
+                let fullName = $("#fullName").val();
+                let birthday = $("#birthday").val();
+                let gender = $("input:checked").val();
+                let idNumber = $("#idNumber").val();
+                let phoneNumber = $("#phoneNumber").val();
+                let email = $("#email").val();
+                let address = $("#address").val();
+                let customerTypeId = $("#customerTypeId").val();
+                let customerTypeName = $("option:selected").text();
+                let customer = {
+                    "id": id,
+                    "customerCode": customerCode,
+                    "fullName": fullName,
+                    "birthday": birthday,
+                    "gender": gender,
+                    "idNumber": idNumber,
+                    "phoneNumber": phoneNumber,
+                    "email": email,
+                    "address": address,
+                    "customerType": {
+                        "id": customerTypeId,
+                        "name": customerTypeName
+                    }
+                }
+
+                console.log("get modal", customer);
+                $.ajax({
+                    type: "POST",
+                    url: "/customers/save",
+                    data: JSON.stringify(customer),
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Accept", "application/json");
+                        xhr.setRequestHeader("Content-Type", "application/json");
+                    },
+                    success: function (data) {
+                        $("#editModal").modal('hide');
+                        Swal.fire({
+                            title: 'Save success!',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        });
+                        let respContent = "";
+                        if (id === null || id === "") {
+                            // ...
+                            // $("#tbody").append(respContent);
+                            setTimeout(function () {// wait for 2 secs
+                                location.reload(); // then reload the page
+                            }, 2000);
+                            // window.location.href = "/customers";
+
+                            console.log("resp", data);
+                        } else {
+                            respContent += "<tr>";
+                            respContent += "<td>" + "#" + "</td>";
+                            respContent += "<td>" + data.customerCode + "</td>";
+                            respContent += "<td>" + data.fullName + "</td>";
+                            respContent += "<td>" + data.birthday + "</td>";
+                            if (data.gender === 0) {
+                                respContent += "<td>Female</td>";
+                            } else if (data.gender === 1) {
+                                respContent += "<td>Male</td>";
+                            } else {
+                                respContent += "<td>LGBT</td>";
+                            }
+                            respContent += "<td>" + data.idNumber + "</td>";
+                            respContent += "<td>" + data.phoneNumber + "</td>";
+                            respContent += "<td>" + data.email + "</td>";
+                            respContent += "<td>" + data.address + "</td>";
+                            respContent += "<td>" + data.customerType.name + "</td>";
+                            respContent += "<td>" + "<button class='btn btn-info mr-1 btnViewModal' type='button' value='" + data.id + "'><i class='far fa-eye'></i></button>";
+                            respContent += "<button class='btn btn-secondary mr-1 btnEditModal' type='button' value='" + data.id + "'><i class='far fa-edit'></i></button>";
+                            respContent += "<button class='btn btn-danger btnDeleteModal' type='button' value='" + data.id + "'><i class='far fa-trash-alt'></i></button>";
+                            respContent += "</td>";
+                            respContent += "</tr>";
+                            rowToEdit.replaceWith(respContent);
+                            console.log("updated");
+                        }
+                    },
+                    error: function () {
+                        console.log("error");
+
                     }
                 });
             });

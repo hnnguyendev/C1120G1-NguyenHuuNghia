@@ -12,7 +12,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="images/web/favicon.png" rel="shortcut icon" />
+    <link href="images/web/favicon.png" rel="shortcut icon"/>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="css/adminlte.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <script src="plugins/sweetalert2/sweetalert2.all.js"></script>
+    <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.css">
 </th:block>
 
 <th:block th:fragment="js-resources">
@@ -139,7 +142,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link btnCreateModal" type="button">
+                                <a href="#" class="nav-link" type="button">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Create Customer</p>
                                 </a>
@@ -219,30 +222,6 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-file-contract"></i>
-                            <p>
-                                Contract Details
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="/contractdetails" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Contract Detail List</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Create Contract Detail</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -254,9 +233,9 @@
 <th:block th:fragment="footer">
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
-            Designed by<b> Nguyen Huu Nghia</b>
+            Designed by<b> nhnghia</b>
         </div>
-        <strong>Copyright &copy; 2021 <a href="/" target="_blank">Furama Danang</a>.</strong>
+        <strong>Copyright &copy; 2021 <a href="#" target="_blank">Nguyen Huu Nghia</a>.</strong>
         All rights
         reserved.
     </footer>

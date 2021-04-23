@@ -37,10 +37,9 @@
             <td th:text="${product.price}"></td>
             <td th:text="${product.category}"></td>
             <td><a th:href="@{/{id}/edit(id=${product.id})}">edit</a></td>
-            <td><a th:href="@{#}"
-                   th:id = "${product.id}"
-                   th:name = "${product.name}"
-                   onclick="setProductId(this.getAttribute('id'),this.getAttribute('name'))"
+            <td><a th:id="${product.id}"
+                   th:name="${product.name}"
+                   onclick="setProductId(this.getAttribute('id'), this.getAttribute('name'))"
                    data-toggle="modal" data-target="#deleteProductModal">delete</a>
             </td>
             <td><a th:href="@{/{id}/view(id=${product.id})}">view</a></td>
@@ -64,16 +63,16 @@
                 <input type="text" id="modelId" size="50" disabled style="border: none;background: white">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" onclick="submitDelete()">Delete</button>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="id" id="id">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<form action="/delete" method="post" id="deleteProduct">
-    <input type="hidden" name="id" id="id">
-</form>
 <!--end modal delete product-->
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -88,10 +87,6 @@
         // day id len form delete, day name len modal
         document.getElementById("id").value = id;
         document.getElementById("modelId").value = "Do you want delete product: " + name;
-    }
-
-    function submitDelete() {
-        document.getElementById("deleteProduct").submit();
     }
 </script>
 </body>

@@ -190,7 +190,7 @@
 <div class="row">
     <div class="col">
         <div class="form-group">
-            <label>Category</label>
+            <label>Customer Type</label>
             <select class="form-control" id="customerTypeId" th:field="*{customer.customerType}">
                 <option th:each="customerType : ${customerTypeList}" th:value="${customerType.id}"
                         th:text="${customerType.name}"></option>

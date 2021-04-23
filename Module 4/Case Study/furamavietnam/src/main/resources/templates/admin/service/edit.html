@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+
+    <base href="/">
+
+    <th:block th:replace="~{/admin/fragments/app-fragments :: head-resources}"></th:block>
+
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/services/save}" method="post" th:object="${service}">
+        <input type="hidden" id="service-id" th:field="*{id}">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="serviceCode">Service Code</label>
+                    <input type="text" class="form-control" id="serviceCode"
+                           placeholder="Enter service code" th:field="*{serviceCode}">
+                </div>
+                <p th:if="${#fields.hasErrors('serviceCode')}" th:errors="*{serviceCode}" style="color: red"></p>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">Service Name</label>
+                    <input type="text" class="form-control" id="name"
+                           placeholder="Enter service name" th:field="*{name}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="area">Area</label>
+                    <input type="number" class="form-control" id="area"
+                           placeholder="Enter area" th:field="*{area}">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="cost">Cost</label>
+                    <input type="number" class="form-control" id="cost"
+                           placeholder="Enter cost" th:field="*{cost}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="maxPeople">Max People</label>
+                    <input type="number" class="form-control" id="maxPeople"
+                           placeholder="Enter max people" th:field="*{maxPeople}">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="roomStandard">Room Standard</label>
+                    <input type="text" class="form-control" id="roomStandard"
+                           placeholder="Enter room standard" th:field="*{roomStandard}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description"
+                           placeholder="Enter description" th:field="*{description}">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="poolArea">Pool Area</label>
+                    <input type="number" class="form-control" id="poolArea"
+                           placeholder="Enter pool area" th:field="*{poolArea}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="numberOfFloor">Number of Foor</label>
+                    <input type="number" class="form-control" id="numberOfFloor"
+                           placeholder="Enter number of floor" th:field="*{numberOfFloor}">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Rent Type</label>
+                    <select class="form-control" id="rentTypeId" th:field="*{rentType}">
+                        <option id="option-rent-type" th:each="rentType : ${rentTypeList}" th:value="${rentType.id}"
+                                th:text="${rentType.name}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>Service Type</label>
+                    <select class="form-control" id="serviceTypeId" th:field="*{serviceType}">
+                        <option id="option-service-type" th:each="serviceType : ${serviceTypeList}"
+                                th:value="${serviceType.id}"
+                                th:text="${serviceType.name}"></option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+        <button type="submit" class="btn btn-primary float-right" id="btnSave">Save</button>
+        <button type="button" class="btn btn-secondary float-right mr-1" data-dismiss="modal">Cancel</button>
+    </form>
+</div>
+
+<th:block th:replace="~{/admin/fragments/app-fragments :: js-resources}"></th:block>
+
+</body>
+</html>

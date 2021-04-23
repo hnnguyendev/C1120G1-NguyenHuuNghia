@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/admin/layouts/main-layout :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: #main-content},
+                                                ~{:: #id-modal},
+                                                ~{:: #other-static-resources}
+                                               )}">
+<head>
+    <title>Service</title>
+
+</head>
+
+<body>
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <th:block id="main-content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Service List</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Services</a></li>
+                                <li class="breadcrumb-item active">Service List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">List of services at the Furama resort</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <!-- Button trigger modal -->
+                                            <a class="btn btn-primary" th:href="@{/services/create}">
+                                                <i class="fas fa-plus"></i></a>
+                                        </div>
+                                        <div class="col">
+                                            <form class="form-inline float-right" th:action="@{/services}">
+                                                <input class="form-control mr-1" type="search" placeholder="Search"
+                                                       aria-label="Search" name="txtSearch" id="txtSearch"
+                                                       th:value="${txtSearch}">
+                                                <button type="submit" class="btn btn-outline-success"><i
+                                                        class="fas fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <table id="customer" class="table table-hover table-striped">
+                                        <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Service Code</th>
+                                            <th>Service Name</th>
+                                            <th>Area</th>
+                                            <th>Cost</th>
+                                            <th>Max People</th>
+                                            <th>Room Standard</th>
+                                            <th>Description</th>
+                                            <th>Pool Area</th>
+                                            <th>Num Of Floor</th>
+                                            <th>Rent Type</th>
+                                            <th>Service Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                        <tr th:each="serviceRow, rowStat : ${serviceList}">
+                                            <td th:text="${rowStat.count}"></td>
+                                            <td th:text="${serviceRow.serviceCode}"></td>
+                                            <td th:text="${serviceRow.name}"></td>
+                                            <td th:text="${serviceRow.area}"></td>
+                                            <td th:text="${serviceRow.cost}"></td>
+                                            <td th:text="${serviceRow.maxPeople}"></td>
+                                            <td th:text="${serviceRow.roomStandard}"></td>
+                                            <td th:text="${serviceRow.description}"></td>
+                                            <td th:text="${serviceRow.poolArea}"></td>
+                                            <td th:text="${serviceRow.numberOfFloor}"></td>
+                                            <td th:text="${serviceRow.rentType.name}"></td>
+                                            <td th:text="${serviceRow.serviceType.name}"></td>
+                                            <td>
+                                                <a class="btn btn-info" href="#"><i class="far fa-eye"></i></a>
+                                                <a class="btn btn-secondary"
+                                                   th:href="@{/services/edit/{id}(id=${serviceRow.id})}"><i
+                                                        class="far fa-edit"></i></a>
+                                                <a class="btn btn-danger" href="#"
+                                                   th:id="${serviceRow.id}"
+                                                   onclick="setId(this.getAttribute('id'))"
+                                                   data-toggle="modal" data-target="#deleteModal"><i
+                                                        class="far fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="clearfix text-right">
+                                        <ul class="pagination" style="float: right;">
+                                            <li class="page-item">
+                                                <a th:href="@{/services(page=${serviceList.number - 1})}"
+                                                   th:if="${serviceList.hasPrevious()}" class="page-link">
+                                                    Previous
+                                                </a>
+                                            </li>
+
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   th:href="@{/services(page=${serviceList.number})}"
+                                                   th:if="${serviceList.hasPrevious()}"
+                                                   th:text="${serviceList.number}"></a>
+
+                                            </li>
+
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                   th:href="@{/services(page=${serviceList.number})}"
+                                                   th:text="${serviceList.number + 1}"></a>
+
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   th:href="@{/services(page=${serviceList.number})}"
+                                                   th:if="${serviceList.hasNext()}"
+                                                   th:text="${serviceList.number + 2}"></a>
+
+                                            </li>
+                                            <li class="page-item">
+                                                <a th:href="@{/services(page=${serviceList.number + 1})}"
+                                                   th:if="${serviceList.hasNext()}" class="page-link">
+                                                    Next
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </th:block>
+
+</div>
+<!-- ./wrapper -->
+
+<th:bock id="id-modal">
+
+    <!-- modal delete -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-delete-body-append">
+                    <h5 style="color: red;">You will not be able to recover?</h5>
+                </div>
+                <div class="modal-footer">
+                    <form action="/services/delete" method="post">
+                        <input type="hidden" name="id" id="id">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./modal delete -->
+
+</th:bock>
+
+<th:bock id="other-static-resources">
+    <script>
+        function setId(id) {
+            document.getElementById("id").value = id;
+        }
+    </script>
+
+</th:bock>
+
+</body>
+</html>

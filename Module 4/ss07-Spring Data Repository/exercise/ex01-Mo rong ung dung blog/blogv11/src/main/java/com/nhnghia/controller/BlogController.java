@@ -27,15 +27,40 @@ public class BlogController {
     @Autowired
     ICategoryService categoryService;
 
-    @GetMapping("")
-    //(name = "sort", required = false, defaultValue = "asc") - @PageableDefault(value = 2) Pageable pageable
-    public String listAll(@RequestParam Optional<Long> categoryIdKey,
+    @GetMapping("") //(name = "sort", required = false, defaultValue = "asc") - @PageableDefault(value = 2) Pageable pageable
+    public String listAll(@RequestParam Optional<String> txtSearch,
+                          @RequestParam Optional<Long> categoryIdKey,
+                          @RequestParam Optional<String> sortKey,
+                          @RequestParam Optional<String> sortByKey,
                           ModelMap modelMap,
                           @PageableDefault(value = 2) Pageable pageable) {
-        if (categoryIdKey.isPresent()) {
+        if (txtSearch.isPresent() && !txtSearch.get().equals("")) {
+            modelMap.addAttribute("txtSearch", txtSearch.get());
+            modelMap.addAttribute("blogList", blogService.findByTitleContaining(txtSearch.get(), pageable));
+
+        } else if (categoryIdKey.isPresent()) {
             System.out.println(categoryIdKey.get());
             modelMap.addAttribute("categoryId", categoryIdKey.get());
             modelMap.addAttribute("blogList", blogService.findByCategoryId(categoryIdKey.get(), pageable));
+        } else if (sortKey.isPresent() && !sortKey.get().equals("")) {
+            System.out.println(sortKey.get());
+            if (sortKey.get().equals("asc")) {
+                modelMap.addAttribute("sort", sortKey.get());
+                modelMap.addAttribute("sortBy", sortByKey.get());
+//                modelMap.addAttribute("blogList", blogService.findByOrderByCreateDateAsc(pageable));
+                Pageable pageableSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(sortByKey.get()).ascending());
+                modelMap.addAttribute("blogList", blogService.findAll(pageableSort));
+
+            }
+            if (sortKey.get().equals("desc")) {
+                modelMap.addAttribute("sort", sortKey.get());
+                modelMap.addAttribute("sortBy", sortByKey.get());
+//                modelMap.addAttribute("blogList", blogService.findByOrderByCreateDateDesc(pageable));
+//                modelMap.addAttribute("blogList", blogService.findAll(pageable, Sort.by(Sort.Direction.DESC, "createDate")));
+                Pageable pageableSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(sortByKey.get()).descending());
+                modelMap.addAttribute("blogList", blogService.findAll(pageableSort));
+            }
+
         } else {
             modelMap.addAttribute("blogList", blogService.findAll(pageable));
         }
@@ -84,48 +109,6 @@ public class BlogController {
         blogService.delete(id);
 
         return "redirect:/blog";
-    }
-
-    @GetMapping("/search")
-    public String search(@RequestParam Optional<String> txtSearch,
-                         ModelMap modelMap,
-                         @PageableDefault(value = 2) Pageable pageable) {
-        if (txtSearch.isPresent()) {
-            modelMap.addAttribute("txtSearch", txtSearch.get());
-            modelMap.addAttribute("blogList", blogService.findByTitleContaining(txtSearch.get(), pageable));
-
-        } else {
-            modelMap.addAttribute("blogList", blogService.findAll(pageable));
-        }
-        modelMap.addAttribute("categories", categoryService.findAll());
-
-        return "blog/list";
-    }
-
-    @GetMapping("/sort")
-    public String sort(@RequestParam Optional<String> sortKey,
-                       ModelMap modelMap,
-                       Pageable pageable) {
-        if (sortKey.isPresent()) {
-
-            if (sortKey.get().equals("asc")) {
-                modelMap.addAttribute("sort", sortKey.get());
-                Pageable pageableSort = PageRequest.of(pageable.getPageNumber(), 2, Sort.by("createDate").ascending());
-                modelMap.addAttribute("blogList", blogService.findAll(pageableSort));
-
-            }
-            if (sortKey.get().equals("desc")) {
-                modelMap.addAttribute("sort", sortKey.get());
-                Pageable pageableSort = PageRequest.of(pageable.getPageNumber(), 2, Sort.by("createDate").descending());
-                modelMap.addAttribute("blogList", blogService.findAll(pageableSort));
-            }
-
-        } else {
-            modelMap.addAttribute("blogList", blogService.findAll(pageable));
-        }
-        modelMap.addAttribute("categories", categoryService.findAll());
-
-        return "blog/list";
     }
 
 }

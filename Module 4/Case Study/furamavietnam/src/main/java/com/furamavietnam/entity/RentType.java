@@ -16,6 +16,8 @@ public class RentType {
     @Column(length = 45, nullable = false)
     private String name;
 
+    private double cost;
+
     @OneToMany(mappedBy = "rentType", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<ResortService> resortServiceList;
@@ -37,6 +39,14 @@ public class RentType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 
     public List<ResortService> getResortServiceList() {

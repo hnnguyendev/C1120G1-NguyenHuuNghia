@@ -1,7 +1,6 @@
 package com.nhnghia.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Entity
 @Table(name = "blogs")
@@ -12,7 +11,9 @@ public class Blog {
     private Long id;
     private String title;
     private String content;
-    private Timestamp createDate;
+
+    @Column(columnDefinition = "datetime")
+    private String createDate;
 
     public Blog() {
     }
@@ -41,11 +42,11 @@ public class Blog {
         this.content = content;
     }
 
-    public Timestamp getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Timestamp createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 }

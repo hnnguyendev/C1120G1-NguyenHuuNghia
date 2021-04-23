@@ -13,7 +13,7 @@ public class AppRole {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "rolename", nullable = false)
+    @Column(length = 45, nullable = false)
     private String roleName;
 
     public AppRole() {

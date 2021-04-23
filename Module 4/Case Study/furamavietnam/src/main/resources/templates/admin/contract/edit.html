@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="hidden" id="contract-id" th:field="*{contract.id}">
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="startDate">Start Day</label><br>
+            <input type="date" class="form-control" id="startDate" th:field="*{contract.startDate}">
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label for="endDate">End Day</label><br>
+            <input type="date" class="form-control" id="endDate" th:field="*{contract.endDate}">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label for="deposit">Deposit</label>
+            <input type="number" class="form-control" id="deposit"
+                   placeholder="Enter deposit" th:field="*{contract.deposit}">
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label for="totalPay">Total Pay</label>
+            <input type="number" class="form-control" id="totalPay"
+                   placeholder="Enter total pay" th:field="*{contract.totalPay}">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label>Employee</label>
+            <select class="form-control" id="employeeId" th:field="*{contract.employee}">
+                <option id="option-employee" th:each="employeeItem : ${employeeList}" th:value="${employeeItem.id}"
+                        th:text="${employeeItem.fullName}"></option>
+
+            </select>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <label>Customer</label>
+            <select class="form-control" id="customerId" th:field="*{contract.customer}">
+                <option id="option-customer" th:each="customerItem : ${customerList}" th:value="${customerItem.id}"
+                        th:text="${customerItem.fullName}"></option>
+
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label>Service</label>
+            <select class="form-control" id="serviceId" th:field="*{contract.resortService}">
+                <option id="option-service" th:each="serviceItem : ${serviceList}" th:value="${serviceItem.id}"
+                        th:text="${serviceItem.name}"></option>
+
+            </select>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+<button type="button" class="btn btn-primary float-right" id="btnSave">Save</button>
+<button type="button" class="btn btn-secondary float-right mr-1" data-dismiss="modal">Cancel</button>
+
+</body>
+</html>

@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResortServiceServiceImpl implements IResortServiceService {
 
@@ -16,8 +18,18 @@ public class ResortServiceServiceImpl implements IResortServiceService {
 
 
     @Override
+    public List<ResortService> findAll() {
+        return resortServiceRepository.findAll();
+    }
+
+    @Override
     public Page<ResortService> findAll(Pageable pageable) {
         return resortServiceRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<ResortService> findByContaining(String txtSearch, Pageable pageable) {
+        return resortServiceRepository.findByContaining(txtSearch, pageable);
     }
 
     @Override
@@ -33,6 +45,7 @@ public class ResortServiceServiceImpl implements IResortServiceService {
     @Override
     public ResortService delete(Long id) {
         ResortService resortService = resortServiceRepository.findById(id).orElse(null);
+        resortServiceRepository.deleteById(id);
         
         return resortService;
     }

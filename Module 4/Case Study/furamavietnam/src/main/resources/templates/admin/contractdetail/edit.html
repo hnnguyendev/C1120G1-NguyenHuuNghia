@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="form-group">
+    <label>Extra Service</label>
+    <select class="form-control" id="extraServiceId" th:field="*{contractDetail.extraService}">
+        <option th:each="extraServiceItem : ${extraServiceList}" th:value="${extraServiceItem.id}"
+                th:text="${extraServiceItem.name}"></option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="quantity">Quantity</label>
+    <input type="number" class="form-control" id="quantity"
+           placeholder="Enter quantity" th:field="*{contractDetail.quantity}">
+</div>
+
+<button type="button" class="btn btn-primary float-right" id="btnSaveContractDetail">Save</button>
+<button type="button" class="btn btn-secondary float-right mr-1" data-dismiss="modal">Cancel</button>
+
+</body>
+</html>

@@ -16,8 +16,6 @@ public class ServiceType {
     @Column(length = 45, nullable = false)
     private String name;
 
-    private double cost;
-
     @OneToMany(mappedBy = "serviceType", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<ResortService> resortServiceList;
@@ -39,14 +37,6 @@ public class ServiceType {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
     }
 
     public List<ResortService> getResortServiceList() {

@@ -16,6 +16,9 @@ public class AppUser {
     @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
+    @OneToOne(mappedBy = "appUser")
+    private Employee employee;
+
     public AppUser() {
     }
 
@@ -41,5 +44,13 @@ public class AppUser {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

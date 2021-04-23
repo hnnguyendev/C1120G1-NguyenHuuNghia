@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>App Fragments</title>
+</head>
+<body>
+
+
+<!-- Default Navigator -->
+<nav th:fragment = "nav-default">
+<ul >
+    <li><a th:href="@{/}">Home</a></li>
+    <li><a th:href="@{/about}">About</a></li>
+</ul>
+
+</nav>
+
+
+
+<div th:fragment="copyright">
+    &copy; o7planning.org
+</div>
+
+<p th:fragment="test" style="color: red; font-family: 'Agency FB'">test thuwr phan chung ne</p>
+
+</body>
+</html>

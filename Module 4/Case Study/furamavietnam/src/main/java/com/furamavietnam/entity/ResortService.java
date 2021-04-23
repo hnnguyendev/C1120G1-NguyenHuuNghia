@@ -1,6 +1,11 @@
 package com.furamavietnam.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @Entity
 @Table(name = "resort_services")
@@ -11,6 +16,8 @@ public class ResortService {
     private Long id;
 
     @Column(length = 10)
+    @NotBlank
+    @Pattern(regexp = "^SV-[\\d]{4}$", message = "Incorrect service code")
     private String serviceCode;
 
     @Column(length = 45)
@@ -32,12 +39,16 @@ public class ResortService {
     private int numberOfFloor;
 
     @ManyToOne
+    @JoinColumn(name = "rent_type_id", referencedColumnName = "id", nullable = false)
+    private RentType rentType;
+
+    @ManyToOne
     @JoinColumn(name = "service_type_id", referencedColumnName = "id", nullable = false)
     private ServiceType serviceType;
 
-    @ManyToOne
-    @JoinColumn(name = "rent_type_id", referencedColumnName = "id", nullable = false)
-    private RentType rentType;
+    @OneToMany(mappedBy = "resortService")
+    @JsonBackReference
+    private List<Contract> contractList;
 
     public ResortService() {
     }
@@ -136,5 +147,13 @@ public class ResortService {
 
     public void setRentType(RentType rentType) {
         this.rentType = rentType;
+    }
+
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 }

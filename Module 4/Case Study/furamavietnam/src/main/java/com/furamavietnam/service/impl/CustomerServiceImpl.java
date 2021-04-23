@@ -17,8 +17,18 @@ public class CustomerServiceImpl implements ICustomerService {
     ICustomerRepository customerRepository;
 
     @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
+    }
+
+    @Override
     public Page<Customer> findALl(Pageable pageable) {
         return customerRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Customer> findByContaining(String txtSearch, Pageable pageable) {
+        return customerRepository.findByContaining(txtSearch, pageable);
     }
 
     @Override
