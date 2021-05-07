@@ -1,0 +1,5 @@
+<div [style.background]="bgColor">
+  <h2>Color picker</h2>
+</div>
+
+<input type="color" #color (change)="pickColor(color.value)">
