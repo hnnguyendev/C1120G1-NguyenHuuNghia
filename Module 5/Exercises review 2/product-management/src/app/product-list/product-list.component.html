@@ -1,0 +1,50 @@
+<div class="container">
+  <div>
+    <h3>Product List</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Manufacture Date</th>
+          <th>Quantity</th>
+          <th>Quantity</th>
+          <th>Origin</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="productList.length != 0; else nodata">
+        <tr *ngFor="let product of productList; let i = index;" (click)="getProductDetail(product)">
+          <td scope="row">{{i + 1}}</td>
+          <td>{{product.name|titlecase}}</td>
+          <td>{{product.price|currency:"VND":true}}</td>
+          <td>{{product.manufactureDate|date:"dd/MM/yyyy"}}</td>
+          <td>
+            <span *ngIf="product.quantity == 0">Out of Stock</span>
+            <span *ngIf="product.quantity > 0 && product.quantity < 10">In Stock</span>
+            <span *ngIf="product.quantity >= 10">Many In Stock</span>
+          </td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.origin}}</td>
+        </tr>
+      </tbody>
+      <ng-template #nodata>
+        <tbody>
+          <tr>
+            <td style="color: red; text-align: center;" colspan="7">No data available in table</td>
+          </tr>
+        </tbody>
+      </ng-template>
+    </table>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col">
+        <app-product-detail [productInput]="product"></app-product-detail>
+      </div>
+      <div class="col">
+        <app-product-add (productOutput)="getProductFromCreateForm($event)"></app-product-add>
+      </div>
+    </div>
+  </div>
+</div>

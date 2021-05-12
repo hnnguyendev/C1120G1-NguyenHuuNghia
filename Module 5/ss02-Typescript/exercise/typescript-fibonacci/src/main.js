@@ -23,6 +23,7 @@ function fibonacci(anyNumber) {
         return fibonacci(anyNumber - 1) + fibonacci(anyNumber - 2);
     }
 }
+console.log(fibonacci(7));
 var n = 10;
 var fib;
 var sum = 0;

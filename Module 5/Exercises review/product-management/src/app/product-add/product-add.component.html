@@ -1,0 +1,32 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h4 class="card-title">Add New Product</h4>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" #name>
+    </div>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" class="form-control" #price>
+    </div>
+    <div class="form-group">
+      <label>Manufacture Date</label>
+      <input type="date" class="form-control" #manufactureDate>
+    </div>
+    <div class="form-group">
+      <label>Quantity</label>
+      <input type="number" class="form-control" #quantity>
+    </div>
+    <div class="form-group">
+      <label for=""></label>
+      <select class="form-control" #origin>
+        <option value="Vietnam">Viet Nam</option>
+        <option value="Anh">Anh</option>
+        <option value="My">My</option>
+        <option value="Trung Quoc">Trung Quoc</option>
+      </select>
+    </div>
+    <button type="button" class="btn btn-primary"
+      (click)="createProduct(name.value, price.value, manufactureDate.value, quantity.value, origin.value)">Create</button>
+  </div>
+</div>

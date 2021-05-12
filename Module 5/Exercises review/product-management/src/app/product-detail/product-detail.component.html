@@ -1,0 +1,29 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h4 class="card-title">Product Detail</h4>
+    <div>
+      <div>
+        Name: {{productDetail.name|titlecase}}
+      </div>
+      <div>
+        Price: {{productDetail.price|currency:"VND":true}}
+      </div>
+      <div>
+        Manufacture Date: {{productDetail.manufactureDate|date:"dd/MM/yyyy"}}
+      </div>
+      <div>
+        Quantity: {{productDetail.quantity}}
+      </div>
+      <div>
+        Origin: {{productDetail.origin}}
+      </div>
+      <div *ngIf="productDetail.quantity == 0">
+        <button type="button" class="btn btn-primary my-3" (click)="showInputForm()">Update Quantity</button>
+      </div>
+      <div *ngIf="check">
+        <label>New Quantity</label>
+        <input type="number" class="form-control" #quantity (change)="updateQuantity(quantity.value)">
+      </div>
+    </div>
+  </div>
+</div>

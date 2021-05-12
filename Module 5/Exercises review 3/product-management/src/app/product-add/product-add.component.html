@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="card border-primary">
+    <div class="card-body">
+      <h4 class="card-title">Add New Product</h4>
+      <form [formGroup]="rfProduct" (ngSubmit)="submitCreateForm()">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name">
+          <span *ngIf="rfProduct.controls.name.touched && rfProduct.controls.name.errors?.required"
+            style="color: red;">Required input</span>
+          <span *ngIf="rfProduct.controls.name.touched && rfProduct.controls.name.errors?.minlength"
+            style="color: red;">Minlength 5</span>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input type="number" class="form-control" formControlName="price">
+          <span *ngIf="rfProduct.controls.price.touched && rfProduct.controls.price.errors?.required"
+            style="color: red;">Required input</span>
+          <span *ngIf="rfProduct.controls.price.touched && rfProduct.controls.price.errors?.min" style="color: red;">Min
+            10</span>
+        </div>
+        <div class="form-group">
+          <label>Manufacture Date</label>
+          <input type="date" class="form-control" formControlName="manufactureDate">
+          <span
+            *ngIf="rfProduct.controls.manufactureDate.touched && rfProduct.controls.manufactureDate.errors?.required"
+            style="color: red;">Required
+            input</span>
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" class="form-control" formControlName="quantity">
+          <span *ngIf="rfProduct.controls.quantity.touched && rfProduct.controls.quantity.errors?.required"
+            style="color: red;">Required input</span>
+          <span *ngIf="rfProduct.controls.quantity.touched && rfProduct.controls.quantity.errors?.min"
+            style="color: red;">Min 0</span>
+          <span *ngIf="rfProduct.controls.quantity.touched && rfProduct.controls.quantity.errors?.max"
+            style="color: red;">Max 100</span>
+        </div>
+        <div class="form-group">
+          <label for=""></label>
+          <select class="form-control" formControlName="origin">
+            <option value="Vietnam">Viet Nam</option>
+            <option value="Anh">Anh</option>
+            <option value="My">My</option>
+            <option value="Trung Quoc">Trung Quoc</option>
+          </select>
+          <span *ngIf="rfProduct.controls.origin.touched && rfProduct.controls.origin.errors?.required"
+            style="color: red;">Required
+            input</span>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="rfProduct.invalid">Create</button>
+      </form>
+    </div>
+  </div>
+</div>

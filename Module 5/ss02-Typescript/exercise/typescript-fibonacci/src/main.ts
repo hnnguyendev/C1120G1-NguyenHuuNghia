@@ -25,6 +25,8 @@ function fibonacci(anyNumber: number): number {
     }
 }
 
+console.log(fibonacci(7));
+
 let n: number = 10;
 let fib: number;
 let sum: number = 0;
