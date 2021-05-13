@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+
+</head>
+<body>
+<div class="container">
+    <h2>List ordering House & Land</h2>
+    <div class="row my-5">
+        <div class="col">
+            <a th:href="@{/save}">
+                <button class="btn btn-primary">Add new</button>
+            </a>
+        </div>
+        <div class="col">
+            <form class="form-inline float-right" th:action="@{/}">
+                <input class="form-control mr-1" type="search" placeholder="Search" aria-label="Search" name="txtSearch">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <div class="alert-success my-5" th:if="${message}">
+            <span th:text="${message}"></span>
+        </div>
+    </div>
+
+    <table class="table table-hover table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Code</th>
+            <th>Customer Name</th>
+            <th>Date</th>
+            <th>Service Category</th>
+            <th>Price(VND/m2)</th>
+            <th>Area(m2)</th>
+            <th>Delete</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ordering,rowStat : ${orderingList}">
+            <td th:text="${ordering.orderCode}"></td>
+            <td th:text="${ordering.customer.name}"></td>
+            <td th:text="${ordering.date}"></td>
+            <td th:text="${ordering.serviceCategory}"></td>
+            <td th:text="${ordering.price}"></td>
+            <td th:text="${ordering.area}"></td>
+
+            <td><a th:href="@{#}"
+                   th:id="${ordering.id}"
+                   onclick="setId(this.getAttribute('id'))"
+                   data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">delete</a>
+            </td>
+            <td><a th:href="@{/view/{id}(id=${ordering.id})}" class="btn btn-info">view</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- modal delete -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 style="color: red;">You will not be able to recover?</h5>
+            </div>
+            <div class="modal-footer">
+                <form action="/delete" method="post">
+                    <input type="hidden" name="id" id="id">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end modal delete -->
+
+<script>
+    function setId(id) {
+        // day id len form delete, day name len modal
+        document.getElementById("id").value = id;
+    }
+</script>
+</body>
+</html>

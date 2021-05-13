@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<div class="container">
+    <h2>Information</h2>
+    <div class="my-2">
+        <label class="font-weight-bold">Order code:</label>
+        <label th:text="${ordering.orderCode}"></label>
+    </div>
+    <div class="my-2">
+        <label class="font-weight-bold">Service category:</label>
+        <label th:text="${ordering.serviceCategory}"></label>
+    </div>
+    <div class="my-2">
+        <label class="font-weight-bold">Date:</label>
+        <label th:text="${ordering.date}"></label>
+    </div>
+    <div class="my-2">
+        <label class="font-weight-bold">Price:</label>
+        <label th:text="${ordering.price}"></label>
+    </div>
+    <div class="my-2">
+        <label class="font-weight-bold">Area:</label>
+        <label th:text="${ordering.area}"></label>
+    </div>
+    <div class="my-2">
+        <label class="font-weight-bold">Customer name:</label>
+        <label th:text="${ordering.customer.name}"></label>
+    </div>
+    <div class="my-2">
+        <label class="font-weight-bold">Phone:</label>
+        <label th:text="${ordering.customer.phone}"></label>
+    </div>
+    <div class="my-2">
+        <label class="font-weight-bold">Price:</label>
+        <label th:text="${ordering.customer.email}"></label>
+    </div>
+
+    <a class="btn btn-secondary" href="/">Back</a>
+
+</div>
+</body>
+</html>

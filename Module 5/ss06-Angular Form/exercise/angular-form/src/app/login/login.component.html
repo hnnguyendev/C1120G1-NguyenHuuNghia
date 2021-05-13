@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card border-primary">
+    <div class="card-body">
+      <h4 class="card-title">Login Form</h4>
+      <form [formGroup]="rfLogin" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" formControlName="email">
+          <span *ngIf="rfLogin.controls.email.touched && rfLogin.controls.email.errors?.required"
+            style="color: red;">Required input</span>
+          <span *ngIf="rfLogin.controls.email.touched && rfLogin.controls.email.errors?.email"
+            style="color: red;">Incorrect format</span>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password">
+          <span *ngIf="rfLogin.controls.password.touched && rfLogin.controls.password.errors?.required"
+            style="color: red;">Required input</span>
+          <span *ngIf="rfLogin.controls.password.touched && rfLogin.controls.password.errors?.minlength"
+            style="color: red;">Min 6</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="rfLogin.invalid">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

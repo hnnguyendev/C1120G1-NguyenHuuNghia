@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="text" class="form-control" formControlName="password">
+          <input type="password" class="form-control" formControlName="password">
           <span *ngIf="rfRegister.controls.password.touched && rfRegister.controls.password.errors?.required"
           style="color: red;">Required input</span>
           <span *ngIf="rfRegister.controls.password.touched && rfRegister.controls.password.errors?.minlength"
@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
           <label>Confirm Password</label>
-          <input type="text" class="form-control" formControlName="confirmPassword" #confirmPassword>
+          <input type="password" class="form-control" formControlName="confirmPassword" #confirmPassword>
           <span *ngIf="rfRegister.controls.password.value != confirmPassword.value"
           style="color: red;">Not match</span>
         </div>
