@@ -1,0 +1,49 @@
+<div class="container">
+  <div>
+    <h3>Product List</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Manufacture Date</th>
+          <th>Quantity</th>
+          <th>Quantity</th>
+          <th>Origin</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="products; else nodata">
+        <tr *ngFor="let product of products; let i = index;">
+          <td scope="row">{{i + 1}}</td>
+          <td>{{product.id}}</td>
+          <td>{{product.name|titlecase}}</td>
+          <td>{{product.price|currency:"VND":true}}</td>
+          <td>{{product.manufactureDate|date:"dd/MM/yyyy"}}</td>
+          <td>
+            <span *ngIf="product.quantity == 0">Out of Stock</span>
+            <span *ngIf="product.quantity > 0 && product.quantity < 10">In Stock</span>
+            <span *ngIf="product.quantity >= 10">Many In Stock</span>
+          </td>
+          <td>{{product.quantity}}</td>
+          <td>{{product.origin}}</td>
+          <td>
+            <a [routerLink]="['/detail',product.id]">View</a>
+            <a [routerLink]="['/edit',product.id]">Edit</a>
+            <a [routerLink]="['/delete',product.id]">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #nodata>
+        <tbody>
+          <tr>
+            <td style="color: red; text-align: center;" colspan="7">No data available in table</td>
+          </tr>
+        </tbody>
+      </ng-template>
+    </table>
+  </div>
+  
+</div>
