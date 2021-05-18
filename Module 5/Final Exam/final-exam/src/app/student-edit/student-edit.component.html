@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="card border-primary">
+    <div class="card-body">
+      <h4 class="card-title">Edit Student</h4>
+      <form [formGroup]="refStudent" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="id" disabled>
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name">
+          <span *ngIf="refStudent.controls.name.touched && refStudent.controls.name.errors?.required"
+            style="color: red;">Required input</span>
+          <span *ngIf="refStudent.controls.name.touched && refStudent.controls.name.errors?.pattern"
+            style="color: red;">Incorrect name format</span>
+        </div>
+        <div class="form-group">
+          <label>Team</label>
+          <select class="form-control" formControlName="team">
+            <option value="">Choose team</option>
+            <option value="Team 1">Team 1</option>
+            <option value="Team 2">Team 2</option>
+            <option value="Team 3">Team 3</option>
+          </select>
+          <span *ngIf="refStudent.controls.team.touched && refStudent.controls.team.errors?.required"
+            style="color: red;">Required input</span>
+        </div>
+        <div class="form-group">
+          <label>Topic</label>
+          <input type="text" class="form-control" formControlName="topic">
+          <span *ngIf="refStudent.controls.topic.touched && refStudent.controls.topic.errors?.required"
+            style="color: red;">Required input</span>
+        </div>
+        <div class="form-group">
+          <label>Teacher</label>
+          <select class="form-control" formControlName="teacher" [compareWith]="compareObjects">
+            <option *ngFor="let teacher of teachers" [ngValue]="teacher">{{teacher.name}}</option>
+          </select>
+          <span *ngIf="refStudent.controls.teacher.touched && refStudent.controls.teacher.errors?.required"
+            style="color: red;">Required
+            input</span>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" formControlName="email">
+          <span *ngIf="refStudent.controls.email.touched && refStudent.controls.email.errors?.required"
+            style="color: red;">Required input</span>
+          <span *ngIf="refStudent.controls.email.touched && refStudent.controls.email.errors?.email"
+            style="color: red;">acb@def.com</span>
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="text" class="form-control" formControlName="phone">
+          <span *ngIf="refStudent.controls.phone.touched && refStudent.controls.phone.errors?.required"
+            style="color: red;">Required input</span>
+          <span *ngIf="refStudent.controls.phone.touched && refStudent.controls.phone.errors?.pattern"
+            style="color: red;">Incorrect phone format</span>
+        </div>
+        <a class="btn btn-secondary mr-2" routerLink="/home" role="button">Cancel</a>
+        <button type="submit" class="btn btn-primary" [disabled]="refStudent.invalid">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

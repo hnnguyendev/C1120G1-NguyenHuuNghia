@@ -1,3 +1,8 @@
 <h1>Delete Product</h1>
-<p>{{product.name}}</p>
+<div *ngIf="product; else nodata">
+  <p>{{product.name}}</p>
+</div>
+<ng-template #nodata>
+  <td>No data</td>
+</ng-template>
 <button (click)="deleteProduct(id)">Delete</button>

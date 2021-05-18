@@ -1,24 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../model/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  products: Product[] = [
-    { id: 1, name: "Samsung galaxy", price: 1000, manufactureDate: new Date("2021-01-01"), quantity: 5, origin: "Vietnam" },
-    { id: 2, name: "Nokia", price: 500, manufactureDate: new Date("2021-01-01"), quantity: 0, origin: "My" },
-    { id: 3, name: "Iphone", price: 1200, manufactureDate: new Date("2021-01-01"), quantity: 20, origin: "Anh" },
-    { id: 4, name: "LG", price: 600, manufactureDate: new Date("2021-01-01"), quantity: 5, origin: "Trung Quoc" },
-    { id: 5, name: "HTC", price: 400, manufactureDate: new Date("2021-01-01"), quantity: 0, origin: "Vietnam" }
-  ];
+  // products: Product[] = [
+  //   { id: 1, name: "Samsung galaxy", price: 1000, manufactureDate: new Date("2021-01-01"), quantity: 5, origin: "Vietnam" },
+  //   { id: 2, name: "Nokia", price: 500, manufactureDate: new Date("2021-01-01"), quantity: 0, origin: "My" },
+  //   { id: 3, name: "Iphone", price: 1200, manufactureDate: new Date("2021-01-01"), quantity: 20, origin: "Anh" },
+  //   { id: 4, name: "LG", price: 600, manufactureDate: new Date("2021-01-01"), quantity: 5, origin: "Trung Quoc" },
+  //   { id: 5, name: "HTC", price: 400, manufactureDate: new Date("2021-01-01"), quantity: 0, origin: "Vietnam" }
+  // ];
 
   private API_URL = "http://localhost:3000/products";
+  private API_URL2 = "http://localhost:3000/origins";
 
   constructor(private _httpClient: HttpClient) { }
+
+  findAllOrigin(): Observable<any> {
+    return this._httpClient.get(this.API_URL2);
+  }
 
   findAll(): Observable<any> {
     return this._httpClient.get(this.API_URL);
@@ -38,6 +42,25 @@ export class ProductService {
 
   delete(id: number): Observable<any> {
     return this._httpClient.delete(`${this.API_URL}/${id}`);
+  }
+
+  search(txtSearch: string, txtSearch2: string): Observable<any> {
+    return this._httpClient.get(`${this.API_URL}?name_like=${txtSearch}&price_like=${txtSearch2}`);
+    // search(txtSearch: string): Observable<any> {
+    // return this._httpClient.get(`${this.API_URL}?q=${txtSearch}`);
+    // return this._httpClient.get(`${this.API_URL}?name_like=${txtSearch}`);
+  }
+
+  searchByName(txtSearch: string): Observable<any> {
+    return this._httpClient.get(`${this.API_URL}?name_like=${txtSearch}`);
+  }
+
+  searchByPrice(txtSearch: string): Observable<any> {
+    return this._httpClient.get(`${this.API_URL}?price_like=${txtSearch}`);
+  }
+
+  searchByOrigin(txtSearch: string): Observable<any> {
+    return this._httpClient.get(`${this.API_URL}?origin.name_like=${txtSearch}`);
   }
 
   // findAll() {

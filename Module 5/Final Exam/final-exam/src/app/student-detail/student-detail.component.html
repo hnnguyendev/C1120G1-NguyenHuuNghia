@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card border-primary">
+    <div class="card-body">
+      <h4 class="card-title">Student Detail</h4>
+      <div *ngIf="student; else nodata">
+        <div>
+          ID: {{student.id}}
+        </div>
+        <div>
+          Name: {{student.name}}
+        </div>
+        <div>
+          Team: {{student.team}}
+        </div>
+        <div>
+          Topic: {{student.topic}}
+        </div>
+        <div>
+          Teacher: {{student.teacher.name}}
+        </div>
+        <div>
+          Email: {{student.email}}
+        </div>
+        <div>
+          Phone: {{student.phone}}
+        </div>
+      </div>
+      <ng-template #nodata>
+        <p style="color: red;">No data</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

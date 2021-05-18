@@ -1,0 +1,130 @@
+{
+  "teachers": [
+    {
+      "id": 1,
+      "name": "Dang Chi Trung"
+    },
+    {
+      "id": 2,
+      "name": "Truong Tan Hai"
+    },
+    {
+      "id": 3,
+      "name": "Nguyen Vu Thanh Tien"
+    },
+    {
+      "id": 4,
+      "name": "Tran Van Chanh"
+    },
+    {
+      "id": 5,
+      "name": "Doan Phuoc Trung"
+    },
+    {
+      "id": 6,
+      "name": "Doan Ngoc Linh"
+    },
+    {
+      "id": 7,
+      "name": "Pham Van Chien"
+    }
+  ],
+  "students": [
+    {
+      "id": 2,
+      "name": "Nguyen Ngoc Dong",
+      "team": "Team 2",
+      "topic": "Product Management",
+      "teacher": {
+        "id": 2,
+        "name": "Truong Tan Hai"
+      },
+      "email": "dong@gmail.com",
+      "phone": "0123456789"
+    },
+    {
+      "id": 3,
+      "name": "Tran Hoang Sang",
+      "team": "Team 3",
+      "topic": "Market Management",
+      "teacher": {
+        "id": 3,
+        "name": "Nguyen Vu Thanh Tien"
+      },
+      "email": "sang@gmail.com",
+      "phone": "0123456789"
+    },
+    {
+      "id": 4,
+      "name": "Nguyen Thi Tuong Vi",
+      "team": "Team 2",
+      "topic": "Library Management",
+      "teacher": {
+        "id": 4,
+        "name": "Tran Van Chanh"
+      },
+      "email": "vi@gmail.com",
+      "phone": "0123456789"
+    },
+    {
+      "id": 5,
+      "name": "Nguyen Ngoc Thuan",
+      "team": "Team 3",
+      "topic": "Smart Home",
+      "teacher": {
+        "id": 3,
+        "name": "Nguyen Vu Thanh Tien"
+      },
+      "email": "thuan@gmail.com",
+      "phone": "0123456789"
+    },
+    {
+      "id": 6,
+      "name": "Nguyen Hoang Bao Ngoc Ngoc",
+      "team": "Team 1",
+      "topic": "Smart City",
+      "teacher": {
+        "id": 2,
+        "name": "Truong Tan Hai"
+      },
+      "email": "ngoc@gmail.com",
+      "phone": "0123456789"
+    },
+    {
+      "id": 7,
+      "name": "Hoang Le Quang",
+      "team": "Team 2",
+      "topic": "Library Management",
+      "teacher": {
+        "id": 4,
+        "name": "Tran Van Chanh"
+      },
+      "email": "vi@gmail.com",
+      "phone": "0123456789"
+    },
+    {
+      "id": 9,
+      "name": "Tuan Le",
+      "team": "Team 2",
+      "topic": "Library Management",
+      "teacher": {
+        "id": 4,
+        "name": "Tran Van Chanh"
+      },
+      "email": "vi@gmail.com",
+      "phone": "0123456789"
+    },
+    {
+      "id": 10,
+      "name": "Hoai Linh",
+      "team": "Team 1",
+      "topic": "Vaccine",
+      "teacher": {
+        "id": 4,
+        "name": "Tran Van Chanh"
+      },
+      "email": "hoailinh@gmail.com",
+      "phone": "9999999999"
+    }
+  ]
+}

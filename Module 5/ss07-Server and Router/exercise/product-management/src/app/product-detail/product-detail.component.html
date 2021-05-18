@@ -16,7 +16,7 @@
           Quantity: {{product.quantity}}
         </div>
         <div>
-          Origin: {{product.origin}}
+          Origin: {{product.origin.name}}
         </div>
         <div *ngIf="product.quantity == 0">
           <button type="button" class="btn btn-primary my-3" (click)="showInputForm()">Update Quantity</button>

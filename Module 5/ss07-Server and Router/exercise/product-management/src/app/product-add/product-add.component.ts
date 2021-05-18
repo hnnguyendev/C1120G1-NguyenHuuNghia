@@ -10,18 +10,24 @@ import { ProductService } from '../service/product.service';
 })
 export class ProductAddComponent implements OnInit {
 
-  rfProduct: FormGroup;
+  refProduct: FormGroup;
+  public origins;
 
   constructor(private _formBuilder: FormBuilder,
     private _productService: ProductService,
     private _router: Router) { }
 
   ngOnInit(): void {
+    this._productService.findAllOrigin().subscribe(data => {
+      this.origins = data;
+      console.log(this.origins);
+    });
+
     this.formInit();
   }
 
   formInit() {
-    this.rfProduct = this._formBuilder.group({
+    this.refProduct = this._formBuilder.group({
       name: ["", [Validators.required, Validators.minLength(5)]],
       price: ["", [Validators.required, Validators.min(10)]],
       manufactureDate: ["", [Validators.required]],
@@ -31,21 +37,13 @@ export class ProductAddComponent implements OnInit {
   }
 
   submitCreateForm() {
-    if (this.rfProduct.valid) {
-      this._productService.save(this.rfProduct.value).subscribe(data => {
+    if (this.refProduct.valid) {
+      this._productService.save(this.refProduct.value).subscribe(data => {
         this._router.navigateByUrl("/home");
       }, error => {
         console.log(error);
       })
     }
   }
-
-  // submitCreateForm() {
-  //   if (this.rfProduct.valid) {
-  //     this._productService.save(this.rfProduct.value)
-  //     this._router.navigateByUrl("/home");
-  //     // this.ngOnInit();
-  //   }
-  // }
 
 }

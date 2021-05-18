@@ -1,0 +1,81 @@
+<div class="container">
+  <div>
+    <input type="text" class="form-control" [(ngModel)]="txtSearch" placeholder="Search..">
+    <button class="btn btn-success" (click)="onSearch()">Search</button>
+  </div>
+  <div>
+    <h3 style="text-align: center;">Student List</h3>
+    <div>
+      <a class="btn btn-success mb-2 float-right" role="button" routerLink="/add">Add new</a>
+    </div>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Team</th>
+          <th>Topic</th>
+          <th>Teacher</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="students; else nodata">
+        <tr *ngFor="let student of students.content; let i = index;">
+          <td scope="row">{{i + 1}}</td>
+          <td>{{student.id}}</td>
+          <td>{{student.name}}</td>
+          <td>{{student.team}}</td>
+          <td>{{student.topic}}</td>
+          <td>{{student.teacher.name}}</td>
+          <td>{{student.email}}</td>
+          <td>{{student.phone}}</td>
+          <td>
+            <button class="btn btn-success mr-2" [routerLink]="['/detail',student.id]">View</button>
+            <button class="btn btn-warning mr-2" [routerLink]="['/edit',student.id]">Edit</button>
+            <button class="btn btn-danger" (click)="onDelete(student.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #nodata>
+        <tbody>
+          <tr>
+            <td style="color: red; text-align: center;" colspan="9">No data available in table</td>
+          </tr>
+        </tbody>
+      </ng-template>
+    </table>
+    <div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination d-flex justify-content-md-end justify-content-center">
+
+          <li class="page-item">
+            <button class="page-link" [hidden]="students?.pageable?.pageNumber == 0"
+              (click)="onList(students.pageable.pageNumber - 1)">Previous
+            </button>
+          </li>
+          <li class="page-item">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">{{students?.pageable?.pageNumber + 1}}</span>
+              </div>
+
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"> /{{students?.totalPages}}</span>
+              </div>
+            </div>
+          </li>
+          <li class="page-item">
+            <button class="page-link" [hidden]="students?.pageable?.pageNumber >=  students?.totalPages - 1"
+              (click)="onList(students.pageable.pageNumber + 1)">Next
+            </button>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</div>

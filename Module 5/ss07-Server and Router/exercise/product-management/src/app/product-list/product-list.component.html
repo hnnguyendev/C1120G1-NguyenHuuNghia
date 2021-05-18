@@ -1,5 +1,19 @@
 <div class="container">
   <div>
+    <input type="text" class="form-control" [(ngModel)]="txtSearch" placeholder="Search by name">
+    <input type="text" class="form-control" [(ngModel)]="txtSearch2" placeholder="Search by price">
+    <button class="btn btn-success" (click)="search()">Search</button>
+  </div>
+  <div>
+    <select class="form-control" [(ngModel)]="searchBy">
+      <option value="1">Search by name</option>
+      <option value="2">Search by price</option>
+      <option value="3">Search by origin</option>
+    </select>
+    <input type="text" class="form-control" [(ngModel)]="txtSearch" placeholder="Search..">
+    <button class="btn btn-success" (click)="search()">Search</button>
+  </div>
+  <div>
     <h3>Product List</h3>
     <table class="table table-striped">
       <thead>
@@ -16,7 +30,7 @@
         </tr>
       </thead>
       <tbody *ngIf="products; else nodata">
-        <tr *ngFor="let product of products; let i = index;">
+        <tr *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p }; let i = index;">
           <td scope="row">{{i + 1}}</td>
           <td>{{product.id}}</td>
           <td>{{product.name|titlecase}}</td>
@@ -28,22 +42,24 @@
             <span *ngIf="product.quantity >= 10">Many In Stock</span>
           </td>
           <td>{{product.quantity}}</td>
-          <td>{{product.origin}}</td>
+          <td>{{product.origin.name}}</td>
           <td>
-            <a [routerLink]="['/detail',product.id]">View</a>
-            <a [routerLink]="['/edit',product.id]">Edit</a>
-            <a [routerLink]="['/delete',product.id]">Delete</a>
+            <button class="btn btn-secondary" [routerLink]="['/detail',product.id]">View</button>
+            <button class="btn btn-warning" [routerLink]="['/edit',product.id]">Edit</button>
+            <button class="btn btn-danger" [routerLink]="['/delete',product.id]">Delete</button>
+            <button class="btn btn-danger" (click)="onDelete(product.id)">Delete Dialog</button>
           </td>
         </tr>
       </tbody>
       <ng-template #nodata>
         <tbody>
           <tr>
-            <td style="color: red; text-align: center;" colspan="7">No data available in table</td>
+            <td style="color: red; text-align: center;" colspan="9">No data available in table</td>
           </tr>
         </tbody>
       </ng-template>
     </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
   
 </div>

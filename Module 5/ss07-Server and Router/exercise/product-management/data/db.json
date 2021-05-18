@@ -1,0 +1,99 @@
+{
+  "origins": [
+    {
+      "id": 1,
+      "name": "Viet Nam"
+    },
+    {
+      "id": 2,
+      "name": "England"
+    },
+    {
+      "id": 3,
+      "name": "USA"
+    },
+    {
+      "id": 4,
+      "name": "China"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Samsung galaxy S9",
+      "price": 1000,
+      "manufactureDate": "2021-05-14",
+      "quantity": 5,
+      "origin": {
+        "id": 1,
+        "name": "Viet Nam"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S9",
+      "price": 1000,
+      "manufactureDate": "2021-06-14",
+      "quantity": 0,
+      "origin": {
+        "id": 2,
+        "name": "England"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Samsung Galaxy S9",
+      "price": 700,
+      "manufactureDate": "2021-03-14",
+      "quantity": 10,
+      "origin": {
+        "id": 3,
+        "name": "USA"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Samsung Galaxy S9",
+      "price": 1000,
+      "manufactureDate": "2021-01-14",
+      "quantity": 12,
+      "origin": {
+        "id": 4,
+        "name": "China"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Samsung Galaxy S9",
+      "price": 150,
+      "manufactureDate": "2015-05-14",
+      "quantity": 0,
+      "origin": {
+        "id": 4,
+        "name": "China"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Samsung Galaxy S9",
+      "price": 500,
+      "manufactureDate": "2021-05-01",
+      "quantity": 12,
+      "origin": {
+        "id": 1,
+        "name": "Viet Nam"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Iphone 12",
+      "price": 12,
+      "manufactureDate": "2021-05-16",
+      "quantity": 1,
+      "origin": {
+        "id": 1,
+        "name": "Viet Nam"
+      }
+    }
+  ]
+}
