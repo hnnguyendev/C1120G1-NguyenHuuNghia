@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <td>Ngày Bắt Đầu</td>
+                    <td>Ngày Kết Thúc</td>
+                    <td>Chức Năng</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="date" placeholder="dd/MM/yyyy" class="form-control"></td>
+                    <td><input type="date" class="form-control">
+                    <td>
+                        <button type="submit" class="btn btn-primary">Thống Kê</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="chart_div"></div>
+    </div>
+
+    <script>
+        google.charts.load('current', {
+            'packages': ['line', 'corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var button = document.getElementById('change-chart');
+            var chartDiv = document.getElementById('chart_div');
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Tên phim');
+            data.addColumn('number', "Doanh thu (triệu đồng)");
+            data.addColumn('number', "Số vé bán được (vé)");
+
+            data.addRows([
+                ['12 Years A Slave', 15, 200],
+                ['A.X.L', 5, 70],
+                ['Alpha', 23, 230],
+                ['Aquaman', 98, 1000],
+                ['Arrival', 22, 220],
+                ['Black Panther', 33, 350],
+                ['Captain', 13, 140],
+                ['Fantastic', 19, 200],
+                ['Ff 8', 11, 200],
+                ['IT', 9, 250],
+            ]);
+
+            var materialOptions = {
+                chart: {
+                    title: 'Top các phim có doanh thu cao nhất'
+                },
+                width: '100%',
+                height: 500,
+                series: {
+                    // Gives each series an axis name that matches the Y-axis below.
+                    0: {
+                        axis: 'Revenue'
+                    },
+                    1: {
+                        axis: 'Ticket'
+                    }
+                },
+                axes: {
+                    // Adds labels to each axis; they don't have to match the axis names.
+                    y: {
+                        Revenue: {
+                            label: 'Doanh thu'
+                        },
+                        Ticket: {
+                            label: 'Số vé'
+                        }
+                    }
+                }
+            };
+
+            function drawMaterialChart() {
+                var materialChart = new google.charts.Line(chartDiv);
+                materialChart.draw(data, materialOptions);
+                button.onclick = drawClassicChart;
+            }
+
+            drawMaterialChart();
+
+        }
+    </script>
+    <script>
+
+    </script>
+
+</body>
+
+</html>
