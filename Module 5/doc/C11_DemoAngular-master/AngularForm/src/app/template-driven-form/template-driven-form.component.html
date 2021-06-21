@@ -1,0 +1,32 @@
+<div class="card border-success">
+  <h3 class="card-header bg-success">Child Component</h3>
+  <div class="card-body">
+    <h4 class="card-title">Student Create</h4>
+
+    <form #studentForm="ngForm" (ngSubmit)="onSubmitForm(studentForm)" autocomplete="off">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" #name="ngModel" [(ngModel)]="student.name"
+               name="txtName" required="required" minlength="5">
+        <span *ngIf="name.touched && name.errors?.required" style="color: red">Required input</span>
+        <span *ngIf="name.touched && name.errors?.minlength" style="color: red">Minlength 5</span>
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <input type="number" class="form-control" #gender="ngModel" [(ngModel)]="student.gender"  name="txtGender">
+      </div>
+      <div class="form-group">
+        <label>Point</label>
+        <input type="number" class="form-control" #point="ngModel" [(ngModel)]="student.point"  name="txtPoint"
+               pattern="\d{2}">
+        <span *ngIf="point.touched && point.errors?.pattern" style="color: red">Pattern</span>
+      </div>
+
+      <button type="submit" class="btn btn-primary" >Create</button>
+<!--      <button type="reset" class="btn btn-secondary">Reset</button>-->
+      <button type="button" class="btn btn-secondary" (click)="onResetForm(studentForm)">Reset</button>
+    </form>
+
+
+  </div>
+</div>

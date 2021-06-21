@@ -1,0 +1,67 @@
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Pipes name</th>
+      <th>Input data</th>
+      <th>Out data</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>1</th>
+      <td>Uppercase</td>
+      <td>{{input1}}</td>
+      <td>{{input1 | uppercase}}</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>lowercase</td>
+      <td>{{input1}}</td>
+      <td>{{input1 | lowercase}}</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>lowercase</td>
+      <td>{{input1}}</td>
+      <td>{{input1 | titlecase}}</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>slice</td>
+      <td>{{input1}}</td>
+      <td>{{input1 | slice:3:6}}</td>
+    </tr>
+
+    <tr>
+      <td>5</td>
+      <td>number</td>
+      <td>{{inputNumber}}</td>
+      <td>{{inputNumber | number:'1.1-3'}}</td>
+    </tr>
+
+    <tr>
+      <td>6</td>
+      <td>percent</td>
+      <td>{{inputNumber}}</td>
+      <td>{{inputNumber | percent:'1.0-3'}}</td>
+    </tr>
+
+    <tr>
+      <td>7</td>
+      <td>currency</td>
+      <td>{{money}}</td>
+      <td>{{money | currency:'VND': true}}</td>
+    </tr>
+
+    <tr>
+      <td>8</td>
+      <td>Date</td>
+      <td>{{now}}</td>
+      <td>{{now|date : 'd/M/yyyy h:mm:ss'}}</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>

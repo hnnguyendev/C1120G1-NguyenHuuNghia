@@ -1,0 +1,18 @@
+App component
+<div *ngIf="isDisplay">
+<!--  <app-lifecycle-hook ></app-lifecycle-hook>-->
+<!--  <app-lifecycle-hook [total]='total'></app-lifecycle-hook>-->
+  <app-lifecycle-hook [total]='total'>
+    <h1>Hello</h1>
+  </app-lifecycle-hook>
+</div>
+<hr/>
+Number_1: <input type="number" [(ngModel)]="a">
+<br/>
+Number_2: <input type="number" [(ngModel)]="b">
+<br/>
+<h3>Sum: {{total}}</h3>
+<br/>
+<button (click)="sum()">Sum</button>
+<br/>
+<button (click)="onToggle()">Toggle</button>

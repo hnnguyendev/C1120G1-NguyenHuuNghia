@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Trang web cua toi</h1>
+<!--  <a class="btn btn-primary" href="/home" role="button">Home</a>-->
+<!--  <a class="btn btn-success" href="/create" role="button">Create</a>-->
+  <a class="btn btn-primary" routerLink="/home" role="button">Home</a>
+  <a class="btn btn-success" routerLink="/create" role="button">Create</a>
+  <a class="btn btn-success" [routerLink]="['/detail',2]" role="button">Detail</a>
+  <br/>
+  <router-outlet></router-outlet>
+</div>

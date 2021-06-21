@@ -1,4 +1,4 @@
-<table class="table">
+<!-- <table class="table">
     <thead class="table-dark">
     <tr>
       <th>ID</th>
@@ -23,4 +23,13 @@
       <td>100000</td>
     </tr>
     </tbody>
-  </table>
+  </table> -->
+
+  <div class="card container">
+    <h5>Vertical</h5>
+    <p-chart type="bar" [data]="basicData"></p-chart>
+</div>
+<div class="card container">
+    <h5>Multi Axis</h5>
+    <p-chart type="bar" [data]="multiAxisData" [options]="multiAxisOptions"></p-chart>
+</div>

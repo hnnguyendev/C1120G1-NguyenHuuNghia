@@ -1,0 +1,11 @@
+<p>student-info works!</p>
+<h3>Student ID: {{student.id}}</h3>
+<h3>Student Name: {{student.name}}</h3>
+<h3>Student Point: {{student.point}}</h3>
+<!--<input type="number" #inputPoint (change)="updatePoint(inputPoint.value)" [disabled]="isDisable">-->
+<input type="text" #inputPoint [(ngModel)]="title" (change)="update(inputPoint.value)">
+<br/>
+<p [style.color]="color" >{{title}}</p>
+<input >
+
+<!--<input type="button" value="Update Point" (click)="updatePoint(inputPoint.value)">-->

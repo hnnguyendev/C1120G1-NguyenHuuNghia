@@ -9,6 +9,7 @@ import { AngularShowPetInfoComponent } from './angular-show-pet-info/angular-sho
 import { AngularUsingBootstrapComponent } from './angular-using-bootstrap/angular-using-bootstrap.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

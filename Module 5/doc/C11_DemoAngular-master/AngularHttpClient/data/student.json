@@ -1,0 +1,28 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Nguyen Van A",
+      "gender": 1,
+      "point": 50
+    },
+    {
+      "id": 2,
+      "name": "Anh dsadsa",
+      "gender": 121,
+      "point": 50
+    },
+    {
+      "id": 6,
+      "name": "Còngdfsd",
+      "gender": 1,
+      "point": 502122
+    },
+    {
+      "name": "Anh dsadsda",
+      "gender": 1,
+      "point": 500,
+      "id": 7
+    }
+  ]
+}
