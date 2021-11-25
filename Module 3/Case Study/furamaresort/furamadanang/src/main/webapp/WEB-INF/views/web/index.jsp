@@ -12,8 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../assets/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/dist/css/bootstrap.css' />" />
+    <link rel="stylesheet" type="text/css" href="<c:url value='/assets/css/style.css' />" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <title>Furama Resort Danang – A Culinary Beach Resort In Vietnam</title>
@@ -101,12 +101,12 @@
                 <%--kiểm tra fullname (trong session) không tồn tại thì show login k thì show fullname--%>
                 <c:if test="${empty fullname}">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/?action=login">LOGIN</a>
+                        <a class="nav-link text-white" href='<c:url value="/?action=login" />'>LOGIN</a>
                     </li>
                 </c:if>
                 <c:if test="${not empty fullname}">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/?action=logout&logout=ok">${fullname}</a>
+                        <a class="nav-link text-white" href='<c:url value="/?action=logout&logout=ok" />'>${fullname}</a>
                     </li>
                 </c:if>
             </ul>
@@ -307,8 +307,8 @@
 </footer>
 <!--End Footer-->
 
-<script src="../../assets/bootstrap/js/jquery/jquery.js"></script>
-<script src="../../assets/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="<c:url value='/assets/bootstrap/js/jquery/jquery.js' />"></script>
+<script src="<c:url value='/assets/bootstrap/dist/js/bootstrap.bundle.js' />"></script>
 <script>
     $(document).on('click', '.dropdown-menu', function (e) {
         e.stopPropagation();

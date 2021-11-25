@@ -5,10 +5,11 @@ select ticket.time_create as createDate,
 		count(ticket.ticket_id) as ticketQuantity
 from ticket
 inner join movie_ticket
-on ticket.movie_ticket_id = movie_ticket.movive_ticket_id
-where ticket.ticket_status = 2
+on ticket.movie_ticket_id = movie_ticket.movie_ticket_id
+where ticket.ticket_status_id = 2
 group by ticket.time_create
-having ticket.time_create between '2021-06-20' and '2021-06-21';
+having ticket.time_create between '2021-01-20' and '2022-06-21'
+order by ticket.time_create;
 
 select ticket.time_create as createDate, 
 		sum(movie_ticket.ticket_price) as revenue, 
@@ -185,24 +186,24 @@ values ('Đợi nhận'),
 		('Đã nhận');
         
 insert into ticket(time_create,movie_ticket_id,user_id,ticket_status_id)
-values ('2021-06-20', 1, 1,2),
-		('2021-02-20', 2, 2,2),
-        ('2021-01-21', 3, 3,2),
+values ('2021-06-20', 7, 1,2),
+		('2021-02-20', 8, 2,2),
+        ('2021-01-21', 5, 3,2),
         ('2021-03-21', 4, 4,2),
         ('2021-04-21', 5, 5,2),
         ('2021-05-20', 6, 6,2),
 		('2021-12-20', 7, 7,2),
         ('2021-07-21', 8, 8,2),
-        ('2021-11-21', 9, 9,2),
-        ('2021-10-21', 10, 10,2),
-        ('2021-08-20', 1, 11,2),
-		('2021-09-20', 2, 12,2),
-        ('2021-06-21', 3, 13,2),
-        ('2021-06-21', 4, 14,2),
-        ('2021-06-21', 5, 15,2),
-        ('2021-05-20', 1, 6,2),
-		('2021-12-20', 2, 7,2),
-        ('2021-07-21', 9, 8,2),
+        ('2021-11-21', 14, 9,2),
+        ('2021-10-21', 15, 10,2),
+        ('2021-08-20', 16, 11,2),
+		('2021-09-20', 17, 12,2),
+        ('2021-06-21', 16, 13,2),
+        ('2021-06-21', 40, 14,2),
+        ('2021-06-21', 25, 15,2),
+        ('2021-05-20', 31, 6,2),
+		('2021-12-20', 22, 7,2),
+        ('2021-07-21', 35, 8,2),
         ('2021-11-21', 8, 9,2),
         ('2021-10-21', 5, 10,2),
         ('2021-08-20', 5, 11,2),
